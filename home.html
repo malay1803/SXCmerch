@@ -19,16 +19,20 @@
     ></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <link rel="stylesheet" href="css/style.css" />
     <title>Document</title>
   </head>
-  <body>
+  <body style="background-color: white">
     <!-- ------------ navbar ------------- -->
     <navbar></navbar>
     <!-- ------------ navbar ------------- -->
 
     <!-- --------------carousel--------------- -->
-    <section class="container col-lg-8 col-md-12 col-sm-12">
+    <section class="container col-lg-8 col-md-12 col-sm-12 mt-5">
       <div
         id="carouselExampleIndicators"
         class="carousel slide"
@@ -58,13 +62,13 @@
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="image/c1.png" class="d-block w-100" alt="..." />
+            <img src="image/c2.png" class="w-100" alt="..." />
           </div>
           <div class="carousel-item">
-            <img src="image/c1.png" class="d-block w-100" alt="..." />
+            <img src="image/c2.png" class="w-100" alt="..." />
           </div>
           <div class="carousel-item">
-            <img src="image/c1.png" class="d-block w-100" alt="..." />
+            <img src="image/c2.png" class="w-100" alt="..." />
           </div>
         </div>
         <button
@@ -89,10 +93,115 @@
     </section>
 
     <!-- --------------carousel--------------- -->
+
+    <!-- svg img section  -->
+    <section class="container col-lg-8 col-md-12 col-sm-12">
+      <div class="row align-items-center">
+        <!-- img part  -->
+        <div class="col-sm-6 d-flex justify-content-center">
+          <img
+            class="img-fluid"
+            src="image/middleSection.svg"
+            style="max-width: 80%; height: auto"
+          />
+        </div>
+        <!-- img part  -->
+
+        <!-- text part  -->
+        <div class="col-sm-6">
+          <h1>Lorem Ipsum</h1>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s
+            with the release of Letraset sheets containing Lorem Ipsum passages,
+            and more recently with desktop publishing software like Aldus
+            PageMaker including versions of Lorem Ipsum.
+          </p>
+        </div>
+      </div>
+      <!-- text part  -->
+    </section>
+    <!-- svg img section  -->
+
+    <section class="container col-lg-8 col-md-12 col-sm-12 mb-5">
+      <div class="row">
+        <div class="col-sm-12" style="text-align: center">
+          <h1 class="text-center text-uppercase" style="font-size: 50px">
+            Sign UP and Get Started
+          </h1>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <div class="col-sm-6 text-center mt-5 d-flex">
+          <div class="col-6 mx-auto">
+            <a class="signUp" href="#login" data-bs-target="modal">Login</a>
+          </div>
+          <div class="col-6 mx-auto">
+            <a class="signUp" href="#signup" data-bs-target="modal">SignUp</a>
+          </div>
+        </div>
+      </div>
+      <login></login>
+    </section>
+
+    <footer class="text-center text-white" style="background-color: #495057">
+      <!-- Grid container -->
+      <div class="container pt-4">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <!-- Twitter -->
+          <h3 style="letter-spacing: 2px; text-transform: uppercase">
+            Thank You for visiting
+            <img src="image/logoFooter.svg" style="width: 100px" alt="" />
+          </h3>
+          <h6>follow us:</h6>
+          <a class="btn btn-link btn-floating btn-lg m-1" style="color: white"
+            ><i class="fab fa-twitter"></i
+          ></a>
+
+          <!-- Google -->
+          <a class="btn btn-link btn-floating btn-lg m-1" style="color: white"
+            ><i class="far fa-envelope"></i
+          ></a>
+
+          <!-- Instagram -->
+          <a class="btn btn-link btn-floating btn-lg m-1" style="color: white"
+            ><i class="fab fa-instagram"></i
+          ></a>
+
+          <!-- Linkedin -->
+          <a class="btn btn-link btn-floating btn-lg m-1" style="color: white"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+          <!-- Github -->
+          <a class="btn btn-link btn-floating btn-lg m-1" style="color: white"
+            ><i class="fab fa-github"></i
+          ></a>
+        </section>
+        <!-- Section: Social media -->
+      </div>
+      <!-- Grid container -->
+
+      <!-- Copyright -->
+      <div
+        class="text-center p-3"
+        style="color: #adb5bd; background-color: #343a40"
+      >
+        © 2020 Copyright:
+        <a>sxc merch</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+
     <script type="text/javascript">
-      $(function (){
-          $("navbar").load("nav.html");
+      $(function () {
+        $("navbar").load("nav.html");
+        $("login").load("log.html");
       });
-  </script>
+    </script>
   </body>
 </html>
