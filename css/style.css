@@ -30,6 +30,9 @@
   height: 40px;
 }
 
+.menuactive{
+  text-decoration: underline;
+}
 .navigationMenu .navbar-nav .nav-item .nav-link::after {
   content: " ";
   position: absolute;
