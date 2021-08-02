@@ -68,6 +68,43 @@
   width: 1.5vw !important;
 }
 
+.label{
+  color: #343A40 !important;
+}
+  .inp{
+    border:none;
+    color:#ADB5BD !important ;
+    border-radius: 0%;
+    border-bottom: 1px solid;
+    padding: 0 !important;
+    padding: 5px 10px;
+    outline: none !important;
+  }
+  .btn-close:focus,.inp:focus{
+    box-shadow: none;
+  }
+  .imghead{
+    max-width: 180px;
+    max-height: 100px; 
+    margin: auto;
+    padding-left: 80px;
+  }
+  .right{
+    cursor: pointer;
+    color:  #495057;
+    text-decoration: none;
+  }
+  .right:hover{
+    color:  #495057;
+  }
+  .button{
+    background-color: #343A40 !important;
+    margin:0 auto;
+    padding: 7px 40px !important;
+    color: white;
+  }
+
+
 @media (min-width: 992px) {
   .navbar-expand-lg .navbar-collapse {
     width: 100%;
