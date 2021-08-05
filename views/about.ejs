@@ -4,7 +4,7 @@
 
   <body>
     <!-- ------------ navbar ------------- -->
-    <navbar></navbar>
+        <%- include('partials/nav') %> 
     <!-- ------------ navbar ------------- -->
 
     <!-- about section  -->
@@ -181,12 +181,7 @@
     <!-- about section  -->
 
     <!-- footer  -->
-    <sectfooter></sectfooter>
-    <script type="text/javascript">
-      $(function () {
-        $("navbar").load("nav.html");
-        $("sectfooter").load("footer.html");
-      });
-    </script>
+    <%- include('partials/footer') %> 
+
   </body>
 </html>

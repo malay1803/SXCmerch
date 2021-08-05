@@ -31,9 +31,17 @@ app.use(express.static('public'));
 app.get('/', (req,res) => {
     res.render('home');
 })
-
+app.get('/merchandise',(req,res) => {
+    res.render('merchandise');
+})
+app.get('/about',(req,res) => {
+    res.render('about');
+})
+app.get('/contact',(req,res) => {
+    res.render('contact');
+})
 app.get('/login',(req,res) => {
-    res.render('nav');
+    res.render('contact');
 })
 app.listen(3000, () =>{
     console.log("Listening on port 3000")

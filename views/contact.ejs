@@ -5,7 +5,7 @@
   <body>
     
     <!-- ------------ navbar ------------- -->
-    <navbar></navbar>
+    <%- include('partials/nav') %> 
     <!-- ------------ navbar ------------- -->
     
     <section class="container col-lg-8 col-md-12 col-sm-12 mb-5 mt-4">
@@ -20,7 +20,7 @@
             <div class="col-sm-6 d-flex justify-content-center">
                 <img
                   class="img-fluid"
-                  src="image/contact.svg"
+                  src="/image/contact.svg"
                   style="max-width: 90%; height: auto"
                 />
               </div>
@@ -86,12 +86,7 @@
     </section>
 
 
-    <sectfooter></sectfooter>
-    <script type="text/javascript">
-        $(function (){
-            $("navbar").load("nav.html");
-            $("sectfooter").load("footer.html");
-        });
-    </script>
+    <%- include('partials/footer') %> 
+
   </body>
 </html>

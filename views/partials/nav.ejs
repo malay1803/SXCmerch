@@ -1,0 +1,129 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-none">
+    <div class="container col-lg-8 col-md-12 col-sm-12">
+      <!-- ------------ left side ------------- -->
+      <div
+        class="collapse navbar-collapse order-lg-1 order-3 navigationMenu"
+        id="navbarNav"
+      >
+        <ul class="navbar-nav activemenu">
+          <li class="nav-item menuactive" id="home">
+            <a class="nav-link" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item" id="merchandise">
+            <a class="nav-link" href="/merchandise">Merchandise</a>
+          </li>
+          <li class="nav-item" id="about">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+          <li class="nav-item" id="contact">
+            <a class="nav-link" href="/contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+      <!-- ------------ left side ------------- -->
+
+      <!-- ------------ Logo and hamburger button ------------- -->
+      <a class="navbar-brand order-1 me-lg-0" href="#">
+        <img src="/image/logo.svg" alt="SXC merch" width="100px" />
+      </a>
+      <button
+        class="order-2 navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target=".navigationMenu"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- ------------ Logo and hamburger button ------------- -->
+
+      <!-- ------------ right side ------------- -->
+      <div
+        class="collapse navbar-collapse order-lg-3 order-4 navigationMenu"
+        id="navbarNav"
+      >
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#login" data-bs-toggle="modal">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link signUp" href="#signup" data-bs-toggle="modal">SignUp</a>
+          </li>
+        </ul>
+      </div>
+      <!-- ------------ right side ------------- -->
+    </div>
+  </nav>
+  
+  <section class="log">
+    <div class="modal fade" id="login" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1" >
+      <div class="modal-dialog modal-dialog-centered rounded-0" style="max-width: 400px;">
+        <div class="modal-content" style="border-radius: 10px;">
+          <div class="modal-header border-0">
+    
+            <img src="/image/logo.svg" class="imghead" alt="">
+            <button type="button" class="btn-close  " style="margin-top: -48px;" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div>
+                  <form class="px-4 py-3">
+                    <div class="mb-3">
+                      <label for="exampleDropdownFormEmail1" class="form-label label">Email address</label>
+                      <input type="email" class="form-control inp" id="Email1" placeholder="Enter your email">
+                    </div>
+                    <div class="mb-3 mt-5">
+                      <label for="exampleDropdownFormPassword1" class="form-label label">Password</label>
+                      <input type="password" class="form-control inp" id="Password1" placeholder="Enter your password">
+                    </div>
+                    <div class="text-center  mt-5">
+                      <button type="submit" class="button">LOGIN</button>
+                    </div>
+                  </form>
+                  
+                  <div class="modal-body" style="text-align: right; ">
+                    <a class="right" data-bs-target="#signup" data-bs-toggle="modal" data-bs-dismiss="modal">New around here? Sign up</a><br>
+                    <a class="right" style="text-align: right;" href="#" >Forgot password?</a>
+                  </div>
+                </div>
+          </div>
+       
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="signup" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered rounded-0" style="max-width: 400px;">
+        <div class="modal-content" style="border-radius: 10px;">
+          <div class="modal-header border-0">
+            <img src="/image/logo.svg" class="imghead" alt="">
+            <button type="button" class="btn-close  " style="margin-top: -48px;" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            
+              <form class="px-4 py-3">
+                <div class="mb-3">
+                  <label for="exampleDropdownName1" class="form-label label">Name</label>
+                  <input type="text" class="form-control inp" id="Name" placeholder="Enter your name">
+                </div>
+                <div class="mb-3 mt-4">
+                  <label for="exampleDropdownFormEmail1" class="form-label label">Email address</label>
+                  <input type="email" class="form-control inp" id="Email" placeholder="Enter your email">
+                </div>
+                <div class="mb-3 mt-4">
+                  <label for="exampleDropdownFormPassword1" class="form-label label">Password</label>
+                  <input type="password" class="form-control inp" id="Password" placeholder="Enter your password">
+                </div>
+                <div class="mb-3 mt-4">
+                  <label for="exampleDropdownFormPassword2" class="form-label label">Confirm Password</label>
+                  <input type="password" class="form-control inp" id="cPassword" placeholder="Confirm password">
+                </div>
+                <div class="text-center  mt-4">
+                  <button type="submit" class="button">SIGNUP</button>
+                </div>
+                <div class="modal-body mt-4" style="text-align: right; ">
+                  <a class="right" data-bs-target="#login" data-bs-toggle="modal" data-bs-dismiss="modal">Already a member? Log in</a><br>
+                </div>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
