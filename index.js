@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const User = require('./models/user');
 const { urlencoded } = require('express');
 const methodOverride = require('method-override');
-// const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 // const session = require('express-session');
 // const flash = require('connect-flash');
 
@@ -31,6 +31,21 @@ app.use(express.static('public'));
 app.get('/', (req,res) => {
     res.render('home');
 })
+
+app.post('/',async (req,res)=>{
+    const {Name,Email,Password,cPassword}=req.body;
+
+    if(Password == cPassword ){
+        const hash = await bcrypt.hash(Password,12);
+        const user = new User({
+        Name,Email,Password:hash
+    });
+    await user.save();
+    res.redirect('home');
+    }
+    // res.send("Password donot match");
+})
+
 app.get('/merchandise',(req,res) => {
     res.render('merchandise');
 })
