@@ -31,14 +31,14 @@
                     <%if(login) {%>
                       <input type="text" class="form-control inp" id="Name" placeholder="Your name">
                     <% }else{ %> 
-                      <input type="text"  readonly="readonly" class="form-control inp" id="Name" placeholder=<%=name1%>></input>
+                      <input type="text"  readonly="readonly" class="form-control inp" id="Name" value ="<%= user.Name %> "></input>
                     <% } %>
 
                     <label for="exampleDropdownFormEmail1" class="mt-4 form-label label">Email*</label>
                     <%if(login) {%>
                       <input type="email" class="form-control inp" id="Email1" placeholder="Your email">
                     <% }else{ %> 
-                      <input type="email" class="form-control inp" readonly="readonly" id="Email1" placeholder=<%=email1%>>
+                      <input type="email" class="form-control inp" readonly="readonly" id="Email1" value=<%= user.Email %>>
                       <% } %>
                   
                     <label for="exampleDropdownFormPassword1" class="mt-4 form-label label">Message*</label>

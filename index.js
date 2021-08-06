@@ -10,6 +10,7 @@ const methodOverride = require('method-override');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const flash = require('connect-flash');
+const { CLIENT_RENEG_LIMIT } = require('tls');
 
 mongoose.connect('mongodb://localhost:27017/sxcdatabase', {useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => {
@@ -51,6 +52,7 @@ app.post('/signup',async (req,res)=>{
 app.post('/login', async (req,res) =>{
     const {Email1,Password1}= req.body;
     const user = await User.findOne({Email: Email1});
+    console.log(req.url);
     if(!user)
     {
         req.flash('error', 'Incorrect Credentials, Try Again!');
@@ -82,13 +84,25 @@ app.get('/merchandise',(req,res) => {
 app.get('/about',(req,res) => {
     res.render('about',{login:!req.session.user_id});
 })
-app.get('/contact',(req,res) => {
-    if(req.session.user_id){
-        const {Name,Email}=req.body;
-        res.render('contact',{login:!req.session.user_id,name1:Name,email1:Email});}
-    else{
-        res.render('contact',{login:!req.session.user_id});
-    }
+app.get('/contact', async (req,res) => {
+    const {id} = req.params;
+    console.log(id);
+    const user = await User.findById(id);
+    console.log(user);
+    // if(id){
+        
+    //     res.render('contact',{user:user, login:!req.session.user_id});
+    // }
+    // else{
+    //     res.render('contact',{login:!req.session.user_id});
+    // }
+
+    // if(req.session.user_id){
+    //     const {Name,Email}=req.body;
+    //     res.render('contact',{login:!req.session.user_id,name1:Name,email1:Email});}
+    // else{
+    //     res.render('contact',{login:!req.session.user_id});
+    // }
 })
 
 app.listen(3000, () =>{
