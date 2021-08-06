@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const ejs = require('ejs');
 const mongoose = require('mongoose');
 // const Product = require('./models/product');
 const User = require('./models/user');
@@ -29,8 +30,9 @@ app.use(flash());
 
 
 app.get('/', (req,res) => {
-    res.render('home');
+    res.render('home',{login:!req.session.user_id});
 })
+
 
 app.post('/signup',async (req,res)=>{
     const {Name,Email,Password,cPassword}=req.body;
@@ -41,7 +43,7 @@ app.post('/signup',async (req,res)=>{
         Name,Email,Password:hash
     });
     await user.save();
-    res.redirect('home');
+    res.redirect('/');
     }
     // res.send("Password donot match");
 })
@@ -69,14 +71,24 @@ app.post('/login', async (req,res) =>{
     }
 } )
 
+app.post('/logout', (req,res) => {
+    req.session.destroy();
+    res.redirect('/');
+})
+
 app.get('/merchandise',(req,res) => {
-    res.render('merchandise');
+    res.render('merchandise',{login:!req.session.user_id});
 })
 app.get('/about',(req,res) => {
-    res.render('about');
+    res.render('about',{login:!req.session.user_id});
 })
 app.get('/contact',(req,res) => {
-    res.render('contact');
+    if(req.session.user_id){
+        const {Name,Email}=req.body;
+        res.render('contact',{login:!req.session.user_id,name1:Name,email1:Email});}
+    else{
+        res.render('contact',{login:!req.session.user_id});
+    }
 })
 
 app.listen(3000, () =>{

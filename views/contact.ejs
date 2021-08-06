@@ -28,11 +28,19 @@
               <div class="col-sm-6">
                 <form class="px-4 py-3">
                     <label for="exampleDropdownName1" class="form-label label">Name*</label>
-                    <input type="text" class="form-control inp" id="Name" placeholder="Your name">
-                      
+                    <%if(login) {%>
+                      <input type="text" class="form-control inp" id="Name" placeholder="Your name">
+                    <% }else{ %> 
+                      <input type="text"  readonly="readonly" class="form-control inp" id="Name" placeholder=<%=name1%>></input>
+                    <% } %>
+
                     <label for="exampleDropdownFormEmail1" class="mt-4 form-label label">Email*</label>
-                    <input type="email" class="form-control inp" id="Email1" placeholder="Your email">
-                    
+                    <%if(login) {%>
+                      <input type="email" class="form-control inp" id="Email1" placeholder="Your email">
+                    <% }else{ %> 
+                      <input type="email" class="form-control inp" readonly="readonly" id="Email1" placeholder=<%=email1%>>
+                      <% } %>
+                  
                     <label for="exampleDropdownFormPassword1" class="mt-4 form-label label">Message*</label>
                     <textarea class="form-control inp" style="resize: none;overflow: hidden;"id="Message" placeholder="Your Message"></textarea>
                     

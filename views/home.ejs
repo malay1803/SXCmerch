@@ -103,7 +103,7 @@
       <!-- text part  -->
     </section>
     <!-- svg img section  -->
-
+    <%if(login) {%>
     <section class="container col-lg-8 col-md-12 col-sm-12 mb-5">
       <div class="row">
         <div class="col-sm-12" style="text-align: center">
@@ -122,12 +122,12 @@
              </div>
         </div>
       </div>
-  
+      <%}else{%>
+        hello you are login successful
+        <%}%>
     </section>
 
     <%- include('partials/footer') %> 
-    
-  
-    </script>
+      
   </body>
 </html>
