@@ -85,18 +85,15 @@ app.get('/about',(req,res) => {
     res.render('about',{login:!req.session.user_id});
 })
 app.get('/contact', async (req,res) => {
-    const {id} = req.params;
-    console.log(id);
-    const user = await User.findById(id);
-    console.log(user);
-    // if(id){
-        
-    //     res.render('contact',{user:user, login:!req.session.user_id});
-    // }
-    // else{
-    //     res.render('contact',{login:!req.session.user_id});
-    // }
-
+    if(req.session.user_id){
+      const id = req.session.user_id;
+      const user = await User.findById({_id: id});
+      res.render('contact',{user:user, login:!req.session.user_id});
+    }
+    else{
+        res.render('contact',{login:!req.session.user_id});
+    }
+    
     // if(req.session.user_id){
     //     const {Name,Email}=req.body;
     //     res.render('contact',{login:!req.session.user_id,name1:Name,email1:Email});}
