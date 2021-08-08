@@ -108,6 +108,10 @@ app.get('/contact', async (req,res) => {
     // }
 })
 
+app.get('/cart',(req,res) => {
+    res.render('cart',{login:!req.session.user_id});
+})
+
 app.listen(3000, () =>{
     console.log("Listening on port 3000")
 })
