@@ -1,4 +1,4 @@
-
+/* abhishake bhau ki jai */
 
 .navigationMenu .navbar-nav .nav-item {
   text-align: center;
@@ -159,3 +159,9 @@ section:nth-child(4) {
   min-height: 100vh;
 } */
 
+.merchheading{
+  padding-bottom: 10px;
+  font-size: 6vh;
+  letter-spacing: 6px;
+  
+}

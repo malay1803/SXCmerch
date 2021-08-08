@@ -4,9 +4,69 @@
   <body>
     <!-- ------------ navbar ------------- -->
     <%- include('partials/nav') %> 
+
+    <div class="container text-center col-lg-8 col-md-12 col-sm-12 mb-5 mt-4" style="border-bottom: 1px solid black;">
+      <h1 class="merchheading">MERCHANDISE</h1>
+    </div>
+    <div class="container col-lg-8 col-md-12 col-sm-12 mb-5 mt-4">
+      <div class="row">
+        <div class="col-sm-2" style="border-right: 1px solid black;">
+          <h4>Filter</h4>
+          <div>
+            <h5>Category</h5>
+            <ul style="list-style-type: none; padding-left: 8%;">
+             <li>T-shirt</li>
+             <li>Hoodie</li>
+             <li>Cap</li>
+             <li>Mask</li>
+             <li>Brooch</li>
+            </ul>
+          </div>
+          <div>
+            <h5>Price</h5>
+            <ul style="list-style-type: none; padding-left: 8%;">
+            <li>Below 100</li>
+            <li>100-500</li>
+            <li>Above 500</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-10">
+          <div class="row">
+            <% for(let i=0;i<4;i++) { %> 
+            <div class="col-sm-6 col-xl-4">
+              <!-- card body -->
+              <div class="card">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">Last updated 3 mins ago</small>
+                </div>
+              </div>
+
+            </div>
+            <% } %> 
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- ------------ navbar ------------- -->
     <%- include('partials/footer') %> 
     
     </script>
   </body>
 </html>
+
+<!-- <div class="card">
+  <img class="card-img-top" src="..." alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+  </div>
+  <div class="card-footer">
+    <small class="text-muted">Last updated 3 mins ago</small>
+  </div>
+</div> -->

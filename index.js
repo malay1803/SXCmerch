@@ -3,7 +3,7 @@ const app = express();
 const path = require('path');
 const ejs = require('ejs');
 const mongoose = require('mongoose');
-// const Product = require('./models/product');
+const Product = require('./models/merchandise');
 const User = require('./models/user');
 const { urlencoded } = require('express');
 const methodOverride = require('method-override');
@@ -29,6 +29,8 @@ app.use(express.static('public'));
 app.use(session({ secret: 'aayushjagwani' , resave: false , saveUninitialized: true}));
 app.use(flash());
 
+categories = ['tshirt','hoodie','cap','mask','brooch'];
+sizes = ['S','M','L','XL','XXL'];
 
 app.get('/', (req,res) => {
     res.render('home',{login:!req.session.user_id});
@@ -52,7 +54,10 @@ app.post('/signup',async (req,res)=>{
 app.post('/login', async (req,res) =>{
     const {Email1,Password1}= req.body;
     const user = await User.findOne({Email: Email1});
-    console.log(req.url);
+    let url = req.headers.referer;
+    spliturl = url.split("/");
+    finalurl = spliturl[3];
+    console.log(finalurl);
     if(!user)
     {
         req.flash('error', 'Incorrect Credentials, Try Again!');
@@ -78,8 +83,9 @@ app.post('/logout', (req,res) => {
     res.redirect('/');
 })
 
-app.get('/merchandise',(req,res) => {
-    res.render('merchandise',{login:!req.session.user_id});
+app.get('/merchandise', async (req,res) => {
+    const products = await Product.find({});
+    res.render('merchandise',{products, login:!req.session.user_id});
 })
 app.get('/about',(req,res) => {
     res.render('about',{login:!req.session.user_id});
@@ -93,7 +99,7 @@ app.get('/contact', async (req,res) => {
     else{
         res.render('contact',{login:!req.session.user_id});
     }
-    
+
     // if(req.session.user_id){
     //     const {Name,Email}=req.body;
     //     res.render('contact',{login:!req.session.user_id,name1:Name,email1:Email});}
