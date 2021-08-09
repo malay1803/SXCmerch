@@ -199,15 +199,26 @@ select,
   color: black;
 }
 
-.contShopping {
+.contShopping,
+.buyNow {
   color: #343a40;
   padding: 10px;
   border-radius: 20px;
   font-size: 1.5vmin;
   border: 1px solid #343a40;
   outline: none;
+  width: 40%;
+  transition: 0.7s all;
 }
-.proceed {
+
+.contShopping:hover,
+.buyNow:hover {
+  background-color: #343a40;
+  color: white;
+}
+
+.proceed,
+.Cart {
   background-color: #343a40;
   color: white;
   padding: 10px;
@@ -215,4 +226,27 @@ select,
   font-size: 1.7vmin;
   border: none;
   outline: none;
+}
+
+.boxed label {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  padding: 3px;
+  border: solid 2px #ccc;
+  transition: all 0.3s;
+  border-radius: 50%;
+  text-align: center;
+  color: #343a40;
+  font-size: 15px;
+}
+
+.boxed input[type="radio"] {
+  display: none;
+}
+
+.boxed input[type="radio"]:checked + label {
+  border: solid 2px #343a40;
+  background-color: #343a40;
+  color: white;
 }

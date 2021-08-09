@@ -37,17 +37,40 @@
             <% for(let product of products) { %> 
             <div class="col-sm-6 col-xl-4 mb-4 ms-0">
               <!-- card body -->
-              <div class="card h-100">
-                <img class="card-img-top" src="<%= product.pImage %> " alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title"><%= product.pName %> </h5>
-                  <h5 class="card-text"> <%= product.pPrice %>  </h5>
-                  <p class="card-text"> <%= product.pDescription %> </p>
+              <div class="card h-100" style="border-radius: 20px; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+                <img class="card-img-top p-3" style="border-radius: 40px" src="<%= product.pImage %> " alt="Card image cap">
+                <div class="card-body" style="border-radius: 20%;">
+                  <div class="d-flex justify-content-between">
+                    <h4 class="card-title" style="font-size: 105%;"><%= product.pName %> </h4>
+                  <h5 class="card-text fw-bold text-end;"> ₹<%= product.pPrice %>  </h5>
+                  </div>
+                  
+                  <p class="card-text" style="font-size: 80%;"> <%= product.pDescription %> </p>
+
+                  <div class="boxed d-flex justify-content-between pe-3 ps-3">
+                    <input type="radio" id="xs" name="skills" value="xs">
+                    <label for="xs">xs</label>
+                  
+                    <input type="radio" id="s" name="skills" value="iOS Development">
+                    <label for="s">s</label>
+                    
+                     <input type="radio" id="m" name="skills" value="m">
+                    <label for="m">m</label>
+                  
+                     <input type="radio" id="l" name="skills" value="l">
+                    <label for="l">l</label>
+                  
+                     <input type="radio" id="xl" name="skills" value="xl">
+                    <label for="xl">xl</label>
+                  </div>
+                  
+
                 </div>
                 <div class="card-footer">
                   <small class="text-muted">
-                    <form action="/cart/<%=product._id %> " method="POST">
-                      <button type="submit">Add to cart</button>
+                    <form class=" d-flex justify-content-between" action="/cart/<%=product._id %> " method="POST">
+                      <button type="submit" class="buyNow">Buy Now</button>
+                      <button type="submit" class="Cart w-50"><i class="fas fa-shopping-cart"></i> Cart</button>
                     </form></small>
                 </div>
               </div>
