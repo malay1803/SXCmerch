@@ -11,6 +11,7 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 const flash = require('connect-flash');
 const { CLIENT_RENEG_LIMIT } = require('tls');
+const Cart = require('./models/cart');
 
 mongoose.connect('mongodb://localhost:27017/sxcdatabase', {useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => {
@@ -116,6 +117,21 @@ app.post('/cart/:id', async (req,res) =>{
     const {id} = req.params;
     const item = await Product.findById({_id: id});
     console.log(item);
+    const userid = req.session.user_id;
+    // const cart = await Cart.findById({UserID: userid})
+    
+    // const cartobject = new Cart({
+    //     UserID: userid,
+    //     ProductID: cart.ProductID.push(id),
+    //     ProductCount: ProductCount.push(1),
+    //     NumberOfProducts: NumberOfProducts+1,
+    //     SubTotal: SubTotal+item.pPrice,
+    //     Shipping: 50,
+    //     Tax: SubTotal/10,
+    //     TotalAmount: SubTotal+Shipping+Tax
+    // });
+
+    // await cartobject.save();
     res.redirect('/about');
 })
 
