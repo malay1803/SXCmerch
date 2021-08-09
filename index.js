@@ -112,6 +112,12 @@ app.get('/cart',(req,res) => {
     res.render('cart',{login:!req.session.user_id});
 })
 
+app.post('/cart/:id', (req,res) =>{
+    const {id} = req.params;
+    console.log(id);
+    res.redirect('/about');
+})
+
 app.listen(3000, () =>{
     console.log("Listening on port 3000")
 })

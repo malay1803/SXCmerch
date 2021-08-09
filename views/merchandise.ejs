@@ -34,17 +34,21 @@
         </div>
         <div class="col-sm-10" >
           <div class="row">
-            <% for(let i=0;i<5;i++) { %> 
+            <% for(let product of products) { %> 
             <div class="col-sm-6 col-xl-4 mb-4 ms-0">
               <!-- card body -->
               <div class="card h-100">
-                <img class="card-img-top" src="..." alt="Card image cap">
+                <img class="card-img-top" src="<%= product.pImage %> " alt="Card image cap">
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <h5 class="card-title"><%= product.pName %> </h5>
+                  <h5 class="card-text"> <%= product.pPrice %>  </h5>
+                  <p class="card-text"> <%= product.pDescription %> </p>
                 </div>
                 <div class="card-footer">
-                  <small class="text-muted">Last updated 3 mins ago</small>
+                  <small class="text-muted">
+                    <form action="/cart/<%=product._id %> " method="POST">
+                      <button type="submit">Add to cart</button>
+                    </form></small>
                 </div>
               </div>
 
