@@ -109,8 +109,18 @@ app.get('/contact', async (req,res) => {
     // }
 })
 
-app.get('/cart',(req,res) => {
-    res.render('cart',{login:!req.session.user_id});
+app.get('/cart', async (req,res) => {
+    const userid = req.session.user_id;
+    const cartItem = await Cart.find({UserID: userid});
+    // console.log(cartItem);
+    let arrayy = [];
+    for(let cart of cartItem){
+        let cartProduct = await Product.find({_id: cart.ProductID});
+        arrayy.push(cartProduct);
+    }
+    console.log(arrayy);
+    console.log(arrayy[0][0]);
+    res.render('cart',{cartItem: cartItem, arrayy: arrayy, login:!req.session.user_id});
 })
 
 app.post('/cart/:id', async (req,res) =>{
@@ -118,6 +128,14 @@ app.post('/cart/:id', async (req,res) =>{
     const item = await Product.findById({_id: id});
     console.log(item);
     const userid = req.session.user_id;
+    const cartobject = new Cart({
+        UserID: userid,
+        ProductID: id,
+        Size: 'S',
+        Quantity: 1
+    });
+    await cartobject.save();
+
     // const cart = await Cart.findById({UserID: userid})
     
     // const cartobject = new Cart({
