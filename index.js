@@ -112,9 +112,10 @@ app.get('/cart',(req,res) => {
     res.render('cart',{login:!req.session.user_id});
 })
 
-app.post('/cart/:id', (req,res) =>{
+app.post('/cart/:id', async (req,res) =>{
     const {id} = req.params;
-    console.log(id);
+    const item = await Product.findById({_id: id});
+    console.log(item);
     res.redirect('/about');
 })
 
