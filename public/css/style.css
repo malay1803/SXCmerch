@@ -120,11 +120,11 @@ section:nth-child(4) {
   color: white;
 }
 
-.aboutSection div button.active{
+.aboutSection div button.active {
   background-color: #343a40 !important;
   color: white !important;
 }
-.aboutSection div button{
+.aboutSection div button {
   color: #343a40 !important;
 }
 
@@ -132,43 +132,87 @@ section:nth-child(4) {
   .navbar-expand-lg .navbar-collapse {
     width: 100%;
   }
-  
 }
 @media (max-width: 992px) {
   section:nth-child(3),
   section:nth-child(4) {
     margin-top: 100px;
   }
-  .aboutSection .d-flex div#v-pill-tab.nav.flex-column.nav-pills.me-5{
+  .aboutSection .d-flex div#v-pill-tab.nav.flex-column.nav-pills.me-5 {
     /* min-width: 0; */
     flex-direction: row;
     margin-left: 0px !important;
   }
-  
-  .aboutSection .d-flex{
+
+  .aboutSection .d-flex {
     flex-direction: column;
     align-items: center !important;
   }
-  .footer{
+  .footer {
     max-height: 100%;
   }
 }
-
 
 /* body {
   min-height: 100vh;
 } */
 
-.merchheading{
+.merchheading {
   padding-bottom: 10px;
   font-size: 6vh;
   letter-spacing: 6px;
-  
+  color: #343a40;
 }
 
-.alink{
+.alink {
   text-decoration: none;
   min-width: 80px;
   color: black;
   cursor: pointer;
+}
+
+#qty {
+  width: 15%;
+  background-color: #eee;
+  border-radius: 5px;
+  border: none;
+  text-align-last: center;
+  outline: none;
+}
+
+#qtyLabel {
+  line-height: 10px;
+}
+
+#qtyLabel,
+select,
+.trash {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.trash {
+  color: #343a40;
+}
+
+#qty option {
+  color: black;
+}
+
+.contShopping {
+  color: #343a40;
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 1.5vmin;
+  border: 1px solid #343a40;
+  outline: none;
+}
+.proceed {
+  background-color: #343a40;
+  color: white;
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 1.7vmin;
+  border: none;
+  outline: none;
 }
