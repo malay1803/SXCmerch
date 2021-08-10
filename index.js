@@ -148,7 +148,14 @@ app.post('/cart/:id', async (req,res) =>{
         Quantity: 1
     });
     await cartobject.save();
-    res.redirect('/about');
+    res.redirect('/merchandise');
+})
+
+app.delete('/cart/:id', async (req,res) =>{
+    const {id} = req.params;
+    const cartItem = await Cart.findOneAndDelete({ProductID: id});
+    console.log(cartItem);
+    res.redirect('/cart');
 })
 
 app.listen(3000, () =>{

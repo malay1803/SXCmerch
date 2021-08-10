@@ -35,8 +35,11 @@
                     <option value="8">8</option>
                     <option value="9">9</option>
                   </select>
-                  <a href="">
-                  <i class="fas fa-trash trash ms-4 "></i></a>
+                  <form action="/cart/<%= arr[0]._id %>?_method=DELETE" method="POST">
+                  <!-- <a href="">
+                  <i class="fas fa-trash trash ms-4 "></i></a> -->
+                  <button type="submit"><i class="fas fa-trash trash ms-4 "></i></button>
+                  </form>
                   <p class="mt-1 fw-bold" style="font-size: 3vmin;">₹<%= arr[0].pPrice %> </p>
                 </div>
               </div>
