@@ -112,13 +112,13 @@ app.get('/contact', async (req,res) => {
 app.get('/cart', async (req,res) => {
     const userid = req.session.user_id;
     const cartItem = await Cart.find({UserID: userid});
-    console.log(cartItem);
+    //console.log(cartItem);
     let arrayy = [];
     for(let cart of cartItem){
         let cartProduct = await Product.find({_id: cart.ProductID});
         arrayy.push(cartProduct);
     }
-    console.log(arrayy);
+    //console.log(arrayy);
     
     // subtotal and final total code for cart
     let subtotal=0;
@@ -126,14 +126,14 @@ app.get('/cart', async (req,res) => {
     {
         subtotal= subtotal+ arr[0].pPrice;
     }
-    console.log(subtotal);
+    //console.log(subtotal);
     let shipping=100;
-    if(subtotal>=1000)
+    if(subtotal>=1000 || subtotal==0)
         shipping = 0
     const tax = subtotal/10;
     finaltotal = subtotal+shipping+tax;
-    console.log(finaltotal);
-    res.render('cart',{cartItem: cartItem, arrayy: arrayy, login:!req.session.user_id});
+    //console.log(finaltotal);
+    res.render('cart',{cartItem: cartItem, arrayy: arrayy,finaltotal,subtotal,shipping,tax, login:!req.session.user_id});
 })
 
 app.post('/cart/:id', async (req,res) =>{
@@ -148,21 +148,6 @@ app.post('/cart/:id', async (req,res) =>{
         Quantity: 1
     });
     await cartobject.save();
-
-    // const cart = await Cart.findById({UserID: userid})
-    
-    // const cartobject = new Cart({
-    //     UserID: userid,
-    //     ProductID: cart.ProductID.push(id),
-    //     ProductCount: ProductCount.push(1),
-    //     NumberOfProducts: NumberOfProducts+1,
-    //     SubTotal: SubTotal+item.pPrice,
-    //     Shipping: 50,
-    //     Tax: SubTotal/10,
-    //     TotalAmount: SubTotal+Shipping+Tax
-    // });
-
-    // await cartobject.save();
     res.redirect('/about');
 })
 
