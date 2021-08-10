@@ -112,19 +112,19 @@ app.get('/contact', async (req,res) => {
 app.get('/cart', async (req,res) => {
     const userid = req.session.user_id;
     const cartItem = await Cart.find({UserID: userid});
-    // console.log(cartItem);
+    console.log(cartItem);
     let arrayy = [];
     for(let cart of cartItem){
         let cartProduct = await Product.find({_id: cart.ProductID});
         arrayy.push(cartProduct);
     }
     console.log(arrayy);
-    console.log(arrayy[0][0]);
+    
     // subtotal and final total code for cart
     let subtotal=0;
-    for (let arr of arrayy[0])
+    for (let arr of arrayy)
     {
-        subtotal= subtotal+ arr.pPrice;
+        subtotal= subtotal+ arr[0].pPrice;
     }
     console.log(subtotal);
     let shipping=100;

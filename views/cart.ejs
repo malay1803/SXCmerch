@@ -13,7 +13,7 @@
     <div class="container col-lg-8 col-md-12 col-sm-12 mb-5 mt-4">
       <div class="row">
         <div class="col-sm-12 col-lg-8" style="color: #343a40;">
-          <% for(let arr of arrayy[0]) { %> 
+          <% for(let arr of arrayy) { %> 
           <div class="card mb-3 col-sm-12" style="border-radius: 20px; max-width: 100%; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
             <div class="row g-0">
               <div class="col-md-4" style="padding: 20px;">
@@ -21,8 +21,8 @@
               </div>
               <div class="col-md-8">
                 <div class="card-body text-start">
-                  <h5 class="card-title"><%= arr.pName %> </h5>
-                  <p class="card-text"><%= arr.pPrice %> </p>
+                  <h5 class="card-title"><%= arr[0].pName %> </h5>
+                  <p class="card-text"><%= arr[0].pPrice %> </p>
                   <label id="qtyLabel" for="qty">Qty</label>
                   <select name="qty" id="qty">
                     <option value="1">1</option>
