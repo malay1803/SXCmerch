@@ -120,6 +120,19 @@ app.get('/cart', async (req,res) => {
     }
     console.log(arrayy);
     console.log(arrayy[0][0]);
+    // subtotal and final total code for cart
+    let subtotal=0;
+    for (let arr of arrayy[0])
+    {
+        subtotal= subtotal+ arr.pPrice;
+    }
+    console.log(subtotal);
+    let shipping=100;
+    if(subtotal>=1000)
+        shipping = 0
+    const tax = subtotal/10;
+    finaltotal = subtotal+shipping+tax;
+    console.log(finaltotal);
     res.render('cart',{cartItem: cartItem, arrayy: arrayy, login:!req.session.user_id});
 })
 
