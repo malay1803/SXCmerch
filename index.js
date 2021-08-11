@@ -137,6 +137,8 @@ app.get('/cart', async (req,res) => {
 })
 
 app.post('/cart/:id', async (req,res) =>{
+    const {size} = req.body;
+    console.log(size);
     const {id} = req.params;
     const item = await Product.findById({_id: id});
     console.log(item);
@@ -144,7 +146,7 @@ app.post('/cart/:id', async (req,res) =>{
     const cartobject = new Cart({
         UserID: userid,
         ProductID: id,
-        Size: 'S',
+        Size: size,
         Quantity: 1
     });
     await cartobject.save();

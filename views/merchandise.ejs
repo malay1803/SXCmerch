@@ -46,27 +46,27 @@
                   </div>
                   
                   <p class="card-text" style="font-size: 80%;"> <%= product.pDescription %> </p>
-
+                  <form class=" d-flex justify-content-between" action="/cart/<%=product._id %> " method="POST">
                   <div class="boxed d-flex justify-content-between pe-3 ps-3">
-                    <input type="radio" id="xs" name="skills" value="xs">
-                    <label for="xs">xs</label>
+                    <input type="radio" id="s" name="size" value="S">
+                    <label for="s">S</label>
                   
-                    <input type="radio" id="s" name="skills" value="s">
-                    <label for="s">s</label>
+                    <input type="radio" id="m" name="size" value="M">
+                    <label for="m">M</label>
                     
-                     <input type="radio" id="m" name="skills" value="m">
-                    <label for="m">m</label>
+                     <input type="radio" id="l" name="size" value="L">
+                    <label for="l">L</label>
                   
-                     <input type="radio" id="l" name="skills" value="l">
-                    <label for="l">l</label>
+                     <input type="radio" id="xl" name="size" value="XL">
+                    <label for="xl">XL</label>
                   
-                     <input type="radio" id="xl" name="skills" value="xl">
-                    <label for="xl">xl</label>
+                     <input type="radio" id="xxl" name="size" value="XXL">
+                    <label for="xxl">XXL</label>
                   </div>
                 </div>
                 <div class="card-footer">
                   <small class="text-muted">
-                    <form class=" d-flex justify-content-between" action="/cart/<%=product._id %> " method="POST">
+                    <!-- <form class=" d-flex justify-content-between" action="/cart/<%=product._id %> " method="POST"> -->
                       <button type="submit" class="buyNow">Buy Now</button>
                       <button type="submit" class="Cart w-50"><i class="fas fa-shopping-cart"></i> Cart</button>
                     </form></small>
