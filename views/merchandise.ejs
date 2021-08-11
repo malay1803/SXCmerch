@@ -13,28 +13,35 @@
         <div class="col-sm-2" style="border-right: 1px solid black; color: #343a40;">
           <h4>Filter</h4>
           <div>
+            <form action="/category" method="POST">
             <h5>Category</h5>
             <ul style="list-style-type: none; padding-left: 5%;" class="flex-wrap d-flex flex-lg-column flex-md-column">
-             <li class="me-3"><label class="alink"><input type="checkbox" id="T-shirt"> T-shirt</label></li>
-             <li class="me-3"><label class="alink"><input type="checkbox" id="Hoodie"> Hoodie</label></li>
-             <li class="me-3"><label class="alink"><input type="checkbox" id="Cap"> Cap</label></li>
-             <li class="me-3"><label class="alink"><input type="checkbox" id="Mask"> Mask</label></li>
-             <li class="me-3"><label class="alink"><input type="checkbox" id="Brooch"> Brooch</label></li>
-            </ul>
+              <% for(let category of categories)   { %>
+                <% if(select.includes(category) ){ %>  
+                <li class="me-3"><label class="alink" style="text-transform: capitalize;"><input type="checkbox" id="<%=category%>" name="<%=category%>" checked> <%=category%></label></li>
+                <% }else{ %>
+                  <li class="me-3"><label class="alink" style="text-transform: capitalize;"><input type="checkbox" id="<%=category%>" name="<%=category%>"> <%=category%></label></li>  
+                  <% } %>      
+              <% } %> 
+              
+           </ul>
           </div>
           <div>
             <h5>Price</h5>
             <ul style="list-style-type: none; padding-left: 5%;" class="flex-wrap d-flex flex-lg-column flex-md-column">
             <li class="me-3"><label class="alink"><input type="checkbox" id="100"> Under ₹100</label></li>
-            <li class="me-3"><label class="alink"><input type="checkbox" id="greater10s0"> ₹100 - ₹500</label></li>
+            <li class="me-3"><label class="alink"><input type="checkbox" id="greater100"> ₹100 - ₹500</label></li>
             <li class="me-3"><label class="alink"><input type="checkbox" id="500"> Over ₹500</label></li>
           </ul>
           </div>
           <button class="nav-link signUp mb-5">Apply</button>
         </div>
+      </form>
         <div class="col-sm-10" >
           <div class="row">
-            <% for(let product of products) { %> 
+            
+            <% for(let product of products)   { %>
+              <% if(select.includes(product.pCategory) || select.length==0){ %>  
             <div class="col-sm-6 col-xl-4 mb-4 ms-0">
               <!-- card body -->
               <div class="card h-100" style="border-radius: 20px; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
@@ -74,7 +81,7 @@
               </div>
 
             </div>
-            <% } %> 
+            <% } %> <% } %> 
             </div>
 
           </div>
@@ -82,8 +89,7 @@
     </div>
     <!-- ------------ navbar ------------- -->
     <%- include('partials/footer') %> 
-    
-    </script>
+   
   </body>
 </html>
 

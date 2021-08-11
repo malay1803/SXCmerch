@@ -12,6 +12,7 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const { CLIENT_RENEG_LIMIT } = require('tls');
 const Cart = require('./models/cart');
+const select= [];
 
 mongoose.connect('mongodb://localhost:27017/sxcdatabase', {useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => {
@@ -70,7 +71,7 @@ app.post('/login', async (req,res) =>{
     {
         console.log('logged in!!');
         req.session.user_id = user._id;
-        res.redirect('/merchandise');
+        res.redirect('/');
     }
     else
     {
@@ -86,8 +87,38 @@ app.post('/logout', (req,res) => {
 
 app.get('/merchandise', async (req,res) => {
     const products = await Product.find({});
-    res.render('merchandise',{products, login:!req.session.user_id});
+    res.render('merchandise',{products,select,categories, login:!req.session.user_id});
 })
+
+app.post('/category', async (req,res) =>{
+    // const products = await Product.find({});
+    // const category=[]
+    // for(let p of products){
+    //     category.push(p.pCategory)    
+    // }
+    // const uniq = [...new Set(category)];
+    // const select=[]
+    
+    for(let pr of categories){
+        const p= req.body[pr];
+        if(p=="on"){
+            if(!select.includes(pr))
+                select.push(pr)
+            
+        }
+        else{
+            if(select.includes(pr)){
+            const index = select.indexOf(pr)
+            if (index > -1) {
+              select.splice(index, 1)
+            } 
+        }
+        }
+    }
+    console.log(select)
+    res.redirect('/merchandise');
+})
+
 app.get('/about',(req,res) => {
     res.render('about',{login:!req.session.user_id});
 })
