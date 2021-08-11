@@ -187,7 +187,7 @@ app.post('/cart/:id', async (req,res) =>{
 app.delete('/cart/:id', async (req,res) =>{
     const {id} = req.params;
     const cartItem = await Cart.findOneAndDelete({ProductID: id});
-    console.log(cartItem);
+    // console.log(cartItem);
     res.redirect('/cart');
 })
 
