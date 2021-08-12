@@ -13,6 +13,8 @@ const flash = require('connect-flash');
 const { CLIENT_RENEG_LIMIT } = require('tls');
 const Cart = require('./models/cart');
 const select= [];
+const price = [];
+const price_value=[" Under ₹100"," ₹100 - ₹500"," Over ₹500"];
 
 mongoose.connect('mongodb://localhost:27017/sxcdatabase', {useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => {
@@ -87,7 +89,7 @@ app.post('/logout', (req,res) => {
 
 app.get('/merchandise', async (req,res) => {
     const products = await Product.find({});
-    res.render('merchandise',{products,select,categories, login:!req.session.user_id});
+    res.render('merchandise',{products,select,categories,price,price_value, login:!req.session.user_id});
 })
 
 app.post('/category', async (req,res) =>{
@@ -103,8 +105,7 @@ app.post('/category', async (req,res) =>{
         const p= req.body[pr];
         if(p=="on"){
             if(!select.includes(pr))
-                select.push(pr)
-            
+                select.push(pr)        
         }
         else{
             if(select.includes(pr)){
@@ -115,7 +116,24 @@ app.post('/category', async (req,res) =>{
         }
         }
     }
-    console.log(select)
+   
+    for(let a of price_value){
+        const p= req.body[a];
+        if(p=="on"){
+            if(!price.includes(a))
+                price.push(a)        
+        }
+        else{
+            if(price.includes(a)){
+            const index = price.indexOf(a)
+                if (index > -1) {
+                    price.splice(index, 1)
+                } 
+            }
+        }
+    }
+    
+    console.log(select  + "  " + price)
     res.redirect('/merchandise');
 })
 
