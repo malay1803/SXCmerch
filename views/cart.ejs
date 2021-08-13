@@ -25,8 +25,9 @@
                 <div class="card-body text-start">
                   <h5 class="card-title"><%= arr[0].pName %>(<%= cartItem[i].Size %>)</h5>
                   <p class="card-text"><%= arr[0].pDescription %> </p> 
-                  <label id="qtyLabel" for="qty">Qty</label>
-                  <select name="qty" id="qty">
+                  <label id="qtyLabel" for="Quantity">Qty</label>
+                  <form action="/cart/<%= arr[0]._id %>?_method=PUT" method="POST">  
+                  <select name="Quantity" id="qty">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -37,11 +38,15 @@
                     <option value="8">8</option>
                     <option value="9">9</option>
                   </select>
+                  <button type="submit">update</button>
+                  </form>
                   <form action="/cart/<%= arr[0]._id %>?_method=DELETE" method="POST">
                   <!-- <a href="">
                   <i class="fas fa-trash trash ms-4 "></i></a> -->
                   <button type="submit"><i class="fas fa-trash trash ms-4 "></i></button>
                   </form>
+                  
+                  <button></button>
                   <p class="mt-1 fw-bold" style="font-size: 3vmin;">₹<%= arr[0].pPrice %> </p>
                 </div>
               </div>

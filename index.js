@@ -202,6 +202,16 @@ app.post('/cart/:id', async (req,res) =>{
     res.redirect('/merchandise');
 })
 
+app.put('/cart/:id', async(req,res) =>{
+    const {id} = req.params;
+    // console.log(req.body);
+    const {Quantity} = req.body;
+    console.log(Quantity);
+    const Cartput = await Cart.findOneAndUpdate({ProductID: id},{Quantity: Quantity},{runValidators: true, new: true, useFindAndModify: false});
+    // console.log(Cartput);
+    res.redirect('/cart');
+})
+
 app.delete('/cart/:id', async (req,res) =>{
     const {id} = req.params;
     const cartItem = await Cart.findOneAndDelete({ProductID: id});
