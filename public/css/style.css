@@ -172,7 +172,7 @@ section:nth-child(4) {
 }
 
 #qty {
-  width: 15%;
+  width: 55%;
   background-color: #eee;
   border-radius: 5px;
   border: none;
@@ -185,16 +185,37 @@ section:nth-child(4) {
 }
 
 #qtyLabel,
-select,
-.trash {
+select {
   display: inline-block;
   vertical-align: middle;
 }
 
-.trash {
-  color: #343a40;
+.updateButton {
+  background-color: #eee;
+  border-radius: 5px;
+  padding: 3px 20px 3px 20px !important;
+  transition: .5s all;
 }
 
+.updateButton:hover {
+  color: white;
+  background-color: #ffb703;
+}
+
+.trashButton {
+  padding: 3px 20px 3px 20px !important;
+  border: none;
+  text-align: center;
+  background-color: #343a40;
+  border-radius: 5px;
+  color: white;
+  transition: 0.5s all;
+}
+
+.trashButton:hover {
+  color: red;
+  background-color: #343a40;
+}
 
 #qty option {
   color: black;
@@ -205,11 +226,16 @@ select,
   color: #343a40;
   padding: 10px;
   border-radius: 20px;
-  font-size: 1.5vmin;
+  font-size: 0.6em;
   border: 1px solid #343a40;
   outline: none;
   width: 40%;
   transition: 0.7s all;
+  background-color: white;
+}
+
+.buyNow {
+  font-size: 1.5vmin;
 }
 
 .contShopping:hover,
@@ -224,9 +250,13 @@ select,
   color: white;
   padding: 10px;
   border-radius: 20px;
-  font-size: 1.7vmin;
+  font-size: 0.7em;
   border: none;
   outline: none;
+}
+
+.Cart {
+  font-size: 1.7vmin;
 }
 
 .boxed label {
