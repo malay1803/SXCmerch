@@ -3,7 +3,7 @@
 
   <body>
     <!-- ------------ navbar ------------- -->
-    <%- include('partials/nav') %> 
+    <%- include('partials/nav',{location: "merchandise"}) %> 
 
     <div class="container text-center col-lg-8 col-md-12 col-sm-12 mb-5 mt-4" style="border-bottom: 1px solid black;">
       <h1 class="merchheading">MERCHANDISE</h1>
@@ -61,11 +61,11 @@
          
             <%}}%>
            
-            <% let x=0%>
+            <% var x=0; %>
             <% for(let product of products)   { %>
               <% if(select.includes(product.pCategory) || select.length==0){ %>
                 <% if(price.length==0 || (min1<product.pPrice && (max1>product.pPrice)) || (min2<product.pPrice && (max2>product.pPrice)) || (min3<product.pPrice && (max3>product.pPrice)) ){ %>
-                  <% x=x+1 %> 
+                  <% x=x+1; %> 
                   <div class="col-sm-6 col-xl-4 mb-4 ms-0">
                     <!-- card body -->
                     <div class="card h-100" style="border-radius: 20px; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
@@ -106,8 +106,9 @@
 
                   </div>
             <% } %> <% } %> <% } %>
-            <% if(x==0) %>
+            <% if(x==0){ %>
                     No item found
+            <% } %>  
             </div>
 
           </div>

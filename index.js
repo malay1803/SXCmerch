@@ -50,7 +50,8 @@ app.post('/signup',async (req,res)=>{
         Name,Email,Password:hash
     });
     await user.save();
-    res.redirect('/');
+    let location="/"+req.body.add;
+        res.redirect(location);
     }
     // res.send("Password donot match");
 })
@@ -71,9 +72,10 @@ app.post('/login', async (req,res) =>{
     const validPwd = await bcrypt.compare(Password1, user.Password);
     if(validPwd)
     {
-        console.log('logged in!!');
         req.session.user_id = user._id;
-        res.redirect('/');
+        var location="/".concat(req.body.add);
+        console.log('logged in!! ',location);
+        res.redirect(location);
     }
     else
     {
@@ -84,7 +86,8 @@ app.post('/login', async (req,res) =>{
 
 app.post('/logout', (req,res) => {
     req.session.destroy();
-    res.redirect('/');
+    let location="/"+req.body.add;
+    res.redirect(location);
 })
 
 app.get('/merchandise', async (req,res) => {

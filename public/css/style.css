@@ -89,6 +89,7 @@ section:nth-child(4) {
 .inp {
   border: none;
   color: #adb5bd !important ;
+  background-color: white !important;
   border-radius: 0%;
   border-bottom: 1px solid;
   padding: 0 !important;
@@ -280,4 +281,9 @@ select {
   border: solid 2px #343a40;
   background-color: #343a40;
   color: white;
+}
+
+.no{
+  height: 0%;
+  width: 0%;
 }
