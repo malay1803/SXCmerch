@@ -16,8 +16,7 @@
 }
 
 .menuactive {
-  text-decoration: underline;
-  color: aqua;
+  border-bottom: black 1px solid;
 }
 .navigationMenu .navbar-nav .nav-item:last-child {
   margin-right: 0 !important;
@@ -175,7 +174,9 @@ section:nth-child(4) {
 #qty {
   width: 55%;
   background-color: #eee;
+  padding: 3px 10px 3px 10px !important;
   border-radius: 5px;
+  font-size: 100%;
   border: none;
   text-align-last: center;
   outline: none;
@@ -196,10 +197,11 @@ select {
   border-radius: 5px;
   padding: 3px 20px 3px 20px !important;
   transition: .5s all;
+  text-transform: capitalize;
 }
 
 .updateButton:hover {
-  color: white;
+  color: #343a40;
   background-color: #ffb703;
 }
 
@@ -241,7 +243,7 @@ select {
 
 .contShopping:hover,
 .buyNow:hover {
-  background-color: #343a40;
+  background-color: #a3a8ad;
   color: white;
 }
 
@@ -256,6 +258,10 @@ select {
   outline: none;
 }
 
+.proceed:hover{
+  background-color: #343a40;
+  color: white;
+}
 .Cart {
   font-size: 1.7vmin;
 }
