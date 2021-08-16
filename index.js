@@ -37,7 +37,7 @@ categories = ['tshirt','hoodie','cap','mask','brooch'];
 sizes = ['S','M','L','XL','XXL'];
 
 app.get('/', (req,res) => {
-    res.render('home',{login:!req.session.user_id});
+    res.render('home',{login:req.session.user_id});
 })
 
 
@@ -89,17 +89,10 @@ app.post('/logout', (req,res) => {
 
 app.get('/merchandise', async (req,res) => {
     const products = await Product.find({});
-    res.render('merchandise',{products,select,categories,price,price_value, login:!req.session.user_id});
+    res.render('merchandise',{products,select,categories,price,price_value, login:req.session.user_id});
 })
 
 app.post('/category', async (req,res) =>{
-    // const products = await Product.find({});
-    // const category=[]
-    // for(let p of products){
-    //     category.push(p.pCategory)    
-    // }
-    // const uniq = [...new Set(category)];
-    // const select=[]
     
     for(let pr of categories){
         const p= req.body[pr];
@@ -138,16 +131,16 @@ app.post('/category', async (req,res) =>{
 })
 
 app.get('/about',(req,res) => {
-    res.render('about',{login:!req.session.user_id});
+    res.render('about',{login:req.session.user_id});
 })
 app.get('/contact', async (req,res) => {
     if(req.session.user_id){
       const id = req.session.user_id;
       const user = await User.findById({_id: id});
-      res.render('contact',{user:user, login:!req.session.user_id});
+      res.render('contact',{user:user, login:req.session.user_id});
     }
     else{
-        res.render('contact',{login:!req.session.user_id});
+        res.render('contact',{login:req.session.user_id});
     }
 
     // if(req.session.user_id){
@@ -182,7 +175,7 @@ app.get('/cart', async (req,res) => {
     const tax = subtotal/10;
     finaltotal = subtotal+shipping+tax;
     //console.log(finaltotal);
-    res.render('cart',{cartItem: cartItem, arrayy: arrayy,finaltotal,subtotal,shipping,tax, login:!req.session.user_id});
+    res.render('cart',{cartItem: cartItem, arrayy: arrayy,finaltotal,subtotal,shipping,tax, login:req.session.user_id});
 })
 
 app.post('/cart/:id', async (req,res) =>{

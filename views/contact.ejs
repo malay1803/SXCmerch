@@ -29,16 +29,16 @@
                 <form class="px-4 py-3">
                     <label for="exampleDropdownName1" class="form-label label">Name*</label>
                     <%if(login) {%>
-                      <input type="text" class="form-control inp" id="Name" placeholder="Your name">
-                    <% }else{ %> 
                       <input type="text"  readonly="readonly" class="form-control inp" id="Name" value ="<%= user.Name %> "></input>
+                    <% }else{ %> 
+                      <input type="text" class="form-control inp" id="Name" placeholder="Your name">
                     <% } %>
 
                     <label for="exampleDropdownFormEmail1" class="mt-4 form-label label">Email*</label>
                     <%if(login) {%>
-                      <input type="email" class="form-control inp" id="Email1" placeholder="Your email">
-                    <% }else{ %> 
                       <input type="email" class="form-control inp" readonly="readonly" id="Email1" value=<%= user.Email %>>
+                    <% }else{ %> 
+                      <input type="email" class="form-control inp" id="Email1" placeholder="Your email">
                       <% } %>
                   
                     <label for="exampleDropdownFormPassword1" class="mt-4 form-label label">Message*</label>
