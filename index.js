@@ -167,9 +167,11 @@ app.get('/cart', async (req,res) => {
     
     // subtotal and final total code for cart
     let subtotal=0;
+    let i=0;
     for (let arr of arrayy)
     {
-        subtotal= subtotal+ arr[0].pPrice;
+        subtotal= subtotal+ (arr[0].pPrice*cartItem[i].Quantity);
+        i++;
     }
     //console.log(subtotal);
     let shipping=100;

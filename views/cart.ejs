@@ -30,7 +30,7 @@
                     <form class="col-8 d-flex justify-content-evenly align-items-center" action="/cart/<%= arr[0]._id %>?_method=PUT" method="POST">  
                       <label id="qtyLabel" for="Quantity">Qty</label>
                   <select name="Quantity" class="w-25" id="qty">
-                    <%for(let no in [1,2,3,4,5,6,7,8,9]){%>
+                    <%for(let no of [1,2,3,4,5,6,7,8,9]){%>
                       <% if(no==cartItem[i].Quantity){ %> 
                         <option value="<%=no%> " selected><%=no %> </option>
                       <% }else{ %> 
@@ -54,6 +54,7 @@
                 </div>
                   
                   <p class="mt-1 fw-bold" style="font-size: 3vmin;">₹<%= arr[0].pPrice %> </p>
+                  <p class="mt-1 fw-bold" style="font-size: 3vmin;">Total= ₹<%= arr[0].pPrice*cartItem[i].Quantity %> </p>
                 </div>
               </div>
             </div>
