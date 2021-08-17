@@ -78,21 +78,21 @@
                         
                         <p class="card-text" style="font-size: 80%;"> <%= product.pDescription %> </p>
                         <form class=" d-flex justify-content-between" action="/cart/<%=product._id %> " method="POST">
-                        <div class="boxed d-flex justify-content-between pe-3 ps-3">
-                          <input type="radio" id="<%=product.pName+"s"%>" name="size" value="S">
-                          <label for="<%=product.pName+"s"%>">S</label>
+                        <div class="boxed d-flex justify-content-between ps-2">
+                          <input type="radio" id="<%=product.pName+"s"%>" name="size" value="S" class="me-2">
+                          <label for="<%=product.pName+"s"%>" class="me-2">S</label>
                         
-                          <input type="radio" id="<%=product.pName+"m"%>" checked name="size" value="M">
-                          <label for="<%=product.pName+"m"%>">M</label>
+                          <input type="radio" id="<%=product.pName+"m"%>" checked name="size" value="M" class="me-2">
+                          <label for="<%=product.pName+"m"%>" class="me-2">M</label>
                           
-                          <input type="radio" id="<%=product.pName+"l"%>" name="size" value="L">
-                          <label for="<%=product.pName+"l"%>">L</label>
+                          <input type="radio" id="<%=product.pName+"l"%>" name="size" value="L" class="me-2">
+                          <label for="<%=product.pName+"l"%>" class="me-2">L</label>
                         
-                          <input type="radio" id="<%=product.pName+"xl"%>" name="size" value="XL">
-                          <label for="<%=product.pName+"xl"%>">XL</label>
+                          <input type="radio" id="<%=product.pName+"xl"%>" name="size" value="XL" class="me-2">
+                          <label for="<%=product.pName+"xl"%>" class="me-2">XL</label>
                         
-                          <input type="radio" id="<%=product.pName+"xxl"%>" name="size" value="XXL">
-                          <label for="<%=product.pName+"xxl"%>">XXL</label>
+                          <input type="radio" id="<%=product.pName+"xxl"%>" name="size" value="XXL" class="me-2">
+                          <label for="<%=product.pName+"xxl"%>" class="me-2">XXL</label>
                         </div>
                       </div>
                       <div class="card-footer">
