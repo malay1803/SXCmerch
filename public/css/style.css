@@ -326,3 +326,7 @@ select {
   height: 0%;
   width: 0%;
 }
+
+.addressimg{
+  background: url(https://mdbootstrap.com/img/Others/extended-example/delivery.jpg);
+}
