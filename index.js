@@ -4,6 +4,7 @@ const path = require('path');
 const ejs = require('ejs');
 const mongoose = require('mongoose');
 const Product = require('./models/merchandise');
+const Contact = require('./models/contact');
 const User = require('./models/user');
 const { urlencoded } = require('express');
 const methodOverride = require('method-override');
@@ -152,6 +153,18 @@ app.get('/contact', async (req,res) => {
     // else{
     //     res.render('contact',{login:!req.session.user_id});
     // }
+})
+
+app.post('/contact', async (req,res) => {
+    const {Name, Email1, Message} = req.body;
+    console.log(Name, Email1, Message);
+    const addMessage = new Contact({
+        Name,
+        Email1,
+        Message
+    });
+    await addMessage.save();
+    res.redirect('/contact');
 })
 
 app.get('/cart', async (req,res) => {
