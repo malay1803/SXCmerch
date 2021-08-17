@@ -60,6 +60,15 @@ button{
   width: 100%;
 }
 
+.menuactive:hover::after {
+  left: 50% !important;
+  width: 0% !important;
+}
+
+.menuactive {
+  border-bottom: black 1px solid;
+}
+
 /* carousel  */
 .carousel-indicators button {
   height: 1vw !important;

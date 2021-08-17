@@ -48,20 +48,4 @@
         <!-- Copyright -->
       </footer>
     </section>
-    <script>
-    
-          var current = document.getElementsByClassName("menuactive");
-          current[0].className = current[0].className.replace(" menuactive", "");
-          var currentURL = window.location.href;
-          var name=currentURL.split("/")[3]
-          if(name!=""){
-          var tab=document.getElementById(name);
-            tab.className += " menuactive";
-          }       
-          else
-          {
-            var tab=document.getElementById('home');
-            tab.className += " menuactive";
-          }   
-                   
-  </script>
+   
