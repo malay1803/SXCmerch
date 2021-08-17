@@ -11,7 +11,7 @@
     <section class="container col-lg-8 col-md-12 col-sm-12 mb-5 mt-4">
         <div class="row">
             <div class="col-sm-12" style="text-align: center">
-              <h1 class="text-center text-uppercase" style="font-size: 50px">
+              <h1 class="text-center text-uppercase" style="font-size: 50px; color: #343a40;">
                 Get in touch with us
               </h1>
             </div>
@@ -29,7 +29,7 @@
                 <form class="px-4 py-3">
                     <label for="exampleDropdownName1" class="form-label label">Name*</label>
                     <%if(login) {%>
-                      <input type="text"  readonly="readonly" class="form-control inp" id="Name" value ="<%= user.Name %> "></input>
+                      <input type="text" readonly="readonly" class="form-control inp" id="Name" value ="<%= user.Name %> "></input>
                     <% }else{ %> 
                       <input type="text" class="form-control inp" id="Name" placeholder="Your name">
                     <% } %>
@@ -54,9 +54,9 @@
           
           <div class="row d-flex mt-5" style="font-size: 10.4px;">
                 <div class="address col-sm-3 mb-4 text-center">
-                    <div class="row"><img src="/image/address.svg"  style="max-width: 65px; margin: 0 auto;" alt=""></div>
+                    <div class="row"><img src="/image/address.svg"  style="max-width: 7vmin; margin: 0 auto;" alt=""></div>
                     <p class="mt-2" style="font-size: 18px; font-weight: bold;letter-spacing: 2px;" >ADDRESS</p>
-                    <p style="margin-top:-15px;">Akshya Nagar 1st Block<br>1st Cross,<br>Rammurthy nagar,<br>Bangalore-560016</p>
+                    <p style="margin-top:-15px; font-size: 10px;">Akshya Nagar 1st Block<br>1st Cross,<br>Rammurthy nagar,<br>Bangalore-560016</p>
                 </div>
                 <div class="phone col-sm-3 mb-4 text-center">
                     <div class="row"><img src="/image/phone.svg" style="max-width: 65px;margin: 0 auto;" alt=""></div>
