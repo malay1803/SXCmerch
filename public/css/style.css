@@ -1,6 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Tangerine&display=swap");
 
-button {
+@import url('https://fonts.googleapis.com/css2?family=Tangerine&display=swap');
+
+button{
   outline: none;
   border: none;
 }
@@ -215,7 +216,7 @@ select {
   background-color: #eee;
   border-radius: 5px;
   padding: 3px 20px 3px 20px !important;
-  transition: 0.5s all;
+  transition: .5s all;
   text-transform: capitalize;
 }
 
@@ -278,20 +279,20 @@ select {
 }
 
 .proceed::selection,
-.Cart::selection {
+.Cart::selection{
   box-shadow: none;
   border: none;
   background-color: #343a40;
-}
+} 
 
 .proceed:focus,
-.Cart:focus {
+.Cart:focus{
   box-shadow: none;
   border: none;
   background-color: #343a40;
-}
+} 
 
-.proceed:hover {
+.proceed:hover{
   background-color: #343a40;
   color: white;
 }
@@ -322,10 +323,11 @@ select {
   color: white;
 }
 
-.no {
+.no{
   height: 0%;
   width: 0%;
 }
+
 
 .addressimg {
   background: url(https://mdbootstrap.com/img/Others/extended-example/delivery.jpg);
@@ -362,3 +364,6 @@ select {
 .addressInputs span,.addressInputs select span{
   color: red;
 }
+
+
+

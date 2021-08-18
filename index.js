@@ -98,7 +98,13 @@ app.get('/merchandise', async (req,res) => {
 })
 
 app.post('/category', async (req,res) =>{
-    
+    // const products = await Product.find({});
+    // const category=[]
+    // for(let p of products){
+    //     category.push(p.pCategory)    
+    // }
+    // const uniq = [...new Set(category)];
+    // const select=[]
     for(let pr of categories){
         const p= req.body[pr];
         if(p=="on"){
@@ -166,6 +172,24 @@ app.post('/contact', async (req,res) => {
     });
     await addMessage.save();
     res.redirect('/contact');
+})
+
+app.post('/cart', async (req,res) => {
+    const {First, Last, address1, PinCode, City, State, Phone} = req.body;
+    console.log(First, Last, address1, PinCode, City, State, Phone);
+    const Name=First+" "+Last;
+    const UserID = req.session.user_id;
+    const addAddress = new Address({
+        UserID,
+        Name,
+        Address:address1,  
+        City, 
+        State, 
+        PinCode,
+        Phone
+    });
+    await addAddress.save();
+    res.redirect('/');
 })
 
 app.get('/cart', async (req,res) => {
