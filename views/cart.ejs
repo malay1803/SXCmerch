@@ -6,6 +6,7 @@
     <!-- ------------ navbar ------------- -->
     <!-- heading  -->
     <%- include('partials/nav',{location: "cart"}) %> 
+    <%- include('partials/scrollToTop')%> 
     <div class="container text-center col-lg-8 col-md-12 col-sm-12 mb-5 mt-4" style="border-bottom: 1px solid black;">
       <h1 class="merchheading">SHOPPING CART</h1>
     </div>
@@ -37,14 +38,6 @@
                         <option value="<%=no%> " ><%=no %> </option>
                         <% } %> 
                     <% } %> 
-                    <!-- <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option> -->
                   </select>
                   <button type="submit" class="btn btn-light updateButton">update <i class="fas fa-redo-alt" style="font-size: 80%;"></i></button>
                   </form>
