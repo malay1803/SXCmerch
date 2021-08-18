@@ -126,94 +126,94 @@
                           </div>
                         </div>
                         <div class="col-xl-5">
-                          <div class="card-body p-md-1 text-black">
-                            <h3 class="mb-4 text-uppercase" style="letter-spacing: 1.5vmin;">Delivery Info</h3>
+                          <div class="card-body p-md-1 text-black addressInputs">
+                            <h3 class="mb-4 text-uppercase" style="letter-spacing: 1.7vmin;">Delivery Info</h3>
               
                             <div class="row">
                               <div class="col-md-6 mb-2">
                                 <div class="form-outline">
                                   <input type="text" id="form3Example1m" class="form-control form-control-md" />
-                                  <label class="form-label" for="form3Example1m">First name</label>
+                                  <label class="form-label" for="form3Example1m">First name <span>*</span></label>
                                 </div>
                               </div>
                               <div class="col-md-6 mb-2">
                                 <div class="form-outline">
                                   <input type="text" id="form3Example1n" class="form-control form-control-md" />
-                                  <label class="form-label" for="form3Example1n">Last name</label>
+                                  <label class="form-label" for="form3Example1n">Last name <span>*</span></label>
                                 </div>
                               </div>
                             </div>
               
                             <div class="form-outline mb-2">
                               <input type="text" id="form3Example8" class="form-control form-control-md" />
-                              <label class="form-label" for="form3Example8">Address</label>
+                              <label class="form-label" for="form3Example8">Address <span>*</span></label>
                             </div>
-              
-              
-              
                             <div class="row">
                               <div class="col-md-6 mb-2">
                                 <div class="form-outline mb-2">
                                   <input type="text" id="form3Example3" class="form-control form-control-md" />
-                                  <label class="form-label" for="form3Example3">Zip Code</label>
+                                  <label class="form-label" for="form3Example3">Zip Code <span>*</span></label>
                                 </div>
-              
                               </div>
 
                               <div class="col-md-6 mb-2">
                             <div class="form-outline mb-2">
                               <input type="text" id="form3Example8" class="form-control form-control-md" />
-                              <label class="form-label" for="form3Example8">City</label>
+                              <label class="form-label" for="form3Example8">City <span>*</span></label>
                             </div>
                               </div>
                             </div>
+
+                            <div class="form-outline mb-2">
+                              <select class="select stateSelect">
+                                <option value="1" selected disabled>Select your state</option>
+                                <%for(let state of [ "Andhra Pradesh",
+                                "Arunachal Pradesh",
+                                "Assam",
+                                "Bihar",
+                                "Chhattisgarh",
+                                "Goa",
+                                "Gujarat",
+                                "Haryana",
+                                "Himachal Pradesh",
+                                "Jammu and Kashmir",
+                                "Jharkhand",
+                                "Karnataka",
+                                "Kerala",
+                                "Madhya Pradesh",
+                                "Maharashtra",
+                                "Manipur",
+                                "Meghalaya",
+                                "Mizoram",
+                                "Nagaland",
+                                "Odisha",
+                                "Punjab",
+                                "Rajasthan",
+                                "Sikkim",
+                                "Tamil Nadu",
+                                "Telangana",
+                                "Tripura",
+                                "Uttarakhand",
+                                "Uttar Pradesh",
+                                "West Bengal",
+                                "Andaman and Nicobar Islands",
+                                "Chandigarh",
+                                "Dadra and Nagar Haveli",
+                                "Daman and Diu",
+                                "Delhi",
+                                "Lakshadweep",
+                                "Puducherry"])  {%>
+                                  <option value="<%= state %>"><%= state %></option>
+                                  <% } %> 
+                              </select>
+                              <label class="form-label" for="form3Example8">State <span>*</span></label>
+                            </div>
               
-                            <select class="select mb-4" style="width: 100%; height: 40px; padding-left: 15px;">
-                              <option value="1" selected disabled>State</option>
-                              <%for(let state of [ "Andhra Pradesh",
-                              "Arunachal Pradesh",
-                              "Assam",
-                              "Bihar",
-                              "Chhattisgarh",
-                              "Goa",
-                              "Gujarat",
-                              "Haryana",
-                              "Himachal Pradesh",
-                              "Jammu and Kashmir",
-                              "Jharkhand",
-                              "Karnataka",
-                              "Kerala",
-                              "Madhya Pradesh",
-                              "Maharashtra",
-                              "Manipur",
-                              "Meghalaya",
-                              "Mizoram",
-                              "Nagaland",
-                              "Odisha",
-                              "Punjab",
-                              "Rajasthan",
-                              "Sikkim",
-                              "Tamil Nadu",
-                              "Telangana",
-                              "Tripura",
-                              "Uttarakhand",
-                              "Uttar Pradesh",
-                              "West Bengal",
-                              "Andaman and Nicobar Islands",
-                              "Chandigarh",
-                              "Dadra and Nagar Haveli",
-                              "Daman and Diu",
-                              "Delhi",
-                              "Lakshadweep",
-                              "Puducherry"])  {%>
-                                <option value="<%= state %>"><%= state %></option>
-                                <% } %> 
-                              
-                            </select>
+                            
               
                             <div class="form-outline mb-2">
                               <input type="text" id="form3Example2" class="form-control form-control-md" />
-                              <label class="form-label" for="form3Example2">Phone Number</label>
+                              <label class="form-label" for="form3Example2">Phone Number <span>*</span></label>
                             </div>
               
                             <div class="d-flex justify-content-end pt-3">
