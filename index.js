@@ -168,6 +168,24 @@ app.post('/contact', async (req,res) => {
     res.redirect('/contact');
 })
 
+app.post('/cart', async (req,res) => {
+    const {First, Last, address1, PinCode, City, State, Phone} = req.body;
+    console.log(First, Last, address1, PinCode, City, State, Phone);
+    const Name=First+" "+Last;
+    const UserID = req.session.user_id;
+    const addAddress = new Address({
+        UserID,
+        Name,
+        Address:address1,  
+        City, 
+        State, 
+        PinCode,
+        Phone
+    });
+    await addAddress.save();
+    res.redirect('/');
+})
+
 app.get('/cart', async (req,res) => {
     const userid = req.session.user_id;
     const cartItem = await Cart.find({UserID: userid});
