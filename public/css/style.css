@@ -249,7 +249,7 @@ select {
   color: #343a40;
   padding: 10px;
   border-radius: 20px;
-  font-size: 0.6em;
+  font-size: 12px;
   border: 1px solid #343a40;
   outline: none;
   width: 40%;
@@ -258,7 +258,7 @@ select {
 }
 
 .buyNow {
-  font-size: 1.5vmin;
+  font-size: 12px;
 }
 
 .contShopping:hover,
@@ -273,7 +273,7 @@ select {
   color: white;
   padding: 10px;
   border-radius: 20px;
-  font-size: 0.7em;
+  font-size: 12px;
   border: none;
   outline: none;
 }
@@ -297,7 +297,7 @@ select {
   color: white;
 }
 .Cart {
-  font-size: 1.7vmin;
+  font-size: 12px;
 }
 
 .boxed label {
