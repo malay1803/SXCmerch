@@ -39,7 +39,7 @@ categories = ['tshirt','hoodie','cap','mask','brooch'];
 sizes = ['S','M','L','XL','XXL'];
 
 app.get('/', (req,res) => {
-    res.render('home',{login:req.session.user_id});
+    res.render('home',{login:req.session.user_id, messages: req.flash('error')});
 })
 
 
@@ -58,11 +58,13 @@ app.post('/signup',async (req,res)=>{
     // res.send("Password donot match");
 })
 
-app.put('/signup', async(req,res) =>{
-    // const {id} = req.params;
-    // console.log(req.body);
-    // const {Quantity} = req.body;
-    // console.log(Quantity);
+app.put('/login', async(req,res) =>{
+    const {Email, Password, cPassword} = req.body;
+    // const otp=1234;
+    if(Password== cPassword){
+        const hash = await bcrypt.hash(Password,12);
+        const userUpdate = await User.findOneAndUpdate({Email: Email}, {Password: hash},{runValidators: true, new: true, useFindAndModify: false});
+    }
     // const Cartput = await Cart.findOneAndUpdate({ProductID: id},{Quantity: Quantity},{runValidators: true, new: true, useFindAndModify: false});
     // console.log(Cartput);
     let location="/"+req.body.add;
@@ -79,7 +81,7 @@ app.post('/login', async (req,res) =>{
     if(!user)
     {
         req.flash('error', 'Incorrect Credentials, Try Again!');
-        res.redirect('/login');
+        res.redirect('/');
         
     }
     const validPwd = await bcrypt.compare(Password1, user.Password);
@@ -92,10 +94,11 @@ app.post('/login', async (req,res) =>{
     }
     else
     {
-        reqflash('error', 'Incorrect Credentials, Try Again!');
-        res.redirect('/login');
+        req.flash('error', 'Incorrect Credentials, Try Again!');
+        res.redirect('/');
     }
 } )
+
 
 app.post('/logout', (req,res) => {
     req.session.destroy();
@@ -105,7 +108,7 @@ app.post('/logout', (req,res) => {
 
 app.get('/merchandise', async (req,res) => {
     const products = await Product.find({});
-    res.render('merchandise',{products,select,categories,price,price_value, login:req.session.user_id});
+    res.render('merchandise',{products,select,categories,price,price_value, login:req.session.user_id,messages: req.flash('error')});
 })
 
 app.post('/category', async (req,res) =>{
@@ -153,16 +156,16 @@ app.post('/category', async (req,res) =>{
 })
 
 app.get('/about',(req,res) => {
-    res.render('about',{login:req.session.user_id});
+    res.render('about',{login:req.session.user_id,messages: req.flash('error')});
 })
 app.get('/contact', async (req,res) => {
     if(req.session.user_id){
       const id = req.session.user_id;
       const user = await User.findById({_id: id});
-      res.render('contact',{user:user, login:req.session.user_id});
+      res.render('contact',{user:user, login:req.session.user_id,messages: req.flash('error')});
     }
     else{
-        res.render('contact',{login:req.session.user_id});
+        res.render('contact',{login:req.session.user_id,messages: req.flash('error')});
     }
 
     // if(req.session.user_id){
@@ -229,18 +232,21 @@ app.get('/cart', async (req,res) => {
     const tax = subtotal/10;
     finaltotal = subtotal+shipping+tax;
     //console.log(finaltotal);
-    res.render('cart',{cartItem: cartItem, arrayy: arrayy,finaltotal,subtotal,shipping,tax, login:req.session.user_id});
+    res.render('cart',{cartItem: cartItem, arrayy: arrayy,finaltotal,subtotal,shipping,tax, login:req.session.user_id,messages: req.flash('error')});
 })
 
 app.post('/cart/:id', async (req,res) =>{
+    const userid = req.session.user_id;
     const {size} = req.body;
     console.log(size);
     const {id} = req.params;
-    const Cartput = await Cart.find({UserID:req.session.user_id},{ProductID: id})
-    if(Cartput.lenght==0){
+
         const item = await Product.findById({_id: id});
         console.log(item);
-        const userid = req.session.user_id;
+        const cartfind = await Cart.find({UserID: userid, Size: size, ProductID: id});
+        console.log(cartfind);
+    
+    if(cartfind.length == 0){
         const cartobject = new Cart({
             UserID: userid,
             ProductID: id,
@@ -249,20 +255,22 @@ app.post('/cart/:id', async (req,res) =>{
         });
         await cartobject.save();
     }
-    else
-    {
-        const Cartput = await Cart.find({UserID:req.session.user_id},{ProductID: id})
-        const Cartput1 = await Cart.findOneAndUpdate({_id: Cartput[0]._id},{Quantity: 2},{runValidators: true, new: true, useFindAndModify: false});
-    }
+    else{
+        if(cartfind[0].Quantity != 9){
+        const incrementqty = cartfind[0].Quantity + 1;
+        const Cartput = await Cart.findOneAndUpdate({UserID: userid,ProductID: id,Size: size},{Quantity: incrementqty},{runValidators: true, new: true, useFindAndModify: false});
+        }}
+        
     res.redirect('/merchandise');
 })
 
 app.put('/cart/:id', async(req,res) =>{
     const {id} = req.params;
+
     // console.log(req.body);
-    const {Quantity} = req.body;
-    console.log(Quantity);
-    const Cartput = await Cart.findOneAndUpdate({UserID:req.session.user_id,ProductID: id},{Quantity: Quantity},{runValidators: true, new: true, useFindAndModify: false});
+    const {Quantity,hiddensize} = req.body;
+    console.log(Quantity, hiddensize);
+    const Cartput = await Cart.findOneAndUpdate({UserID:req.session.user_id,ProductID: id,Size: hiddensize},{Quantity: Quantity},{runValidators: true, new: true, useFindAndModify: false});
     //sconsole.log(Cartput);
     res.redirect('/cart');
 })

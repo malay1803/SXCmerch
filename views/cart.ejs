@@ -42,6 +42,7 @@
                         <% } %> 
                     <% } %> 
                   </select>
+                  <input type="hidden" name="hiddensize" id="hiddensize" value="<%= cartItem[i].Size %>">
                   <button type="submit" class="btn btn-light updateButton">update <i class="fas fa-redo-alt" style="font-size: 80%;"></i></button>
                   </form>
                   <form action="/cart/<%= arr[0]._id %>?_method=DELETE" method="POST">
