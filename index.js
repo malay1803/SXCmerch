@@ -243,9 +243,10 @@ app.get('/cart', async (req,res) => {
 })
 
 app.post('/cart/:id', async (req,res) =>{
-    const userid = req.session.user_id;
     
-    const {id} = req.params;
+    const userid = req.session.user_id;
+    if(userid){
+        const {id} = req.params;
         let size="";
         const item = await Product.findById({_id: id});
         console.log(item);
@@ -255,13 +256,13 @@ app.post('/cart/:id', async (req,res) =>{
         const cartfind = await Cart.find({UserID: userid, Size: size, ProductID: id});
         console.log(cartfind);
     
-    if(cartfind.length == 0){
-        const cartobject = new Cart({
-            UserID: userid,
-            ProductID: id,
-            Size: size,
-            Quantity: 1
-        });
+        if(cartfind.length == 0){
+            const cartobject = new Cart({
+                UserID: userid,
+                ProductID: id,
+                Size: size,
+                Quantity: 1
+            });
         await cartobject.save();
     }
     else{
@@ -269,7 +270,10 @@ app.post('/cart/:id', async (req,res) =>{
         const incrementqty = cartfind[0].Quantity + 1;
         const Cartput = await Cart.findOneAndUpdate({UserID: userid,ProductID: id,Size: size},{Quantity: incrementqty},{runValidators: true, new: true, useFindAndModify: false});
         }}
-        
+    }
+    else{
+        req.flash('error',"Please Login first.")
+    }
     res.redirect('/merchandise');
 })
 
