@@ -11,7 +11,7 @@ const cartSchema = new mongoose.Schema({
     },
     Size: {
         type: String,
-        enum: ['S','M','L','XL','XXL']
+        enum: ['S','M','L','XL','XXL','']
     },
     Quantity: {
         type: Number,

@@ -79,6 +79,7 @@
                         
                         <p class="card-text" style="font-size: 80%;"> <%= product.pDescription %> </p>
                         <form action="/cart/<%=product._id %> " method="POST">
+                         <% if(['tshirt','hoodie'].includes(product.pCategory)){ %>  
                         <div class="boxed d-flex justify-content-around mx-md-2">
                           <div>
                             <input type="radio" id="<%=product.pName+"s"%>" name="size" value="S" class="me-2">
@@ -105,7 +106,9 @@
                             <label for="<%=product.pName+"xxl"%>" class="me-2">XXL</label>                          
                           </div>
                         </div>
+                        <% } %>
                       </div>
+                       
                       <div class="card-footer">
                         <small class="text-muted d-flex justify-content-between">
                           <!-- <form class=" d-flex justify-content-between" action="/cart/<%=product._id %> " method="POST"> -->

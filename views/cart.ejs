@@ -25,8 +25,12 @@
               <div class="col-md-8">
                 <div class="card-body text-start">
                   <div class="d-flex justify-content-between">
-                    <h5 class="card-title"><%= arr[0].pName %>(<%= cartItem[i].Size %>)</h5>
-                    <p class="mt-1 fw-bold" style="font-size: 22px;">₹<%= arr[0].pPrice %> </p>
+                    <% if(cartItem[i].Size =='') {%>
+                      <h5 class="card-title"><%= arr[0].pName %></h5>
+                      <% }else{ %>  
+                      <h5 class="card-title"><%= arr[0].pName %>(<%= cartItem[i].Size %>)</h5>
+                    <% } %> 
+                      <p class="mt-1 fw-bold" style="font-size: 22px;">₹<%= arr[0].pPrice %> </p>
                   </div>
                   <p class="card-text"><%= arr[0].pDescription %> </p> 
                   

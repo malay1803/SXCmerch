@@ -53,6 +53,7 @@ app.post('/signup',async (req,res)=>{
     });
     await user.save();
     let location="/"+req.body.add;
+    req.session.user_id = user._id;
         res.redirect(location);
     }
     // res.send("Password donot match");
@@ -68,6 +69,7 @@ app.put('/login', async(req,res) =>{
     // const Cartput = await Cart.findOneAndUpdate({ProductID: id},{Quantity: Quantity},{runValidators: true, new: true, useFindAndModify: false});
     // console.log(Cartput);
     let location="/"+req.body.add;
+    req.flash('error',"Password Reset Successful");
     res.redirect(location);
 })
 
@@ -189,6 +191,7 @@ app.post('/contact', async (req,res) => {
         Message
     });
     await addMessage.save();
+    req.flash('error',"Result line 193----");
     res.redirect('/contact');
 })
 
@@ -241,12 +244,14 @@ app.get('/cart', async (req,res) => {
 
 app.post('/cart/:id', async (req,res) =>{
     const userid = req.session.user_id;
-    const {size} = req.body;
-    console.log(size);
+    
     const {id} = req.params;
-
+        let size="";
         const item = await Product.findById({_id: id});
         console.log(item);
+        if(['tshirt','hoodie'].includes(item.pCategory)){
+            size = req.body.size;
+        }      
         const cartfind = await Cart.find({UserID: userid, Size: size, ProductID: id});
         console.log(cartfind);
     
