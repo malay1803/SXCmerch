@@ -103,7 +103,11 @@ app.post('/login', async (req,res) =>{
 app.post('/logout', (req,res) => {
     req.session.destroy();
     let location="/"+req.body.add;
-    res.redirect(location);
+    if(location!="/cart"){
+        res.redirect(location);
+    }else{
+        res.redirect("/");
+    }
 })
 
 app.get('/merchandise', async (req,res) => {
