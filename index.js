@@ -58,6 +58,17 @@ app.post('/signup',async (req,res)=>{
     // res.send("Password donot match");
 })
 
+app.put('/signup', async(req,res) =>{
+    // const {id} = req.params;
+    // console.log(req.body);
+    // const {Quantity} = req.body;
+    // console.log(Quantity);
+    // const Cartput = await Cart.findOneAndUpdate({ProductID: id},{Quantity: Quantity},{runValidators: true, new: true, useFindAndModify: false});
+    // console.log(Cartput);
+    let location="/"+req.body.add;
+    res.redirect(location);
+})
+
 app.post('/login', async (req,res) =>{
     const {Email1,Password1}= req.body;
     const user = await User.findOne({Email: Email1});
@@ -225,16 +236,24 @@ app.post('/cart/:id', async (req,res) =>{
     const {size} = req.body;
     console.log(size);
     const {id} = req.params;
-    const item = await Product.findById({_id: id});
-    console.log(item);
-    const userid = req.session.user_id;
-    const cartobject = new Cart({
-        UserID: userid,
-        ProductID: id,
-        Size: size,
-        Quantity: 1
-    });
-    await cartobject.save();
+    const Cartput = await Cart.find({UserID:req.session.user_id},{ProductID: id})
+    if(Cartput.lenght==0){
+        const item = await Product.findById({_id: id});
+        console.log(item);
+        const userid = req.session.user_id;
+        const cartobject = new Cart({
+            UserID: userid,
+            ProductID: id,
+            Size: size,
+            Quantity: 1
+        });
+        await cartobject.save();
+    }
+    else
+    {
+        const Cartput = await Cart.find({UserID:req.session.user_id},{ProductID: id})
+        const Cartput1 = await Cart.findOneAndUpdate({_id: Cartput[0]._id},{Quantity: 2},{runValidators: true, new: true, useFindAndModify: false});
+    }
     res.redirect('/merchandise');
 })
 
@@ -243,14 +262,14 @@ app.put('/cart/:id', async(req,res) =>{
     // console.log(req.body);
     const {Quantity} = req.body;
     console.log(Quantity);
-    const Cartput = await Cart.findOneAndUpdate({ProductID: id},{Quantity: Quantity},{runValidators: true, new: true, useFindAndModify: false});
-    // console.log(Cartput);
+    const Cartput = await Cart.findOneAndUpdate({UserID:req.session.user_id,ProductID: id},{Quantity: Quantity},{runValidators: true, new: true, useFindAndModify: false});
+    //sconsole.log(Cartput);
     res.redirect('/cart');
 })
 
 app.delete('/cart/:id', async (req,res) =>{
     const {id} = req.params;
-    const cartItem = await Cart.findOneAndDelete({ProductID: id});
+    const cartItem = await Cart.findOneAndDelete({UserID:req.session.user_id,ProductID: id});
     // console.log(cartItem);
     res.redirect('/cart');
 })
