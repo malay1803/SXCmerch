@@ -195,21 +195,28 @@ app.post('/contact', async (req,res) => {
     res.redirect('/contact');
 })
 
-app.post('/cart', async (req,res) => {
-    const {First, Last, address1, PinCode, City, State, Phone} = req.body;
-    console.log(First, Last, address1, PinCode, City, State, Phone);
+app.post('/address', async (req,res) => {
+    const {First, Last, address1, PinCode, City, State, Phone, productid,productsize} = req.body;
+    // console.log(productid,productsize);
+    // console.log(First, Last, address1, PinCode, City, State, Phone);
     const Name=First+" "+Last;
     const UserID = req.session.user_id;
-    const addAddress = new Address({
-        UserID,
-        Name,
-        Address:address1,  
-        City, 
-        State, 
-        PinCode,
-        Phone
-    });
-    await addAddress.save();
+
+    const findAddress = await Address.find({UserID,Name,Address: address1, City,State,PinCode,Phone});
+    // console.log(findAddress);
+    if(findAddress.length === 0)
+    {
+        const addAddress = new Address({
+            UserID,
+            Name,
+            Address:address1,  
+            City, 
+            State, 
+            PinCode,
+            Phone
+        });
+        await addAddress.save();
+    }
     res.redirect('/');
 })
 
@@ -294,6 +301,7 @@ app.delete('/cart/:id', async (req,res) =>{
     // console.log(cartItem);
     res.redirect('/cart');
 })
+
 
 app.listen(3000, () =>{
     console.log("Listening on port 3000")

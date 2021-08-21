@@ -132,41 +132,45 @@
               
                             <div class="row">
                               <div class="col-md-6 mb-2">
+
+                                <form action="/address" method="POST">
+                                <input type="hidden" id="productid" name="productid" value="">
+                                <input type="hidden" id="productsize" name="productsize" value="">   
                                 <div class="form-outline">
-                                  <input type="text" id="form3Example1m" class="form-control form-control-md" />
-                                  <label class="form-label" for="form3Example1m">First name <span>*</span></label>
+                                  <input type="text" id="form3Example1mal" name="First" class="form-control form-control-md" />
+                                  <label class="form-label" for="form3Example1mal">First name <span>*</span></label>
                                 </div>
                               </div>
                               <div class="col-md-6 mb-2">
                                 <div class="form-outline">
-                                  <input type="text" id="form3Example1n" class="form-control form-control-md" />
-                                  <label class="form-label" for="form3Example1n">Last name <span>*</span></label>
+                                  <input type="text" id="form3Example1nabc" name="Last" class="form-control form-control-md" />
+                                  <label class="form-label" for="form3Example1nabc">Last name <span>*</span></label>
                                 </div>
                               </div>
                             </div>
               
                             <div class="form-outline mb-2">
-                              <input type="text" id="form3Example8" class="form-control form-control-md" />
+                              <input type="text" id="form3Example8" name="address1" class="form-control form-control-md" />
                               <label class="form-label" for="form3Example8">Address <span>*</span></label>
                             </div>
                             <div class="row">
                               <div class="col-md-6 mb-2">
                                 <div class="form-outline mb-2">
-                                  <input type="text" id="form3Example3" class="form-control form-control-md" />
+                                  <input type="text" id="form3Example3" name="PinCode" class="form-control form-control-md" />
                                   <label class="form-label" for="form3Example3">Zip Code <span>*</span></label>
                                 </div>
                               </div>
 
                               <div class="col-md-6 mb-2">
                             <div class="form-outline mb-2">
-                              <input type="text" id="form3Example8" class="form-control form-control-md" />
+                              <input type="text" id="form3Example8" name="City" class="form-control form-control-md" />
                               <label class="form-label" for="form3Example8">City <span>*</span></label>
                             </div>
                               </div>
                             </div>
 
                             <div class="form-outline mb-2">
-                              <select class="select stateSelect">
+                              <select name="State" class="select stateSelect">
                                 <option value="1" selected disabled>Select your state</option>
                                 <%for(let state of [ "Andhra Pradesh",
                                 "Arunachal Pradesh",
@@ -213,15 +217,15 @@
                             
               
                             <div class="form-outline mb-2">
-                              <input type="text" id="form3Example2" class="form-control form-control-md" />
+                              <input type="text" name="Phone" id="form3Example2" class="form-control form-control-md" />
                               <label class="form-label" for="form3Example2">Phone Number <span>*</span></label>
                             </div>
               
                             <div class="d-flex justify-content-end pt-3">
-                              <button type="button" class="btn btn-success btn-lg ms-2"
+                              <button type="submit" class="btn btn-success btn-lg ms-2"
                                 style="background-color: #343a40">Place order</button>
                             </div>
-              
+                          </form>
                           </div>
                         </div>
                       </div>
