@@ -37,6 +37,8 @@ app.use(flash());
 
 categories = ['tshirt','hoodie','cap','mask','brooch'];
 sizes = ['S','M','L','XL','XXL'];
+let productId;
+let productSize;
 
 app.get('/', (req,res) => {
     res.render('home',{login:req.session.user_id, messages: req.flash('error')});
@@ -199,6 +201,8 @@ app.post('/address', async (req,res) => {
     const {First, Last, address1, PinCode, City, State, Phone, productid,productsize} = req.body;
     // console.log(productid,productsize);
     // console.log(First, Last, address1, PinCode, City, State, Phone);
+    productId = productid;
+    productSize = productsize;
     const Name=First+" "+Last;
     const UserID = req.session.user_id;
 
