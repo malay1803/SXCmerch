@@ -290,8 +290,8 @@ app.post('/cart/:id', async (req,res) =>{
     }
     else{
         if(cartfind[0].Quantity != 9){
-        const incrementqty = cartfind[0].Quantity + 1;
-        const Cartput = await Cart.findOneAndUpdate({UserID: userid,ProductID: id,Size: size},{Quantity: incrementqty},{runValidators: true, new: true, useFindAndModify: false});
+            const incrementqty = cartfind[0].Quantity + 1;
+            const Cartput = await Cart.findOneAndUpdate({UserID: userid,ProductID: id,Size: size},{Quantity: incrementqty},{runValidators: true, new: true, useFindAndModify: false});
         }}
     }
     else{

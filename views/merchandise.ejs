@@ -115,10 +115,11 @@
                             <!-- <input type="hidden" id="<%=  %> " value="<%=product.pName%>"> -->
                             <% if(login){ %> 
                               <button type="button" class="buyNow" href="#address1" onclick="show('<%=product.pName%>','<%=product._id%>');" data-bs-toggle="modal">Buy Now</button>
+                              <button type="submit" class="Cart w-50"><i class="fas fa-shopping-cart"></i> Cart</button>
                             <% }else{ %> 
                               <button type="button" class="buyNow" onclick="loginp();">Buy Now</button> 
+                              <button type="button" class="Cart w-50" onclick="loginp();"><i class="fas fa-shopping-cart"></i> Cart</button>
                             <% } %> 
-                            <button type="submit" class="Cart w-50"><i class="fas fa-shopping-cart"></i> Cart</button>
                             
                           </form></small>
                       </div>
@@ -172,7 +173,7 @@
                               </div>
                               <div class="col-md-6 mb-2">
                                 <div class="form-outline">
-                                  <input type="text" id="form3Example1nabc" required name="Last" class="form-control form-control-md" />
+                                  <input type="text" id="form3Example1nabc" name="Last" class="form-control form-control-md" value="" />
                                   <label class="form-label" for="form3Example1nabc">Last name <span>*</span></label>
                                 </div>
                               </div>
