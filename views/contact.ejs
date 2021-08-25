@@ -31,18 +31,18 @@
                     <%if(login) {%>
                       <input type="text" readonly="readonly" class="form-control inp" name="Name" id="Name" value ="<%= user.Name %> "></input>
                     <% }else{ %> 
-                      <input type="text" class="form-control inp" id="Name" name="Name" placeholder="Your name">
+                      <input type="text" required class="form-control inp" id="Name" name="Name" placeholder="Your name">
                     <% } %>
 
                     <label for="exampleDropdownFormEmail1" class="mt-4 form-label label">Email*</label>
                     <%if(login) {%>
                       <input type="email" class="form-control inp" readonly="readonly" name="Email1" id="Email1" value=<%= user.Email %>>
                     <% }else{ %> 
-                      <input type="email" class="form-control inp" name="Email1" id="Email1" placeholder="Your email">
+                      <input type="email" required class="form-control inp" name="Email1" id="Email1" placeholder="Your email">
                       <% } %>
                   
                     <label for="exampleDropdownFormPassword1" class="mt-4 form-label label">Message*</label>
-                    <textarea class="form-control inp" style="resize: none;overflow: hidden;" name="Message" id="Message" placeholder="Your Message"></textarea>
+                    <textarea class="form-control inp" required style="resize: none;overflow: hidden;" name="Message" id="Message" placeholder="Your Message"></textarea>
                     
                     <div class="mt-4">
                       <button type="submit" class="button">SUBMIT</button>
@@ -61,31 +61,31 @@
                 <div class="phone col-sm-3 mb-4 text-center">
                     <div class="row"><img src="/image/phone.svg" style="max-width: 65px;margin: 0 auto;" alt=""></div>
                     <p class="mt-2" style="font-size: 175%; font-weight: bold;letter-spacing: 2px;" >PHONE US</p>
-                    <p style="margin-top:-15px; font-size: 12px; ">202-555-0177<br>202-555-0114</p>
+                    <p style="margin-top:-15px; font-size: 12px; ">+917014358705<br>+917395039084</p>
                 </div>
                 <div class="email col-sm-3 mb-4 text-center">
                     <div class="row"><img src="/image/email.svg" style="max-width: 65px;margin: 0 auto;"></div>
                     <p class="mt-2" style="font-size: 18px; font-weight: bold;letter-spacing: 2px;" >EMAIL US</p>
-                    <p style="margin-top:-15px; font-size: 12px;">suppor@sxcmerch.com</p>
+                    <p style="margin-top:-15px; font-size: 12px;">support@sxcmerch.com</p>
                 </div>
                 <div class="ping col-sm-3 mb-4 text-center">
                     <div class="row" ><img src="/image/message.svg" style="max-width: 60px;margin: 0 auto;" alt=""></div>
                     <p class="mt-2" style="font-size: 18px; font-weight: bold;letter-spacing: 2px;" >PING US</p>
                     <div style="margin-top: -23px; font-size: 12px;">
                       <!-- Twitter -->
-                      <a class="btn btn-link btn-floating" style="color: black"
+                      <a href="https://twitter.com/sxcbom?lang=en" target="_blank" class="btn btn-link btn-floating" style="color: black"
                         ><i class="fab fa-twitter"></i></a>
             
                       <!-- Google -->
-                      <a class="btn btn-link btn-floating" style="color: black"
+                      <a href="mailto:webadmin@xaviers.edu" target="_blank" class="btn btn-link btn-floating" style="color: black"
                         ><i class="far fa-envelope"></i></a>
             
                       <!-- Instagram -->
-                      <a class="btn btn-link btn-floating" style="color: black"
+                      <a href="https://www.instagram.com/sxcbom/" target="_blank" class="btn btn-link btn-floating" style="color: black"
                         ><i class="fab fa-instagram"></i></a>
             
                       <!-- Linkedin -->
-                      <a class="btn btn-link btn-floating" style="color: black"
+                      <a href="https://www.linkedin.com/school/st.-xavier's-college/?originalSubdomain=in" target="_blank" class="btn btn-link btn-floating" style="color: black"
                         ><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>

@@ -14,9 +14,6 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 const flash = require('connect-flash');
 const { CLIENT_RENEG_LIMIT } = require('tls');
-const select= [];
-const price = [];
-const price_value=[" Under ₹100"," ₹100 - ₹500"," Over ₹500"];
 
 mongoose.connect('mongodb://localhost:27017/sxcdatabase', {useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => {
@@ -27,18 +24,33 @@ mongoose.connect('mongodb://localhost:27017/sxcdatabase', {useNewUrlParser: true
       console.log(err);
   })
 
+const sessionConfig = { 
+    secret: 'GoodMorningAll',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        // secure: true,
+        expires: Date.now() + (1000*60*60*24*7),
+        maxAge: 1000*60*60*24*7
+    }
+
+};
+const select= [];
+const price = [];
+const price_value=[" Under ₹100"," ₹100 - ₹500"," Over ₹500"];
+categories = ['tshirt','hoodie','cap','mask','brooch'];
+sizes = ['S','M','L','XL','XXL'];
+let productId;
+let productSize;
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
-app.use(session({ secret: 'aayushjagwani' , resave: false , saveUninitialized: true}));
+app.use(session(sessionConfig));
 app.use(flash());
-
-categories = ['tshirt','hoodie','cap','mask','brooch'];
-sizes = ['S','M','L','XL','XXL'];
-let productId;
-let productSize;
 
 app.get('/', (req,res) => {
     res.render('home',{login:req.session.user_id, messages: req.flash('error')});
