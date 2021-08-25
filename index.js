@@ -379,6 +379,10 @@ app.get('/success', async(req,res)=>{
   console.log(charge)
 })
 
+app.get('/notfound', (req, res)=>{
+    res.render('notFound')
+})
+
 app.listen(3000, () =>{
     console.log("Listening on port 3000")
 })
