@@ -1,0 +1,40 @@
+<%- include('partials/head') %>
+
+<div class="detailDiv">
+  <form
+    action="/"
+    method="POST"
+    class="
+      detailsForm
+      d-flex
+      justify-content-center
+      align-items-center
+      flex-column
+      h-100
+    "
+  >
+    <div class="nameDiv">
+      <label for="Name">Name</label><br />
+      <input type="text" id="Name" name="Name" value="<%= user.Name %>" />
+    </div>
+
+    <div class="emailDiv">
+      <label for="Email1">Email</label> <br />
+      <input type="text" id="Email1" name="Email1" value="<%= user.Email %>" />
+    </div>
+    
+    <div class="phoneDiv">
+      <label for="Phone">Enter Phone</label> <br />
+      <input type="text" id="Phone" name="Phone" />
+    </div>
+
+    <div class="amountDiv">
+      <label for="Amount">Amount</label><br />
+      <input type="text" value="<%=Math.round(finaltotal)%>" id="Amount" name="Amount" />
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">
+      Continue to paytm
+    </button>
+  </form>
+</div>
+

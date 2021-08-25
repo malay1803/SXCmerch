@@ -209,33 +209,6 @@ app.post('/contact', async (req,res) => {
     res.redirect('/contact');
 })
 
-app.post('/address', async (req,res) => {
-    const {First, Last, address1, PinCode, City, State, Phone, productid,productsize} = req.body;
-    // console.log(productid,productsize);
-    // console.log(First, Last, address1, PinCode, City, State, Phone);
-    productId = productid;
-    productSize = productsize;
-    const Name=First+" "+Last;
-    const UserID = req.session.user_id;
-
-    const findAddress = await Address.find({UserID,Name,Address: address1, City,State,PinCode,Phone});
-    // console.log(findAddress);
-    if(findAddress.length === 0)
-    {
-        const addAddress = new Address({
-            UserID,
-            Name,
-            Address:address1,  
-            City, 
-            State, 
-            PinCode,
-            Phone
-        });
-        await addAddress.save();
-    }
-    res.redirect('/');
-})
-
 app.get('/cart', async (req,res) => {
     const userid = req.session.user_id;
     const cartItem = await Cart.find({UserID: userid});
@@ -318,6 +291,93 @@ app.delete('/cart/:id', async (req,res) =>{
     res.redirect('/cart');
 })
 
+
+app.post('/address', async (req,res) => {
+    const {First, Last, address1, PinCode, City, State, Phone, productid,productsize} = req.body;
+    // console.log(productid,productsize);
+    // console.log(First, Last, address1, PinCode, City, State, Phone);
+    productId = productid;
+    productSize = productsize;
+    const Name=First+" "+Last;
+    const UserID = req.session.user_id;
+
+    const findAddress = await Address.find({UserID,Name,Address: address1, City,State,PinCode,Phone});
+    // console.log(findAddress);
+    if(findAddress.length === 0)
+    {
+        const addAddress = new Address({
+            UserID,
+            Name,
+            Address:address1,  
+            City, 
+            State, 
+            PinCode,
+            Phone
+        });
+        await addAddress.save();
+    }
+    res.redirect('/paynow');
+})
+
+
+const PUBLISHABLE_KEY =
+  "pk_test_51JRIRlSD7ORX7cv9kuhqMwSx9qAURpkuNwiDTX0SMiCjCEC8mKUmqlmnThqNTyCqcijRjCOI9rm6WCOIjVwWgzus00dJloVbPY";
+
+const SECRET_KEY =
+  "sk_test_51JRIRlSD7ORX7cv9XHQwD7klUKpcInP13rrBKue4Z6gfdHkWENtp0Et6S0XYuyYpHf1BegASdbGoK9mMtcxvjvEC00Nu9EjuCu";
+
+const stripe = require("stripe")(SECRET_KEY);
+
+
+
+app.get("/paynow", (req, res) => {
+  res.render("payInput", {
+    key: PUBLISHABLE_KEY,
+    amount: finaltotal
+  });
+});
+
+let transId 
+
+app.post("/paynow", async (req, res) => {
+  stripe.customers.create({
+    email: req.body.stripeEmail,
+    source: req.body.stripeToken,
+    name: "User_" + new Date().getTime()
+    
+  })
+  .then((customer)=>{
+    return stripe.charges.create({
+      amount: Math.round(finaltotal)*100,
+      description: 'Order From SXC MERCH',
+      currency: "INR",
+      customer: customer.id
+    })
+  })
+  .then((charge)=>{
+    console.log(charge)
+    transId = charge.id;
+    console.log(req.body.stripeToken)
+    res.redirect("/success")
+  })
+  .catch((err)=>{
+    res.send(err)
+  })
+});
+
+app.get('/success', async(req,res)=>{
+  const charge = await stripe.charges.retrieve(
+    transId
+  );
+  res.render('success', {
+    amount: charge.amount,
+    paymentMethod: charge.payment_method_details.type,
+    last4: charge.payment_method_details.card.last4,
+    network: charge.payment_method_details.card.network,
+    transactionId: transId
+  })
+  console.log(charge)
+})
 
 app.listen(3000, () =>{
     console.log("Listening on port 3000")
