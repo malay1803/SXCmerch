@@ -170,11 +170,11 @@
                 </div>
                 <div class="mb-3 mt-4">
                   <label for="exampleDropdownFormPassword1" class="form-label label">New Password</label>
-                  <input type="password" class="form-control inp" id="Password2" name="Password" placeholder="New password">
+                  <input type="password" class="form-control inp" id='pass2' oninput="checkp('pass2');" name="Password" placeholder="New password">
                 </div>
                 <div class="mb-3 mt-4">
                   <label for="exampleDropdownFormPassword2" class="form-label label">Confirm Password</label>
-                  <input type="password" class="form-control inp" id="cPassword2" name="cPassword" placeholder="Confirm password">
+                  <input type="password" class="form-control inp" id='cpass2' oninput="run2function('pass2','cpass2');" name="cPassword" placeholder="Confirm password">
                 </div>
                 <div class="text-center  mt-4">
                   <button type="submit" class="button">Set Password</button>
