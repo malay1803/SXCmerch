@@ -218,32 +218,36 @@ app.post('/contact', async (req,res) => {
 })
 
 app.get('/cart', async (req,res) => {
-    const userid = req.session.user_id;
-    const cartItem = await Cart.find({UserID: userid});
-    //console.log(cartItem);
-    let arrayy = [];
-    for(let cart of cartItem){
-        let cartProduct = await Product.find({_id: cart.ProductID});
-        arrayy.push(cartProduct);
+    if(req.session.user_id){
+        const userid = req.session.user_id;
+        const cartItem = await Cart.find({UserID: userid});
+        //console.log(cartItem);
+        let arrayy = [];
+        for(let cart of cartItem){
+            let cartProduct = await Product.find({_id: cart.ProductID});
+            arrayy.push(cartProduct);
+        }
+        //console.log(arrayy);
+
+        // subtotal and final total code for cart
+        let subtotal=0;
+        let i=0;
+        for (let arr of arrayy)
+        {
+            subtotal= subtotal+ (arr[0].pPrice*cartItem[i].Quantity);
+            i++;
+        }
+        //console.log(subtotal);
+        let shipping=100;
+        if(subtotal>=1000 || subtotal==0)
+            shipping = 0
+        const tax = subtotal/10;
+        finaltotal = subtotal+shipping+tax;
+        //console.log(finaltotal);
+        res.render('cart',{cartItem: cartItem, arrayy: arrayy,finaltotal,subtotal,shipping,tax, login:req.session.user_id,messages: req.flash('error')});
+    }else{
+        res.redirect("/notfound")
     }
-    //console.log(arrayy);
-    
-    // subtotal and final total code for cart
-    let subtotal=0;
-    let i=0;
-    for (let arr of arrayy)
-    {
-        subtotal= subtotal+ (arr[0].pPrice*cartItem[i].Quantity);
-        i++;
-    }
-    //console.log(subtotal);
-    let shipping=100;
-    if(subtotal>=1000 || subtotal==0)
-        shipping = 0
-    const tax = subtotal/10;
-    finaltotal = subtotal+shipping+tax;
-    //console.log(finaltotal);
-    res.render('cart',{cartItem: cartItem, arrayy: arrayy,finaltotal,subtotal,shipping,tax, login:req.session.user_id,messages: req.flash('error')});
 })
 
 app.post('/cart/:id', async (req,res) =>{
@@ -338,38 +342,46 @@ const stripe = require("stripe")(SECRET_KEY);
 
 
 app.get("/paynow", (req, res) => {
-  res.render("payInput", {
-    key: PUBLISHABLE_KEY,
-    amount: finaltotal
-  });
+    if(req.session.user_id){
+        res.render("payInput", {
+        key: PUBLISHABLE_KEY,
+        amount: finaltotal
+        });
+    }else{
+        res.redirect("/notfound")
+    }
 });
 
 let transId 
 
 app.post("/paynow", async (req, res) => {
-  stripe.customers.create({
-    email: req.body.stripeEmail,
-    source: req.body.stripeToken,
-    name: "User_" + new Date().getTime()
-    
-  })
-  .then((customer)=>{
-    return stripe.charges.create({
-      amount: Math.round(finaltotal)*100,
-      description: 'Order From SXC MERCH',
-      currency: "INR",
-      customer: customer.id
-    })
-  })
-  .then((charge)=>{
-    console.log(charge)
-    transId = charge.id;
-    console.log(req.body.stripeToken)
-    res.redirect("/success")
-  })
-  .catch((err)=>{
-    res.send(err)
-  })
+    if(req.session.user_id){
+        stripe.customers.create({
+            email: req.body.stripeEmail,
+            source: req.body.stripeToken,
+            name: "User_" + new Date().getTime()
+            
+        })
+        .then((customer)=>{
+            return stripe.charges.create({
+            amount: Math.round(finaltotal)*100,
+            description: 'Order From SXC MERCH',
+            currency: "INR",
+            customer: customer.id
+            })
+        })
+        .then((charge)=>{
+            console.log(charge)
+            transId = charge.id;
+            console.log(req.body.stripeToken)
+            res.redirect("/success")
+        })
+        .catch((err)=>{
+            res.send(err)
+        })
+    }else{
+        res.redirect("/notfound")
+    }
 });
 
 app.get('/success', async(req,res)=>{
