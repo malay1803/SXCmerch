@@ -390,7 +390,7 @@ app.get('/notfound', (req, res)=>{
     res.render('notFound')
 })
 
-app.use((req,res,next)=>{
+app.use((req,res)=>{
     res.status(404).redirect("notFound")
 })
 
