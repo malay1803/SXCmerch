@@ -29,7 +29,17 @@ function show(a1,a2){
     document.getElementById("productsize").value=rate_value;
 
 }
+
 function loginp(){
     var doc="Please Login first.";
       alert(doc);
+}
+
+function checkp(inp){
+    var pass=document.getElementById(inp).value;
+    if(pass.length<6){
+        document.getElementById(inp).alert("Password must be at least 6 characters long.");
+        alert("Password must be at least 6 characters long.");  
+    }
+
 }

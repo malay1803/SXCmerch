@@ -122,31 +122,31 @@
           </div>
           <div class="modal-body">
             
-              <form class="px-4 py-3" method="POST" action="/signup">
-                <input type="hidden" name="add" class="no" value="<%=location%>">
-                <div class="mb-3">
-                  <label for="exampleDropdownName1" class="form-label label">Name</label>
-                  <input type="text" class="form-control inp" id="Name" name="Name" placeholder="Enter your name">
-                </div>
-                <div class="mb-3 mt-4">
-                  <label for="exampleDropdownFormEmail1" class="form-label label">Email address</label>
-                  <input type="email" class="form-control inp" id="Email" name="Email" placeholder="Enter your email">
-                </div>
-                <div class="mb-3 mt-4">
-                  <label for="exampleDropdownFormPassword1" class="form-label label">Password</label>
-                  <input type="password" class="form-control inp" id="Password" name="Password" placeholder="Enter your password">
-                </div>
-                <div class="mb-3 mt-4">
-                  <label for="exampleDropdownFormPassword2" class="form-label label">Confirm Password</label>
-                  <input type="password" class="form-control inp" id="cPassword" name="cPassword" placeholder="Confirm password">
-                </div>
-                <div class="text-center  mt-4">
-                  <button type="submit" class="button">SIGNUP</button>
-                </div>
-                <div class="modal-body mt-4" style="text-align: right; ">
-                  <a class="right" data-bs-target="#login" data-bs-toggle="modal" data-bs-dismiss="modal">Already a member? Log in</a><br>
-                </div>
-              </form>
+            <form class="px-4 py-3" method="POST" action="/signup">
+              <input type="hidden" name="add" class="no" value="<%=location%>">
+              <div class="mb-3">
+                <label for="exampleDropdownName1" class="form-label label">Name</label>
+                <input type="text" class="form-control inp" required id="Name" name="Name" placeholder="Enter your name">
+              </div>
+              <div class="mb-3 mt-4">
+                <label for="exampleDropdownFormEmail1" class="form-label label">Email address</label>
+                <input type="email" class="form-control inp" required id="Email" name="Email" placeholder="Enter your email">
+              </div>
+              <div class="mb-3 mt-4">
+                <label for="exampleDropdownFormPassword1" class="form-label label">Password</label>
+                <input type="password" class="form-control inp" required id="pass1" onchange="checkp('pass1');" name="Password" placeholder="Enter your password">
+              </div>
+              <div class="mb-3 mt-4">
+                <label for="exampleDropdownFormPassword2" class="form-label label">Confirm Password</label>
+                <input type="password" class="form-control inp" required id="cpass1" name="cPassword" onchange="checkp('cpass1');" placeholder="Confirm password">
+              </div>
+              <div class="text-center  mt-4">
+                <button type="submit" class="button">SIGNUP</button>
+              </div>
+              <div class="modal-body mt-4" style="text-align: right; ">
+                <a class="right" data-bs-target="#login" data-bs-toggle="modal" data-bs-dismiss="modal">Already a member? Log in</a><br>
+              </div>
+            </form>
           </div>
         </div>
       </div>
