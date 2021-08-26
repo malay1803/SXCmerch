@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/loader/loading-bar.css" />
+    <script type="text/javascript" src="/loader/loading-bar.js"></script>
+    <title>Document</title>
+    <style>
+      .loader {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 20;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      .ldBar-label {
+        stroke: #343a40;
+        font-family: "Roboto";
+        font-size: 1em;
+        font-weight: 700;
+        padding-top: 70px;
+      }
+
+      .ldBar path {
+        stroke-width: 40;
+        stroke: #343a40;
+        stroke-linecap: round;
+      }
+      .ldBar path.baseline {
+        stroke-width: 40;
+        stroke: #343a40;
+        stroke-linecap: round;
+        filter: url(#custom-shadow);
+      }
+      .ldBar {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loader" id="loader">
+      <img src="/image/logo.svg" style="margin-bottom: 20px" alt="" />
+      <div
+        class="ldBar label-center"
+        id="ldBar"
+        data-duration="4"
+        data-path="M0 0 L200 0 L200 1"
+      ></div>
+    </div>
+    <script>
+      var bar1 = new ldBar("#ldBar");
+      bar1.set(100);
+
+      if (!sessionStorage.getItem("doNotShow")) {
+        sessionStorage.setItem("doNotShow", "true");
+        setTimeout(function () {
+          document.getElementById("loader").style.display = "none";
+        }, 4000);
+      } else {
+        document.getElementById("loader").style.display = "none";
+      }
+    </script>
+  </body>
+</html>
