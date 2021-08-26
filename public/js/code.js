@@ -29,7 +29,34 @@ function show(a1,a2){
     document.getElementById("productsize").value=rate_value;
 
 }
+
 function loginp(){
     var doc="Please Login first.";
       alert(doc);
+}
+
+function run2function(inp1,inp2){
+    checkp(inp2);
+    cpasscheck(inp1,inp2);
+}
+
+function checkp(inp){
+    var textbox=document.getElementById(inp);
+    var pass=document.getElementById(inp).value;
+    if(pass.length<6){
+        textbox.setCustomValidity("Password must be at least 6 characters long.");
+    }
+    else {
+        textbox.setCustomValidity('');}
+}
+
+function cpasscheck(inp1,inp2){
+    var textbox1=document.getElementById(inp1);
+    var textbox2=document.getElementById(inp2);
+    if(textbox1.value!=textbox2.value){
+        textbox2.setCustomValidity("Confirm Password must be same as Password.");
+    }
+    else {
+        textbox2.setCustomValidity('');}
+    
 }

@@ -66,13 +66,18 @@ app.post('/signup',async (req,res)=>{
     if(Password == cPassword ){
         const hash = await bcrypt.hash(Password,12);
         const user = new User({
-        Name,Email,Password:hash
-    });
-    await user.save();
-    let location="/"+req.body.add;
-    req.session.user_id = user._id;
-        res.redirect(location);
+            Name,Email,Password:hash
+        });
+        await user.save();
+        req.session.user_id = user._id;    
     }
+    else{
+        req.flash('error',"Please match confirm password");
+    }
+    let location="/"+req.body.add;
+    
+        res.redirect(location);
+    
     // res.send("Password donot match");
 })
 
