@@ -9,6 +9,9 @@ const User = require('./models/user');
 const Cart = require('./models/cart');
 const Address = require('./models/address');
 const { urlencoded } = require('express');
+
+require("dotenv").config();
+
 const methodOverride = require('method-override');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
@@ -319,12 +322,11 @@ app.post('/address', async (req,res) => {
     res.redirect('/paynow');
 })
 
+// ------------------ stripe payment ------------------- 
 
-const PUBLISHABLE_KEY =
-  "pk_test_51JRIRlSD7ORX7cv9kuhqMwSx9qAURpkuNwiDTX0SMiCjCEC8mKUmqlmnThqNTyCqcijRjCOI9rm6WCOIjVwWgzus00dJloVbPY";
+const PUBLISHABLE_KEY = process.env.PUBLISHABLE_KEY
 
-const SECRET_KEY =
-  "sk_test_51JRIRlSD7ORX7cv9XHQwD7klUKpcInP13rrBKue4Z6gfdHkWENtp0Et6S0XYuyYpHf1BegASdbGoK9mMtcxvjvEC00Nu9EjuCu";
+const SECRET_KEY = process.env.SECRET_KEY
 
 const stripe = require("stripe")(SECRET_KEY);
 
