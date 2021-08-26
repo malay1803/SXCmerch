@@ -390,6 +390,10 @@ app.get('/notfound', (req, res)=>{
     res.render('notFound')
 })
 
+app.use((req,res,next)=>{
+    res.status(404).redirect("notFound")
+})
+
 app.listen(3000, () =>{
     console.log("Listening on port 3000")
 })
