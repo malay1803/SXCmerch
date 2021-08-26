@@ -35,11 +35,28 @@ function loginp(){
       alert(doc);
 }
 
+function run2function(inp1,inp2){
+    checkp(inp2);
+    cpasscheck(inp1,inp2);
+}
+
 function checkp(inp){
+    var textbox=document.getElementById(inp);
     var pass=document.getElementById(inp).value;
     if(pass.length<6){
-        document.getElementById(inp).alert("Password must be at least 6 characters long.");
-        alert("Password must be at least 6 characters long.");  
+        textbox.setCustomValidity("Password must be at least 6 characters long.");
     }
+    else {
+        textbox.setCustomValidity('');}
+}
 
+function cpasscheck(inp1,inp2){
+    var textbox1=document.getElementById(inp1);
+    var textbox2=document.getElementById(inp2);
+    if(textbox1.value!=textbox2.value){
+        textbox2.setCustomValidity("Confirm Password must be same as Password.");
+    }
+    else {
+        textbox2.setCustomValidity('');}
+    
 }

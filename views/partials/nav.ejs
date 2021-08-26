@@ -134,11 +134,11 @@
               </div>
               <div class="mb-3 mt-4">
                 <label for="exampleDropdownFormPassword1" class="form-label label">Password</label>
-                <input type="password" class="form-control inp" required id="pass1" onchange="checkp('pass1');" name="Password" placeholder="Enter your password">
+                <input type="password" class="form-control inp" required id="pass1" oninput="checkp('pass1');" name="Password" placeholder="Enter your password">
               </div>
               <div class="mb-3 mt-4">
                 <label for="exampleDropdownFormPassword2" class="form-label label">Confirm Password</label>
-                <input type="password" class="form-control inp" required id="cpass1" name="cPassword" onchange="checkp('cpass1');" placeholder="Confirm password">
+                <input type="password" class="form-control inp" required id="cpass1" name="cPassword" oninput="run2function('pass1','cpass1');" placeholder="Confirm password">
               </div>
               <div class="text-center  mt-4">
                 <button type="submit" class="button">SIGNUP</button>
