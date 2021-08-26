@@ -1,7 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Tangerine&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Tangerine&display=swap');
-
-button{
+button {
   outline: none;
   border: none;
 }
@@ -216,7 +215,7 @@ select {
   background-color: #eee;
   border-radius: 5px;
   padding: 3px 20px 3px 20px !important;
-  transition: .5s all;
+  transition: 0.5s all;
   text-transform: capitalize;
 }
 
@@ -279,20 +278,20 @@ select {
 }
 
 .proceed::selection,
-.Cart::selection{
+.Cart::selection {
   box-shadow: none;
   border: none;
   background-color: #343a40;
-} 
+}
 
 .proceed:focus,
-.Cart:focus{
+.Cart:focus {
   box-shadow: none;
   border: none;
   background-color: #343a40;
-} 
+}
 
-.proceed:hover{
+.proceed:hover {
   background-color: #343a40;
   color: white;
 }
@@ -323,11 +322,18 @@ select {
   color: white;
 }
 
-.no{
+.boxed div {
+  transition: 0.3s all ease;
+}
+
+.boxed div:hover {
+  transform: scale(1.2);
+}
+
+.no {
   height: 0%;
   width: 0%;
 }
-
 
 .addressimg {
   background: url(https://mdbootstrap.com/img/Others/extended-example/delivery.jpg);
@@ -357,15 +363,16 @@ select {
   border-radius: 5px;
 }
 
-.addressInputs .stateSelect:focus{
+.addressInputs .stateSelect:focus {
   border-radius: 1px solid black;
 }
 
-.addressInputs span,.addressInputs select span{
+.addressInputs span,
+.addressInputs select span {
   color: red;
 }
 
-.scrollTop{
+.scrollTop {
   position: fixed;
   bottom: 800px;
   right: 40px;
@@ -380,14 +387,16 @@ select {
   cursor: pointer;
   visibility: hidden;
   opacity: 0;
-  transition: 0.5s all;
+  transition: .5s all ease;
   z-index: 10;
 }
 
-.scrollTop.active{
+.scrollTop:hover {
+  background-color: #ffb703;
+}
+
+.scrollTop.active {
   bottom: 40px;
   visibility: visible;
   opacity: 1;
 }
-
-
