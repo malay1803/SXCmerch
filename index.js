@@ -225,31 +225,35 @@ app.post('/contact', async (req,res) => {
 app.get('/order', async (req,res) => {
     if(req.session.user_id){
         const userid = req.session.user_id;
-        const cartItem = await Cart.find({UserID: userid});
-        //console.log(cartItem);
-        let arrayy = [];
-        for(let cart of cartItem){
-            let cartProduct = await Product.find({_id: cart.ProductID});
-            arrayy.push(cartProduct);
-        }
+
+        const OrderList = await Order.find({UserID: userid});
+        console.log(OrderList);
+
+        // const cartItem = await Cart.find({UserID: userid});
+        // //console.log(cartItem);
+        // let arrayy = [];
+        // for(let cart of cartItem){
+        //     let cartProduct = await Product.find({_id: cart.ProductID});
+        //     arrayy.push(cartProduct);
+        // }
         //console.log(arrayy);
 
         // subtotal and final total code for cart
-        let subtotal=0;
-        let i=0;
-        for (let arr of arrayy)
-        {
-            subtotal= subtotal+ (arr[0].pPrice*cartItem[i].Quantity);
-            i++;
-        }
-        //console.log(subtotal);
-        let shipping=100;
-        if(subtotal>=1000 || subtotal==0)
-            shipping = 0
-        let tax = subtotal/10;
-        finaltotal = subtotal+shipping+tax;
-        //console.log(finaltotal);
-        res.render('order',{uName,cartItem: cartItem, arrayy: arrayy,finaltotal,subtotal,shipping,tax, login:req.session.user_id,messages: req.flash('error')});
+        // let subtotal=0;
+        // let i=0;
+        // for (let arr of arrayy)
+        // {
+        //     subtotal= subtotal+ (arr[0].pPrice*cartItem[i].Quantity);
+        //     i++;
+        // }
+        // //console.log(subtotal);
+        // let shipping=100;
+        // if(subtotal>=1000 || subtotal==0)
+        //     shipping = 0
+        // let tax = subtotal/10;
+        // finaltotal = subtotal+shipping+tax;
+        // //console.log(finaltotal);
+        res.render('order',{uName,OrderList,login:req.session.user_id,messages: req.flash('error')});
     }else{
         res.redirect("/notfound")
     }
