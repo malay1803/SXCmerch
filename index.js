@@ -47,6 +47,7 @@ sizes = ['S','M','L','XL','XXL'];
 let productId;
 let productSize;
 let finalcost=0;
+let uName="";
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -57,7 +58,7 @@ app.use(session(sessionConfig));
 app.use(flash());
 
 app.get('/', (req,res) => {
-    res.render('home',{login:req.session.user_id, messages: req.flash('error')});
+    res.render('home',{uName,login:req.session.user_id, messages: req.flash('error')});
 })
 
 
@@ -70,7 +71,8 @@ app.post('/signup',async (req,res)=>{
             Name,Email,Password:hash
         });
         await user.save();
-        req.session.user_id = user._id;    
+        req.session.user_id = user._id;  
+        uName=Name;  
     }
     else{
         req.flash('error',"Please match confirm password");
@@ -99,10 +101,10 @@ app.put('/login', async(req,res) =>{
 app.post('/login', async (req,res) =>{
     const {Email1,Password1}= req.body;
     const user = await User.findOne({Email: Email1});
-    let url = req.headers.referer;
-    spliturl = url.split("/");
-    finalurl = spliturl[3];
-    console.log(finalurl);
+    // let url = req.headers.referer;
+    // spliturl = url.split("/");
+    // finalurl = spliturl[3];
+    // console.log(finalurl);
     if(!user)
     {
         req.flash('error', 'Incorrect Credentials, Try Again!');
@@ -113,6 +115,7 @@ app.post('/login', async (req,res) =>{
     if(validPwd)
     {
         req.session.user_id = user._id;
+        uName=user.Name;
         var location="/".concat(req.body.add);
         console.log('logged in!! ',location);
         res.redirect(location);
@@ -137,7 +140,7 @@ app.post('/logout', (req,res) => {
 
 app.get('/merchandise', async (req,res) => {
     const products = await Product.find({});
-    res.render('merchandise',{products,select,categories,price,price_value, login:req.session.user_id,messages: req.flash('error')});
+    res.render('merchandise',{uName,products,select,categories,price,price_value, login:req.session.user_id,messages: req.flash('error')});
 })
 
 app.post('/category', async (req,res) =>{
@@ -185,16 +188,16 @@ app.post('/category', async (req,res) =>{
 })
 
 app.get('/about',(req,res) => {
-    res.render('about',{login:req.session.user_id,messages: req.flash('error')});
+    res.render('about',{uName,login:req.session.user_id,messages: req.flash('error')});
 })
 app.get('/contact', async (req,res) => {
     if(req.session.user_id){
       const id = req.session.user_id;
       const user = await User.findById({_id: id});
-      res.render('contact',{user:user, login:req.session.user_id,messages: req.flash('error')});
+      res.render('contact',{uName,user:user, login:req.session.user_id,messages: req.flash('error')});
     }
     else{
-        res.render('contact',{login:req.session.user_id,messages: req.flash('error')});
+        res.render('contact',{uName,login:req.session.user_id,messages: req.flash('error')});
     }
 
     // if(req.session.user_id){
@@ -216,6 +219,39 @@ app.post('/contact', async (req,res) => {
     await addMessage.save();
     req.flash('error',"Result line 193----");
     res.redirect('/contact');
+})
+
+app.get('/order', async (req,res) => {
+    if(req.session.user_id){
+        const userid = req.session.user_id;
+        const cartItem = await Cart.find({UserID: userid});
+        //console.log(cartItem);
+        let arrayy = [];
+        for(let cart of cartItem){
+            let cartProduct = await Product.find({_id: cart.ProductID});
+            arrayy.push(cartProduct);
+        }
+        //console.log(arrayy);
+
+        // subtotal and final total code for cart
+        let subtotal=0;
+        let i=0;
+        for (let arr of arrayy)
+        {
+            subtotal= subtotal+ (arr[0].pPrice*cartItem[i].Quantity);
+            i++;
+        }
+        //console.log(subtotal);
+        let shipping=100;
+        if(subtotal>=1000 || subtotal==0)
+            shipping = 0
+        let tax = subtotal/10;
+        finaltotal = subtotal+shipping+tax;
+        //console.log(finaltotal);
+        res.render('order',{uName,cartItem: cartItem, arrayy: arrayy,finaltotal,subtotal,shipping,tax, login:req.session.user_id,messages: req.flash('error')});
+    }else{
+        res.redirect("/notfound")
+    }
 })
 
 app.get('/cart', async (req,res) => {
@@ -245,7 +281,7 @@ app.get('/cart', async (req,res) => {
         let tax = subtotal/10;
         finaltotal = subtotal+shipping+tax;
         //console.log(finaltotal);
-        res.render('cart',{cartItem: cartItem, arrayy: arrayy,finaltotal,subtotal,shipping,tax, login:req.session.user_id,messages: req.flash('error')});
+        res.render('cart',{uName,cartItem: cartItem, arrayy: arrayy,finaltotal,subtotal,shipping,tax, login:req.session.user_id,messages: req.flash('error')});
     }else{
         res.redirect("/notfound")
     }
@@ -285,6 +321,9 @@ app.post('/cart/:id', async (req,res) =>{
     }
     res.redirect('/merchandise');
 })
+
+
+
 
 app.put('/cart/:id', async(req,res) =>{
     const {id} = req.params;
@@ -360,8 +399,9 @@ const stripe = require("stripe")(SECRET_KEY);
 app.get("/paynow", (req, res) => {
     if(req.session.user_id){
         res.render("payInput", {
-        key: PUBLISHABLE_KEY,
-        amount: finalcost
+            key: PUBLISHABLE_KEY,
+            amount: finalcost,
+            Name: uName
         });
     }else{
         res.redirect("/notfound")
@@ -405,6 +445,7 @@ app.get('/success', async(req,res)=>{
     transId
   );
   res.render('success', {
+    Name:uName,
     amount: charge.amount,
     paymentMethod: charge.payment_method_details.type,
     last4: charge.payment_method_details.card.last4,

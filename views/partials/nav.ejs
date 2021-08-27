@@ -55,17 +55,27 @@
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
             <%if(login) {%>
-              <a class="nav-link" aria-current="page" href="/cart">Cart <i class="fas fa-shopping-cart"></i></a>
+              <form method="POST" action="/logout">
+                <input type="hidden" name="add" class="no" value="<%=location%>">
+                
+                <div class="dropdown" style="margin-top: 1.4vh;">
+                  <text class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    <%=uName.split(" ")[0] %>    
+                  </text>
+                  <ul class="dropdown-menu" style="border:none;background:transparent; margin-top: -5px;" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="/order">Orders</a></li>
+                    <li><button type="submit" class="dropdown-item">Logout</button></li>
+                  </ul>
+                </div>
+                <!-- <button type="submit" class="nav-link">Logout</button> -->
+              </form>
             <%}else{%>
                 <a class="nav-link" aria-current="page" href="#login" data-bs-toggle="modal">Login</a>
             <%}%>
           </li>
           <li class="nav-item">
             <%if(login) {%>
-              <form method="POST" action="/logout">
-                <input type="hidden" name="add" class="no" value="<%=location%>">
-              <button type="submit" class="nav-link signUp">Logout</button>
-              </form>
+              <a class="nav-link signUp" style="padding: 0px;padding-top: 10px;" aria-current="page" href="/cart">1 Cart <i class="fas fa-shopping-cart"></i></a>
             <%}else{%>
               <a class="nav-link signUp" href="#signup" data-bs-toggle="modal">SignUp</a>
             <%}%>

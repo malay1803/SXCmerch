@@ -39,6 +39,9 @@ button {
   text-decoration: none;
   text-transform: uppercase;
 }
+.signUp{
+  min-width: 120px !important;
+}
 
 .signUp:hover {
   color: white;
@@ -400,3 +403,36 @@ select {
   visibility: visible;
   opacity: 1;
 }
+
+.dropdown-menu li{
+  height: 22px !important;
+  padding-left: 0px !important;
+  text-align: center;  
+}
+.dropdown-menu .dropdown-item{
+  width:fit-content;
+  position: relative; 
+  padding: 0 !important;
+  transition: .4s ease-out;
+}
+.dropdown-menu .dropdown-item:hover{
+  background: transparent;
+  font-size: 17px;
+  font-weight: bold;
+}
+/* 
+.dropdown-menu .dropdown-item:hover::after {
+  left: 0%;
+  width: 100%;
+}
+
+.dropdown-menu .dropdown-item::after {
+  content: " ";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0%;
+  height: 1px;
+  background-color: black;
+  transition: 0.4s ease-out;
+} */
