@@ -481,6 +481,7 @@ app.get('/success', async(req,res)=>{
       i++;
     }
     
+    const EmptyCart = await Cart.deleteMany({UserID: UserID});
   }
   else
   {
@@ -503,7 +504,6 @@ app.get('/success', async(req,res)=>{
           Total
       });
       await NewOrder.save();
-    
   }
 
   res.render('success', {
