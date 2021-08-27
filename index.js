@@ -7,6 +7,7 @@ const Product = require('./models/merchandise');
 const Contact = require('./models/contact');
 const User = require('./models/user');
 const Cart = require('./models/cart');
+const Order = require('./models/order');
 const Address = require('./models/address');
 const { urlencoded } = require('express');
 
@@ -444,6 +445,36 @@ app.get('/success', async(req,res)=>{
   const charge = await stripe.charges.retrieve(
     transId
   );
+
+  const UserID= req.session.user_id;
+//   console.log(productId);
+  if(productId==""){
+      
+  }
+  else
+  {
+      const ProductID= productId;
+      const Size= productSize;
+      const Quantity = 1;
+      const Date1 = (new Date()).toISOString().slice(0,10);
+      const TransactionID = transId;
+      const PaymentMode = charge.payment_method_details.type;
+      const Total = (charge.amount)/100;
+      //   console.log(ProductID,Size,Quantity,Date1,TransactionID,PaymentMode,Total);
+      const NewOrder = new Order({
+          UserID,
+          ProductID,
+          Size,
+          Quantity,
+          OrderDate: Date1,
+          TransactionID,
+          PaymentMode,
+          Total
+      });
+      await NewOrder.save();
+    
+  }
+
   res.render('success', {
     Name:uName,
     amount: charge.amount,
@@ -452,7 +483,7 @@ app.get('/success', async(req,res)=>{
     network: charge.payment_method_details.card.network,
     transactionId: transId
   })
-  console.log(charge)
+//   console.log(charge)
 })
 
 app.get('/notfound', (req, res)=>{
