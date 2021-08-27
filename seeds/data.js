@@ -182,5 +182,5 @@ module.exports = [
     pDescription: "Brooch with Malhar 2021 logo on the front.",
     pCategory: "brooch",
   },
-
+  
 ];
