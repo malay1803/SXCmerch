@@ -26,37 +26,23 @@
               <div class="col-md-8">
                 <div class="card-body text-start">
                   <div class="d-flex justify-content-between">
-                    <% if(cartItem[i].Size =='') {%>
-                      <h5 class="card-title"><%= arr[0].pName %></h5>
+                    <% if(orders.Size =='') {%>
+                      <h5 class="card-title"><%= orders.ProductID %></h5>
                       <% }else{ %>  
-                      <h5 class="card-title"><%= arr[0].pName %>(<%= cartItem[i].Size %>)</h5>
+                      <h5 class="card-title"><%= orders.ProductID %>(<%= orders.Size %>)</h5>
                     <% } %> 
-                      <p class="mt-1 fw-bold" style="font-size: 22px;">₹<%= arr[0].pPrice %> </p>
+                      <p class="mt-1 fw-bold" style="font-size: 22px;">₹<%= orders.Total %> </p>
                   </div>
-                  <p class="card-text"><%= arr[0].pDescription %> </p> 
+                  <p class="card-text"><%= orders.TransactionID %> </p> 
                   
                   <div class="d-flex justify-content-between">
-                    <form class="col-8 d-flex justify-content-evenly align-items-center" action="/cart/<%= arr[0]._id %>?_method=PUT" method="POST">  
                       <label id="qtyLabel" for="Quantity">Qty</label>
-                  <select name="Quantity" class="w-25" id="qty">
-                    <%for(let no of [1,2,3,4,5,6,7,8,9]){%>
-                      <% if(no==cartItem[i].Quantity){ %> 
-                        <option value="<%=no%> " selected><%=no %> </option>
-                      <% }else{ %> 
-                        <option value="<%=no%> " ><%=no %> </option>
-                        <% } %> 
-                    <% } %> 
-                  </select>
-                  <input type="hidden" name="hiddensize" id="hiddensize" value="<%= cartItem[i].Size %>">
-                  <button type="submit" class="btn btn-light updateButton">update <i class="fas fa-redo-alt" style="font-size: 80%;"></i></button>
-                  </form>
-                  <form action="/cart/<%= arr[0]._id %>?_method=DELETE" method="POST">
-                  <button type="submit" class="btn btn-light trashButton"><i class="fas fa-trash trash"></i></button>
-                  </form>
+                  
+                      <p class="mt-1 fw-bold" style="font-size: 22px;">₹<%= orders.Quantity %> </p>
+                  
                 </div>
                   
                   
-                  <p class="mt-4 fw-bold" style="font-size: 22px;">Total: ₹<%= arr[0].pPrice*cartItem[i].Quantity %> </p>
                 </div>
               </div>
             </div>
