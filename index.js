@@ -252,7 +252,7 @@ app.get('/cart', async (req,res) => {
 
 app.post('/cart/:id', async (req,res) =>{
     
-    const userid = req.session.user_id;
+    const userid = req.session.user_id; 
     if(userid){
         const {id} = req.params;
         let size="";
