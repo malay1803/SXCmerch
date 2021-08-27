@@ -46,6 +46,7 @@ categories = ['tshirt','hoodie','cap','mask','brooch'];
 sizes = ['S','M','L','XL','XXL'];
 let productId;
 let productSize;
+let finalcost=0;
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -241,7 +242,7 @@ app.get('/cart', async (req,res) => {
         let shipping=100;
         if(subtotal>=1000 || subtotal==0)
             shipping = 0
-        const tax = subtotal/10;
+        let tax = subtotal/10;
         finaltotal = subtotal+shipping+tax;
         //console.log(finaltotal);
         res.render('cart',{cartItem: cartItem, arrayy: arrayy,finaltotal,subtotal,shipping,tax, login:req.session.user_id,messages: req.flash('error')});
@@ -313,6 +314,21 @@ app.post('/address', async (req,res) => {
     const Name=First+" "+Last;
     const UserID = req.session.user_id;
 
+    if(productId!=""){
+        const prod = await Product.findOne({_id: productId});
+        let subcost = prod.pPrice;
+        
+        shipping=100;
+        if(subcost>=1000)
+            shipping = 0
+        tax = subcost/10;
+        finalcost = subcost+shipping+Math.round(tax);
+        console.log(finalcost);
+    }
+    else{
+        finalcost = Math.round(finaltotal);
+    }
+
     const findAddress = await Address.find({UserID,Name,Address: address1, City,State,PinCode,Phone});
     // console.log(findAddress);
     if(findAddress.length === 0)
@@ -345,7 +361,7 @@ app.get("/paynow", (req, res) => {
     if(req.session.user_id){
         res.render("payInput", {
         key: PUBLISHABLE_KEY,
-        amount: finaltotal
+        amount: finalcost
         });
     }else{
         res.redirect("/notfound")
@@ -364,7 +380,7 @@ app.post("/paynow", async (req, res) => {
         })
         .then((customer)=>{
             return stripe.charges.create({
-            amount: Math.round(finaltotal)*100,
+            amount: Math.round(finalcost)*100,
             description: 'Order From SXC MERCH',
             currency: "INR",
             customer: customer.id
