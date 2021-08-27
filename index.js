@@ -456,11 +456,12 @@ app.get('/success', async(req,res)=>{
         let cartProduct = await Product.find({_id: cart.ProductID});
         arrayy.push(cartProduct);
     }
-
+    let i=0;
     for(let arr of arrayy){
+
       const ProductID= arr[0]._id;
-      const Size= productSize;
-      const Quantity = 1;
+      const Size= cartItem[i].Size;
+      const Quantity = cartItem[i].Quantity;
       const Date1 = (new Date()).toISOString().slice(0,10);
       const TransactionID = transId;
       const PaymentMode = charge.payment_method_details.type;
@@ -477,6 +478,7 @@ app.get('/success', async(req,res)=>{
           Total
       });
       await NewOrder.save();
+      i++;
     }
     
   }
