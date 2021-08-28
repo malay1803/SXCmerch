@@ -114,6 +114,7 @@
                   
                   <div class="modal-body" style="text-align: right; ">
                     <a class="right" data-bs-target="#signup" data-bs-toggle="modal" data-bs-dismiss="modal">New around here? Sign up</a><br>
+                    <a class="right" data-bs-target="#adminlogin" data-bs-toggle="modal" data-bs-dismiss="modal">Login as Admin</a><br>
                     <a class="right" style="text-align: right;" data-bs-target="#forget" data-bs-toggle="modal" data-bs-dismiss="modal">Forgot password?</a>
                   </div>
                 </div>
@@ -197,4 +198,45 @@
         </div>
       </div>
     </div>
+
+    <div class="modal fade" id="adminlogin" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1" >
+      <div class="modal-dialog modal-dialog-centered rounded-0" style="max-width: 400px;">
+        <div class="modal-content" style="border-radius: 10px;">
+          <div class="modal-header border-0">
+    
+            <img src="/image/logo.svg" class="imghead" alt="">
+            <button type="button" class="btn-close  " style="margin-top: -48px;" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div>
+                  <form class="px-4 py-3" method="POST" action="/admin">
+                    <div class="mb-3">
+                      <label for="LoginID" class="form-label label">Login Id</label>
+                      <input type="text" class="form-control inp" id="LoginID" name="LoginID" placeholder="Enter your ID">
+                    </div>
+                    <input type="hidden" name="add" class="no" value="<%=location%>">
+                    <div class="mb-3 mt-5">
+                      <label for="Password3" class="form-label label">Password</label>
+                      <input type="password" class="form-control inp" id="Password3" name="Password" placeholder="Enter your password">
+                    </div>
+                    <div class="text-center  mt-5">
+                      <button type="submit" class="button">ADMIN LOGIN</button>
+                    </div>
+                  </form>
+                  
+                  <div class="modal-body" style="text-align: right; ">
+                    <!-- <a class="right" data-bs-target="#signup" data-bs-toggle="modal" data-bs-dismiss="modal">New around here? Sign up</a><br> -->
+                    <a class="right" data-bs-target="#login" data-bs-toggle="modal" data-bs-dismiss="modal">Login as User</a><br>
+                  </div>
+                </div>
+          </div>
+       
+        </div>
+      </div>
+    </div>
+
+
+
+
+
   </section>

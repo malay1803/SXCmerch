@@ -63,7 +63,7 @@ function cpasscheck(inp1,inp2){
 function checkpin(inp){
     var textbox=document.getElementById(inp);
     var pass=document.getElementById(inp).value;
-    if(pass.length!=6 ){//|| !Number.isInteger(pass)
+    if(pass.length!=6 || pass != parseInt(pass,10) ){//|| !Number.isInteger(pass)
         textbox.setCustomValidity("Enter valid Pincode.");
     }
     else {
@@ -74,18 +74,23 @@ function checkphone(inp){
     var textbox=document.getElementById(inp);
     var phone=document.getElementById(inp).value;
     if(phone[0]=='+'){
-        if((phone.length!=13 || phone.length!=14)){
+
+        if(phone.includes(" ")){
+            textbox.setCustomValidity("Please Remove Spaces.");
+        }
+        else if(phone.length!=13 || phone != parseInt(phone,10)){
             textbox.setCustomValidity("Enter valid PhoneNumber.");
         }
         else {
             textbox.setCustomValidity('');
         }
     }else
-        if(phone.length!=10 && !Number.isInteger(phone)){
+        if(phone.length!=10 || phone != parseInt(phone,10) ){
             textbox.setCustomValidity("Enter valid PhoneNumber.");
         }
         else {
             textbox.setCustomValidity('');
         }
 }
+
 

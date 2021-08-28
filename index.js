@@ -64,7 +64,7 @@ app.get('/', (req,res) => {
     res.render('home',{uName,count,login:req.session.user_id, messages: req.flash('error')});
 })
 
-app.get('/admin', async(req,res) => {
+app.post('/admin', async(req,res) => {
     const {LoginID, Password} = req.body;
 
     const admin = await Admin.findOne({LoginID: LoginID});
@@ -256,6 +256,8 @@ app.get('/order', async (req,res) => {
     if(req.session.user_id){
         const userid = req.session.user_id;
 
+        
+
         const OrderList = await Order.find({UserID: userid});
         console.log(OrderList.reverse());
 
@@ -264,6 +266,8 @@ app.get('/order', async (req,res) => {
             let OProduct = await Product.find({_id: orders.ProductID});
             OrderProduct.push(OProduct);
         }
+
+
         console.log(OrderProduct);
         count = (await Cart.find({UserID:req.session.user_id})).length;
         res.render('order',{uName,count,OrderList,OrderProduct,login:req.session.user_id,messages: req.flash('error')});
