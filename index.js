@@ -8,6 +8,7 @@ const Contact = require('./models/contact');
 const User = require('./models/user');
 const Cart = require('./models/cart');
 const Order = require('./models/order');
+const Admin = require('./models/admin');
 const Address = require('./models/address');
 const { urlencoded } = require('express');
 
@@ -63,6 +64,32 @@ app.get('/', (req,res) => {
     res.render('home',{uName,count,login:req.session.user_id, messages: req.flash('error')});
 })
 
+app.get('/admin', async(req,res) => {
+    const {LoginID, Password} = req.body;
+
+    const admin = await Admin.findOne({LoginID: LoginID});
+    if(!admin)
+    {
+        req.flash('error', 'Incorrect Credentials, Try Again!');
+        res.redirect('/');
+        
+    }
+    const validPwd = await bcrypt.compare(Password, admin.Password);
+    if(validPwd)
+    {
+        req.session.user_id = admin._id;
+        uName=admin.Name;
+        // count = (await Cart.find({UserID:req.session.user_id})).length;
+        var location="/".concat(req.body.add);
+        // console.log('logged in!! ',location);
+        res.redirect(location);
+    }
+    else
+    {
+        req.flash('error', 'Incorrect Credentials, Try Again!');
+        res.redirect('/');
+    }
+})
 
 app.post('/signup',async (req,res)=>{
     const {Name,Email,Password,cPassword}=req.body;
