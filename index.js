@@ -64,6 +64,10 @@ app.get('/', (req,res) => {
     res.render('home',{uName,count,login:req.session.user_id, messages: req.flash('error')});
 })
 
+app.get('/admin', (req,res)=>{
+    res.render('admin')
+})
+
 app.post('/admin', async(req,res) => {
     const {LoginID, Password} = req.body;
 
@@ -89,6 +93,10 @@ app.post('/admin', async(req,res) => {
         req.flash('error', 'Incorrect Credentials, Try Again!');
         res.redirect('/');
     }
+})
+
+app.get('/dashboard', (req, res)=>{
+    res.render('dashboard')
 })
 
 app.post('/signup',async (req,res)=>{

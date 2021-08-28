@@ -28,7 +28,7 @@ button {
 }
 
 .navigationMenu .navbar-nav .nav-item .signUp,
-.signUp {
+.signUp, .logOut {
   color: white;
   background-color: #343a40;
   padding: 10px 30px;
