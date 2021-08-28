@@ -60,3 +60,32 @@ function cpasscheck(inp1,inp2){
         textbox2.setCustomValidity('');}
     
 }
+function checkpin(inp){
+    var textbox=document.getElementById(inp);
+    var pass=document.getElementById(inp).value;
+    if(pass.length!=6 ){//|| !Number.isInteger(pass)
+        textbox.setCustomValidity("Enter valid Pincode.");
+    }
+    else {
+        textbox.setCustomValidity('');}
+}
+
+function checkphone(inp){
+    var textbox=document.getElementById(inp);
+    var phone=document.getElementById(inp).value;
+    if(phone[0]=='+'){
+        if((phone.length!=13 || phone.length!=14)){
+            textbox.setCustomValidity("Enter valid PhoneNumber.");
+        }
+        else {
+            textbox.setCustomValidity('');
+        }
+    }else
+        if(phone.length!=10 && !Number.isInteger(phone)){
+            textbox.setCustomValidity("Enter valid PhoneNumber.");
+        }
+        else {
+            textbox.setCustomValidity('');
+        }
+}
+
