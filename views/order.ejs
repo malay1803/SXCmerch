@@ -28,7 +28,7 @@
 
               <div class="card mb-3 col-sm-12" style="border-radius: 20px; max-width: 100%; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
                 <div class="row g-0 border_t" style="background: burlywood;padding:20px;">
-                  <div class="col-sm-4">Date:<br><%=OrderList[i].OrderDate %></div>
+                  <div class="col-sm-4">Date:<br><%=OrderList[i].OrderDate.toString().slice(0,15); %></div>
                   <div class="col-sm-4">Total Price:<br><%=OrderList[i].Total %></div>
                   <div class="col-sm-4">Transaction ID:<br><%=OrderList[i].TransactionID %></div>
                 </div>
