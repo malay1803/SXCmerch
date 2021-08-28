@@ -72,27 +72,6 @@ button {
   border-bottom: black 1px solid;
 }
 
-/* carousel  */
-/* .carousel-indicators button {
-  height: 1vw !important;
-  width: 1vw !important;
-  border-radius: 50% !important;
-  background-color: #343a40 !important;
-  margin: 0 30px !important;
-}
-.carousel-indicators {
-  bottom: -80px;
-  border-radius: 50%;
-  height: 50px;
-  display: flex;
-  align-items: center;
-}
-
-.carousel-indicators .active {
-  height: 1.5vw !important;
-  width: 1.5vw !important;
-} */
-
 .carousel{
   background-color: none !important;
 }
