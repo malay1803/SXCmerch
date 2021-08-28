@@ -227,7 +227,7 @@ app.get('/order', async (req,res) => {
         const userid = req.session.user_id;
 
         const OrderList = await Order.find({UserID: userid});
-        console.log(OrderList);
+        console.log(OrderList.reverse());
 
         let OrderProduct = [];
         for(let orders of OrderList){
