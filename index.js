@@ -48,6 +48,7 @@ sizes = ['S','M','L','XL','XXL'];
 let productId;
 let productSize;
 let finalcost=0;
+let count=0;
 let uName="";
 
 app.set('view engine', 'ejs');
@@ -59,7 +60,7 @@ app.use(session(sessionConfig));
 app.use(flash());
 
 app.get('/', (req,res) => {
-    res.render('home',{uName,login:req.session.user_id, messages: req.flash('error')});
+    res.render('home',{uName,count,login:req.session.user_id, messages: req.flash('error')});
 })
 
 
@@ -117,8 +118,9 @@ app.post('/login', async (req,res) =>{
     {
         req.session.user_id = user._id;
         uName=user.Name;
+        count = (await Cart.find({UserID:req.session.user_id})).length;
         var location="/".concat(req.body.add);
-        console.log('logged in!! ',location);
+        // console.log('logged in!! ',location);
         res.redirect(location);
     }
     else
@@ -141,7 +143,8 @@ app.post('/logout', (req,res) => {
 
 app.get('/merchandise', async (req,res) => {
     const products = await Product.find({});
-    res.render('merchandise',{uName,products,select,categories,price,price_value, login:req.session.user_id,messages: req.flash('error')});
+    count = (await Cart.find({UserID:req.session.user_id})).length;
+    res.render('merchandise',{uName,count,products,select,categories,price,price_value, login:req.session.user_id,messages: req.flash('error')});
 })
 
 app.post('/category', async (req,res) =>{
@@ -189,16 +192,16 @@ app.post('/category', async (req,res) =>{
 })
 
 app.get('/about',(req,res) => {
-    res.render('about',{uName,login:req.session.user_id,messages: req.flash('error')});
+    res.render('about',{uName,count,login:req.session.user_id,messages: req.flash('error')});
 })
 app.get('/contact', async (req,res) => {
     if(req.session.user_id){
       const id = req.session.user_id;
       const user = await User.findById({_id: id});
-      res.render('contact',{uName,user:user, login:req.session.user_id,messages: req.flash('error')});
+      res.render('contact',{uName,count,user:user, login:req.session.user_id,messages: req.flash('error')});
     }
     else{
-        res.render('contact',{uName,login:req.session.user_id,messages: req.flash('error')});
+        res.render('contact',{uName,count,login:req.session.user_id,messages: req.flash('error')});
     }
 
     // if(req.session.user_id){
@@ -218,7 +221,7 @@ app.post('/contact', async (req,res) => {
         Message
     });
     await addMessage.save();
-    req.flash('error',"Result line 193----");
+    req.flash('error',"Successfully submit.");
     res.redirect('/contact');
 })
 
@@ -235,8 +238,8 @@ app.get('/order', async (req,res) => {
             OrderProduct.push(OProduct);
         }
         console.log(OrderProduct);
-
-        res.render('order',{uName,OrderList,OrderProduct,login:req.session.user_id,messages: req.flash('error')});
+        count = (await Cart.find({UserID:req.session.user_id})).length;
+        res.render('order',{uName,count,OrderList,OrderProduct,login:req.session.user_id,messages: req.flash('error')});
     }else{
         res.redirect("/notfound")
     }
@@ -269,7 +272,8 @@ app.get('/cart', async (req,res) => {
         let tax = subtotal/10;
         finaltotal = subtotal+shipping+tax;
         //console.log(finaltotal);
-        res.render('cart',{uName,cartItem: cartItem, arrayy: arrayy,finaltotal,subtotal,shipping,tax, login:req.session.user_id,messages: req.flash('error')});
+        count = (await Cart.find({UserID:req.session.user_id})).length;
+        res.render('cart',{uName,count,cartItem: cartItem, arrayy: arrayy,finaltotal,subtotal,shipping,tax, login:req.session.user_id,messages: req.flash('error')});
     }else{
         res.redirect("/notfound")
     }
@@ -296,13 +300,14 @@ app.post('/cart/:id', async (req,res) =>{
                 Size: size,
                 Quantity: 1
             });
-        await cartobject.save();
-    }
-    else{
-        if(cartfind[0].Quantity != 9){
-            const incrementqty = cartfind[0].Quantity + 1;
-            const Cartput = await Cart.findOneAndUpdate({UserID: userid,ProductID: id,Size: size},{Quantity: incrementqty},{runValidators: true, new: true, useFindAndModify: false});
-        }}
+            await cartobject.save();
+        }
+        else{
+            if(cartfind[0].Quantity != 9){
+                const incrementqty = cartfind[0].Quantity + 1;
+                const Cartput = await Cart.findOneAndUpdate({UserID: userid,ProductID: id,Size: size},{Quantity: incrementqty},{runValidators: true, new: true, useFindAndModify: false});
+            }
+        }
     }
     else{
         req.flash('error',"Please Login first.")
@@ -318,9 +323,9 @@ app.put('/cart/:id', async(req,res) =>{
 
     // console.log(req.body);
     const {Quantity,hiddensize} = req.body;
-    console.log(Quantity, hiddensize);
+    //console.log(Quantity, hiddensize);
     const Cartput = await Cart.findOneAndUpdate({UserID:req.session.user_id,ProductID: id,Size: hiddensize},{Quantity: Quantity},{runValidators: true, new: true, useFindAndModify: false});
-    //sconsole.log(Cartput);
+    //console.log(Cartput);
     res.redirect('/cart');
 })
 
