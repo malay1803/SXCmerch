@@ -229,31 +229,14 @@ app.get('/order', async (req,res) => {
         const OrderList = await Order.find({UserID: userid});
         console.log(OrderList);
 
-        // const cartItem = await Cart.find({UserID: userid});
-        // //console.log(cartItem);
-        // let arrayy = [];
-        // for(let cart of cartItem){
-        //     let cartProduct = await Product.find({_id: cart.ProductID});
-        //     arrayy.push(cartProduct);
-        // }
-        //console.log(arrayy);
+        let OrderProduct = [];
+        for(let orders of OrderList){
+            let OProduct = await Product.find({_id: orders.ProductID});
+            OrderProduct.push(OProduct);
+        }
+        console.log(OrderProduct);
 
-        // subtotal and final total code for cart
-        // let subtotal=0;
-        // let i=0;
-        // for (let arr of arrayy)
-        // {
-        //     subtotal= subtotal+ (arr[0].pPrice*cartItem[i].Quantity);
-        //     i++;
-        // }
-        // //console.log(subtotal);
-        // let shipping=100;
-        // if(subtotal>=1000 || subtotal==0)
-        //     shipping = 0
-        // let tax = subtotal/10;
-        // finaltotal = subtotal+shipping+tax;
-        // //console.log(finaltotal);
-        res.render('order',{uName,OrderList,login:req.session.user_id,messages: req.flash('error')});
+        res.render('order',{uName,OrderList,OrderProduct,login:req.session.user_id,messages: req.flash('error')});
     }else{
         res.redirect("/notfound")
     }

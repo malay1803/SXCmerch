@@ -499,3 +499,7 @@ select {
   background-color: black;
   transition: 0.4s ease-out;
 } */
+
+.border_t{
+  border-top-left-radius: 20px;border-top-right-radius: 20px;
+}
