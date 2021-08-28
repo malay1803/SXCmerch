@@ -256,19 +256,22 @@ app.get('/order', async (req,res) => {
     if(req.session.user_id){
         const userid = req.session.user_id;
 
-        
-
-        const OrderList = await Order.find({UserID: userid});
-        console.log(OrderList.reverse());
-
+        const AdminId = await Admin.findOne({_id: userid});
+        console.log(AdminId);
+        let OrderList;
+        if(AdminId){
+            OrderList = await Order.find({});
+        }
+        else{
+        OrderList = await Order.find({UserID: userid});
+        // console.log(OrderList.reverse());
+        }
         let OrderProduct = [];
         for(let orders of OrderList){
             let OProduct = await Product.find({_id: orders.ProductID});
             OrderProduct.push(OProduct);
         }
-
-
-        console.log(OrderProduct);
+        // console.log(OrderProduct);
         count = (await Cart.find({UserID:req.session.user_id})).length;
         res.render('order',{uName,count,OrderList,OrderProduct,login:req.session.user_id,messages: req.flash('error')});
     }else{
