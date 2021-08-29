@@ -2,53 +2,144 @@
 
 
 <%- include('partials/adminNav') %> 
-<section class="container col-lg-8 col-md-12 col-sm-12 svgContainer mb-5" style="margin-top: 60px;">
-    <main class="grid">
-      <article class=" mt-3">
-        <i class="fas fa-truck"></i>
-        <div class="text">
-          <h3>Fast Delievery</h3>
-          <p>We always try to deliever our customer with their products at the earliest. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero dolor, voluptatem iste necessitatibus illum a.</p>
-        </div>
-      </article>
-      <article class=" mt-3">
-        <i class="fas fa-tshirt"></i>
-        <div class="text">
-          <h3>HQ Products</h3>
-          <p>Get your favourite fest's merchandise made with High quality materials. Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt inventore soluta vel perspiciatis vitae. Totam!</p>
-        </div>
-      </article>
-      <article class=" mt-3">
-        <i class="fab fa-cc-stripe"></i>
-        <div class="text">
-          <h3>Secure Payment</h3>
-          <p>Now you don't have to worry as we have integrated stripe in our website, one of the best Secure payment Gateway known, worldwide. </p>
-        </div>
-      </article>
+<section class="container col-lg-8 col-md-12 col-sm-12 svgContainer mb-5" style="margin-top: 60px; height: auto !important; color: white; background-color: black;">
+  <div class="display-1 text-center">
+    Hello Malay
+  </div>
+  <div class="text-end">
+    <p>Date: 29 Aug 2021</p>
+    <p style="margin-top: -20px;">Time: 08:10 PM</p>
+  </div>
+  <div class="text-center">
+    <h4 class="text-uppercase">Following are some stats</h4>
+  </div>
+  <div class="d-flex justify-content-between mt-5">
+  <div class="display-6">
+    Total Users: 3
+  </div>
+  <div class="display-6">
+    Total Orders: 5
+  </div></div>
+    <main>
+      <!-- <div id="chart_wrap"> -->
+        
+        <h3 class="mt-5">Graph for Number of products sold</h3>
+        <div id="chart_div" style="width: 700px; margin: 0 auto !important;"></div>
+        <h3 class="mt-5">Graph for Number of orders placed</h3>
+        <div id="top_x_div" style="width: 600px; margin: 0 auto;"></div>
+      <!-- </div> -->
     </main>
-    <div class="row align-items-center imgRow">
-      <!-- img part  -->
-      <div class="col-sm-6 d-flex justify-content-center">
-        <img
-          class="img-fluid"
-          src="/image/middleSection.svg"
-          style="max-width: 80%; height: auto"
-        />
-      </div>
-      <!-- img part  -->
-
-      <!-- text part  -->
-      <div class="col-sm-6">
-        <h1>SXC Merch</h1>
-        <p>
-          SXC Merch is an E-Commerce Website designed specially for St. Xavier's College.
-          It brings you the latest merchandise of the various fests organised in the 
-          college. Fests are an
-        </p>
-      </div>
-    </div>
+    
     <!-- text part  -->
 
   </section>
+
+  <script>
+    google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawBasic);
+
+function drawBasic() {
+
+      var data = google.visualization.arrayToDataTable([
+        ['Products', 'Total Products',],
+        ['T-shirt', 20],
+        ['Hoodie', 39],
+        ['Cap', 40],
+        ['Mask', 47],
+        ['Brooch', 16],
+      ]);
+
+      var options = {
+        title: 'Products Sold',
+        titleTextStyle: {
+        color: "white", 
+        align: 'center'
+        },
+        backgroundColor: 'black',
+        chartArea: {width: '50%', color: 'white', backgroundColor:'black'},
+          textStyle:{color: 'red'},
+        hAxis: {
+          title: 'Products sold',
+          titleTextStyle: {
+            color: "white", 
+          },
+          minValue: 0,
+          maxValue: 100,
+          textStyle:{color: 'white'},
+        },
+        vAxis: {
+          title: 'Products',
+          titleTextStyle: {
+            color: "white", 
+          },
+          minValue: 0,
+          maxValue: 100,
+          textStyle:{color: 'white'},
+        },
+        legend: { position: "none" },
+      };
+
+      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+    }
+  
+
+    // orders placed graph 
+
+    google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawStuff);
+
+      function drawStuff() {
+        var data = new google.visualization.arrayToDataTable([
+          ['ORDERS', 'Orders Placed'],
+          ["JAN", 44],
+          ["FEB", 31],
+          ["MAR", 12],
+          ["APR", 10],
+          ['MAY', 3],
+          ['JUN', 64],
+          ['JUL', 2],
+          ['AUG', 34],
+          ['SEP', 12],
+          ['OCT', 54],
+          ['NOV', 15],
+          ['DEC', 63],
+        ]);
+
+        var options = {
+        title: 'Orders Placed',
+        titleTextStyle:{color: 'white',},
+          backgroundColor: 'black',
+          textStyle:{color: 'white'},
+          chartArea: {
+            width: '20%',
+          backgroundColor: 'black',
+            title: 'ORDERS BY MONTH', 
+            color: 'white',
+          },
+          hAxis: {
+          title: 'Orders Placed',
+          textStyle:{color: 'white'},
+        	},
+         vAxis: {
+          title: 'Number of Orders Placed',
+          titleTextStyle: {
+            color: "white", 
+          },
+          textStyle:{color: 'white'},
+        	},
+          bar: { groupWidth: "60%" },
+          
+        legend: { position: "none" },
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      };
+  </script>
+
+
+
 
 </body>
