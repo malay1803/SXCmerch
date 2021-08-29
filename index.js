@@ -76,8 +76,25 @@ app.get("/admin", (req, res) => {
   res.render("admin");
 });
 
-app.get("/orders", (req, res) => {
-  res.render("orders");
+app.get("/orders", async (req, res) => {
+  const user = await User.find();
+  
+  let OrderList;
+  OrderList = await Order.find({});
+  OrderList.reverse();
+
+  let OrderProduct = [];
+  for (let orders of OrderList) {
+    let OProduct = await Product.find({ _id: orders.ProductID });
+    OrderProduct.push(OProduct);
+  }
+  res.render("orders", {
+      user, 
+      OrderList,
+      OrderProduct,
+      login: req.session.user_id,
+      messages: req.flash("error"),
+    });
 });
 
 app.post("/admin", async (req, res) => {
