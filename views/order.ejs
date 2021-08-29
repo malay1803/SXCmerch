@@ -26,7 +26,7 @@
               
             <% if(TransId != OrderList[i].TransactionID){  j=0;%>
 
-              <div class="card mb-3 col-sm-12 border_t" style="max-width: 100%; background-color: #eee; box-shadow: rgba(149, 157, 165, 0.3) 0px 8px 24px;">
+              <div class="card mb-3 col-sm-12" style="border-radius: 20px; max-width: 100%; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
                 <div class="row g-0 border_t" style="background: #343a40; color: white; padding:20px;">
                   <div class="col-sm-4">Date:<br><%=OrderList[i].OrderDate.toString().slice(0,15); %></div>
                   <div class="col-sm-4">Total Price:<br><%=OrderList[i].Total %></div>
@@ -34,9 +34,10 @@
                 </div>
                 <% TransId=OrderList[i].TransactionID %> 
               <% } %>  
-            <div class="row g-0" style="background-color: #eee; height: auto;">
-              <div class="col-md-4 d-flex justify-content-center" style="padding: 20px; height: 150px;">
-                <img style="border-radius: 15%;" src="<%=orders[0].pImage %> " class="img-fluid" style="height: auto; max-width: 100%;" alt="...">
+               
+            <div class="row g-0" style="height: auto;">
+              <div class="col-md-4 d-flex justify-content-center" style="padding: 20px; height: auto;">
+                <img style="border-radius: 15%; height: 120px;" src="<%=orders[0].pImage%>" class="img-fluid" alt="...">
               </div>
               
               <div class="col-md-8">
@@ -50,9 +51,10 @@
                   </div>
                   <p class="card-text"><%= orders[0].pDescription %> </p> 
                   
-                  <div class="d-flex justify-content-between align-item-center">
+                  <div class="d-flex justify-content-between">
                     <p class="card-text">Quantity: <%= OrderList[i].Quantity %> </p> 
-                    <p class="fw-bold" style="font-size: 22px;">₹<%= orders[0].pPrice %> </p>
+                  
+                      <p class="mt-1 fw-bold" style="font-size: 22px;">₹<%= orders[0].pPrice %> </p>
                   </div>
                 </div>
               </div>

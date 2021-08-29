@@ -6,10 +6,7 @@
   }
 </script>
 
-<own-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                    <%=uName.split(" ")[0] %>    
-                  </text>
-                  <ul class="dropdownav class="navbar navbar-expand-lg navbar-light bg-none">
+<nav class="navbar navbar-expand-lg navbar-light bg-none">
     <div class="container col-lg-8 col-md-12 col-sm-12">
       <!-- ------------ left side ------------- -->
       <div
@@ -62,7 +59,10 @@
                 <input type="hidden" name="add" class="no" value="<%=location%>">
                 
                 <div class="dropdown" style="margin-top: 1.4vh;">
-                  <text class="dropdn-menu" style="border:none;background:transparent; margin-top: -5px;" aria-labelledby="dropdownMenuButton1">
+                  <text class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    <%=uName.split(" ")[0] %>    
+                  </text>
+                  <ul class="dropdown-menu" style="border:none;background:transparent; margin-top: -5px;" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" href="/order">Orders</a></li>
                     <li><button type="submit" class="dropdown-item">Logout</button></li>
                   </ul>
