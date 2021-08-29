@@ -137,6 +137,20 @@ app.get("/orders", async (req, res) => {
     });
 });
 
+
+app.put("/orders/:id", async (req, res) => {
+  const {id} = req.params;
+  const { status} = req.body;
+  const OrderList = await Order.updateMany(
+    { TransactionID: id },
+    { Status: status },
+    { runValidators: true, new: true, useFindAndModify: false }
+  );
+  //console.log(Cartput);
+  res.redirect("/orders");
+});
+
+
 app.post("/admin", async (req, res) => {
   const { LoginID, Password } = req.body;
 
@@ -642,6 +656,7 @@ app.get("/success", async (req, res) => {
       const TransactionID = transId;
       const PaymentMode = charge.payment_method_details.type;
       const Total = charge.amount / 100;
+      const Status ="pending"
       //   console.log(ProductID,Size,Quantity,Date1,TransactionID,PaymentMode,Total);
       const NewOrder = new Order({
         UserID,
@@ -652,6 +667,7 @@ app.get("/success", async (req, res) => {
         TransactionID,
         PaymentMode,
         Total,
+        Status
       });
       await NewOrder.save();
       i++;
@@ -666,6 +682,7 @@ app.get("/success", async (req, res) => {
     const TransactionID = transId;
     const PaymentMode = charge.payment_method_details.type;
     const Total = charge.amount / 100;
+    const Status="pending"
     //   console.log(ProductID,Size,Quantity,Date1,TransactionID,PaymentMode,Total);
     const NewOrder = new Order({
       UserID,
@@ -676,6 +693,7 @@ app.get("/success", async (req, res) => {
       TransactionID,
       PaymentMode,
       Total,
+      Status
     });
     await NewOrder.save();
   }

@@ -43,11 +43,25 @@
                   <td><%=OrderList[i].OrderDate.toString().slice(4,15); %></td>
                   <td><%=OrderList[i].TransactionID%></td>
                   <td>₹<%=OrderList[i].Total %></td>
-                  <td> <select name="status" id="status" style="background-color: #343a40; color: white; border: none; outline: none;">
-                      <option value="pending">Pending</option>
-                      <option value="delivered">Delivered</option>
-                  </select> </td>
-                  <td><button class="btn btn-success btn-sm">Update</button></td>
+                  <form action="/orders/<%= OrderList[i].TransactionID %>?_method=PUT" method="POST">
+                    
+                    <% if(OrderList[i].Status!="delivered") {%>
+                    <td> <select name="status" id="status" style="background-color: #343a40; color: white; border: none; outline: none;">
+                        <option value="pending">Pending</option>
+                        <option value="delivered">Delivered</option>
+                      
+                    </select> </td>
+                    <% }else{ %> 
+                      <td>Delivered</td>
+                    <% } %>                
+                    <td>
+                      <% if(OrderList[i].Status!="delivered"){ %> 
+                        <input type="submit" class="btn btn-success btn-sm" value="Update"></td>
+                      </form>
+                      <% } else{%>
+                        <input type="button" class="btn btn-success btn-sm" value="Update"></td>
+                      <% } %>  
+                  
                 </tr>
                 <tr>
                   <td colspan="7">
