@@ -73,6 +73,11 @@ app.get("/", async(req, res) => {
   });
 });
 
+app.get('/products', async (req,res) => {
+  const prodlist = await Product.find();
+  res.render('products', {prodlist});
+})
+
 app.get("/admin", async (req, res) => {
 
   // const adminid = req.session.user_id;
@@ -101,7 +106,7 @@ app.get("/admin", async (req, res) => {
     for(let i=0;i<checker.length;i++){
       if(categories[i]==product1[0].pCategory){
         // console.log("hi");
-        checker[i]=checker[i]+1;
+        checker[i]=checker[i]+data.Quantity;
       }
     }
 
