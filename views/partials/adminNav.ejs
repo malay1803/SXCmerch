@@ -27,13 +27,13 @@
             <a class="nav-link" style="color: white" href="/orders">Orders</a>
           </li>
           <li class="nav-item ms-4">
-            <a
-              class="nav-link signUp"
-              style="color: #343a40; background-color: white;"
-              href="/"
-              data-bs-toggle="modal"
-              >logout</a
-            >
+            <form method="POST" action="/logout">
+              <input type="hidden" name="add" class="no" value="admin">
+              <button type="submit" class="nav-link signUp" style="color: #343a40; background-color: white;">Logout</button>
+            </form>
+            <!-- <a class="nav-link signUp" style="color: #343a40; background-color: white;" href="/" data-bs-toggle="modal">
+              logout
+            </a> -->
           </li>
         </ul>
       </div>

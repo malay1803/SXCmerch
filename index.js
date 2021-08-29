@@ -201,7 +201,7 @@ app.post("/login", async (req, res) => {
 app.post("/logout", (req, res) => {
   req.session.destroy();
   let location = "/" + req.body.add;
-  if (location != "/cart") {
+  if (location != "/cart" && location != "/admin") {
     res.redirect(location);
   } else {
     res.redirect("/");
