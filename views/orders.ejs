@@ -4,7 +4,7 @@
 
   <div class="navbar navbar-expand-lg navbar-light bg-none">
     <div class="container col-lg-8 col-md-12 col-sm-12">
-      <table class="table table-dark">
+      <table class="table table-dark" id="orderData">
         <thead>
           <tr style="text-align: center">
             <th scope="col" class="p-3">#</th>
@@ -68,6 +68,19 @@
           </tr>
         </tbody>
       </table>
+      <input type="button" onclick="exportData()" value="Export" style="position: absolute; top:100%" />
     </div>
   </div>
+
+  <script type="text/javascript">
+    function exportData() {
+      let data = document.getElementById("orderData");
+      var fp = XLSX.utils.table_to_book(data, { sheet: "order data" });
+      XLSX.write(fp, {
+        bookType: "xlsx",
+        type: "base64",
+      });
+      XLSX.writeFile(fp, "orderData.xlsx");
+    }
+  </script>
 </body>

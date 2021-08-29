@@ -4,28 +4,37 @@
 
   <div class="navbar navbar-expand-lg navbar-light bg-none">
     <div class="container col-lg-8 col-md-12 col-sm-12">
-      <table class="table text-center table-dark table-hover">
+      <table class="table text-center table-dark table-hover" id="userData">
         <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
-            <th scope="col">Number</th>
-            <th scope="col">Update</th>
             <th scope="col">Delete</th>
           </tr>
         </thead>
         <tbody>
-          <tr style="vertical-align: middle;">
+          <tr style="vertical-align: middle">
             <th scope="row">1</th>
             <td>Malay Acharya</td>
             <td>18acharyamalay@gmail.com</td>
-            <td>9372392981</td>
-            <td><button class="btn btn-success btn-sm">Update</button></td>
             <td><button class="btn btn-danger btn-sm">Delete</button></td>
           </tr>
         </tbody>
       </table>
+      <input type="button" onclick="exportData()" value="Export" style="position: absolute; top:100%" />
     </div>
   </div>
+  
+  <script type="text/javascript">
+    function exportData() {
+      let data = document.getElementById("userData");
+      var fp = XLSX.utils.table_to_book(data, { sheet: "user data" });
+      XLSX.write(fp, {
+        bookType: "xlsx",
+        type: "base64",
+      });
+      XLSX.writeFile(fp, "userdata.xlsx");
+    }
+  </script>
 </body>
