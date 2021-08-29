@@ -73,8 +73,47 @@ app.get("/", async(req, res) => {
   });
 });
 
-app.get("/admin", (req, res) => {
-  res.render("admin");
+app.get("/admin", async (req, res) => {
+
+  // const adminid = req.session.user_id;
+  // const admin = await Admin.find({_id: adminid});
+  let transid="";
+  let checker = [0,0,0,0,0];
+  let monthcheck = [0,0,0,0,0,0,0,0,0,0,0,0]
+  let orderCount = 0;
+  let orderdata = await Order.find({});
+  for(let data of orderdata){
+    console.log(data.OrderDate.toISOString().slice(5,7));
+    if(transid!=data.TransactionID){
+        orderCount=orderCount+1;
+        for(let i=1;i<=12;i++){
+          let month = parseInt(data.OrderDate.toISOString().slice(5,7));
+          if(month==i){
+            monthcheck[i-1]++;
+          }
+        }
+        // console.log(monthcheck);
+    }
+    transid=data.TransactionID
+
+    const product1 = await Product.find({_id: data.ProductID});
+    // console.log(product1[0].pCategory);
+    for(let i=0;i<checker.length;i++){
+      if(categories[i]==product1[0].pCategory){
+        // console.log("hi");
+        checker[i]=checker[i]+1;
+      }
+    }
+
+  }
+  let users = (await User.find({})).length;
+  console.log(users,checker,orderCount);
+  const Date1 = new Date().toUTCString().slice(0, 16);
+  const Time1 = new Date().toLocaleString().slice(11,22);
+
+
+
+  res.render("admin",{Date1,monthcheck,Time1,checker,orderCount,users});
 });
 
 app.get("/orders", async (req, res) => {

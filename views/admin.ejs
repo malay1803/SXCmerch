@@ -6,19 +6,25 @@
   <div class="display-1 text-center">
     Hello Malay
   </div>
+  <% for(let val in checker){ %> 
+    <input type="hidden" id="<%= "count"+val%>" value="<%= checker[val] %>">
+    <% } %> 
+    <% for(let val in monthcheck){ %> 
+      <input type="hidden" id="<%= "month"+val%>" value="<%= monthcheck[val] %>">
+      <% } %>
   <div class="text-end">
-    <p>Date: 29 Aug 2021</p>
-    <p style="margin-top: -20px;">Time: 08:10 PM</p>
+    <p>Date: <%= Date1 %> </p>
+    <p style="margin-top: -20px;">Time: <%= Time1%></p>
   </div>
   <div class="text-center">
     <h4 class="display-7">Following are some stats</h4>
   </div>
   <div class="d-flex justify-content-between mt-5">
   <div class="display-6">
-    Total Users: 3
+    Total Users: <%= users %> 
   </div>
   <div class="display-6">
-    Total Orders: 5
+    Total Orders: <%= orderCount %> 
   </div></div>
     <main>
       <!-- <div id="chart_wrap"> -->
@@ -39,14 +45,20 @@
 google.charts.setOnLoadCallback(drawBasic);
 
 function drawBasic() {
-
+  let countarr = [];
+  for(let i=0; i<5;i++){
+    let valuee = document.getElementById("count"+i).value;
+    countarr.push(valuee);
+  }
+  // console.log(countarr);
       var data = google.visualization.arrayToDataTable([
+        
         ['Products', 'Total Products',],
-        ['T-shirt', 20],
-        ['Hoodie', 39],
-        ['Cap', 40],
-        ['Mask', 47],
-        ['Brooch', 16],
+        ['T-shirt', parseInt(countarr[0])],
+        ['Hoodie', parseInt(countarr[1])],
+        ['Cap', parseInt(countarr[2])],
+        ['Mask', parseInt(countarr[3])],
+        ['Brooch', parseInt(countarr[4])],
       ]);
 
       var options = {
@@ -91,20 +103,26 @@ function drawBasic() {
       google.charts.setOnLoadCallback(drawStuff);
 
       function drawStuff() {
+        
+        let montharr= [];
+        for(let i=0; i<12;i++){
+          let valuee = document.getElementById("month"+i).value;
+          montharr.push(valuee);
+        }
         var data = new google.visualization.arrayToDataTable([
           ['ORDERS', 'Orders Placed'],
-          ["JAN", 44],
-          ["FEB", 31],
-          ["MAR", 12],
-          ["APR", 10],
-          ['MAY', 3],
-          ['JUN', 64],
-          ['JUL', 2],
-          ['AUG', 34],
-          ['SEP', 12],
-          ['OCT', 54],
-          ['NOV', 15],
-          ['DEC', 63],
+          ["JAN", parseInt(montharr[0])],
+          ["FEB", parseInt(montharr[1])],
+          ["MAR", parseInt(montharr[2])],
+          ["APR", parseInt(montharr[3])],
+          ['MAY', parseInt(montharr[4])],
+          ['JUN', parseInt(montharr[5])],
+          ['JUL', parseInt(montharr[6])],
+          ['AUG', parseInt(montharr[7])],
+          ['SEP', parseInt(montharr[8])],
+          ['OCT', parseInt(montharr[9])],
+          ['NOV', parseInt(montharr[10])],
+          ['DEC', parseInt(montharr[11])],
         ]);
 
         var options = {
