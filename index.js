@@ -63,7 +63,8 @@ app.use(express.static("public"));
 app.use(session(sessionConfig));
 app.use(flash());
 
-app.get("/", (req, res) => {
+app.get("/", async(req, res) => {
+  count = (await Cart.find({UserID:req.session.user_id})).length;
   res.render("home", {
     uName,
     count,
@@ -109,7 +110,7 @@ app.post("/admin", async (req, res) => {
   if (validPwd) {
     req.session.user_id = admin._id;
     uName = admin.Name;
-    // count = (await Cart.find({UserID:req.session.user_id})).length;
+    
     var location = "/".concat(req.body.add);
     // console.log('logged in!! ',location);
     res.redirect(location);
@@ -121,14 +122,29 @@ app.post("/admin", async (req, res) => {
 
 app.get("/users", async(req, res) => {
   const user = await User.find();
-  res.render("users",{user});
+  let arrayy=[]
+  let transid=""
+  for (let u of user) {
+    let OrderCount = 0;
+    let orderdata = await Order.find({ UserID: u._id});
+    for(let data of orderdata){
+      if(transid!=data.TransactionID){
+        OrderCount=OrderCount+1;
+        
+      }
+      transid=data.TransactionID
+    }
+    arrayy.push(OrderCount);
+  }
+  res.render("users",{user,arrayy});
 });
 
 app.delete("/users/:id", async (req, res) => {
   const {id} = req.params;
   await User.findOneAndDelete({_id: id,});
-  await Cart.findOneAndDelete({UserID:id,});
-  await Order.findOneAndDelete({UserID:id});
+  await Cart.deleteMany({UserID: id});
+  await Order.deleteMany({UserID:id});
+  await Address.deleteMany({UserID:id});
   res.redirect("/users");
 });
 
