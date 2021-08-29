@@ -119,8 +119,17 @@ app.post("/admin", async (req, res) => {
   }
 });
 
-app.get("/users", (req, res) => {
-  res.render("users");
+app.get("/users", async(req, res) => {
+  const user = await User.find();
+  res.render("users",{user});
+});
+
+app.delete("/users/:id", async (req, res) => {
+  const {id} = req.params;
+  await User.findOneAndDelete({_id: id,});
+  await Cart.findOneAndDelete({UserID:id,});
+  await Order.findOneAndDelete({UserID:id});
+  res.redirect("/users");
 });
 
 app.post("/signup", async (req, res) => {
@@ -263,6 +272,7 @@ app.get("/about", (req, res) => {
     messages: req.flash("error"),
   });
 });
+
 app.get("/contact", async (req, res) => {
   if (req.session.user_id) {
     const id = req.session.user_id;
