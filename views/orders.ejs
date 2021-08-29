@@ -1,29 +1,70 @@
 <%- include('partials/head') %>
 <body>
   <%- include('partials/adminNav') %>
-  
 
   <div class="navbar navbar-expand-lg navbar-light bg-none">
     <div class="container col-lg-8 col-md-12 col-sm-12">
-      <table class="table table-responsive table-hover">
+      <table class="table table-dark">
         <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">OrderID</th>
-            <th scope="col">TransactionID</th>
-            <th scope="col">Update</th>
-            <th scope="col">Delivery Status</th>
+          <tr style="text-align: center">
+            <th scope="col" class="p-3">#</th>
+            <th scope="col" class="p-3">Name</th>
+            <th scope="col" class="p-3">OrderID</th>
+            <th scope="col" class="p-3">TransactionID</th>
+            <th scope="col" class="p-3">Amount</th>
+            <th scope="col" class="p-3">Update</th>
+            <th scope="col" class="p-3">Delivery Status</th>
           </tr>
         </thead>
         <tbody>
-          <tr style="vertical-align: middle;">
+          <tr style="vertical-align: middle; text-align: center">
             <th scope="row">1</th>
-            <td>Malay</td>
-            <td>18acharyamalay@gmail.com</td>
-            <td>9372392981</td>
+            <td>Malay Acharya</td>
+            <td>order id</td>
+            <td>Transaction id</td>
+            <td>₹123</td>
             <td><button class="btn btn-success btn-sm">Update</button></td>
-            <td><button class="btn btn-danger btn-sm">Delete</button></td>
+            <td>Delievered</td>
+          </tr>
+          <tr>
+            <td colspan="7">
+              <table
+                class="table table-dark mb-0 text-center table-striped"
+                class="width: margin: 0 auto !important;"
+              >
+                <thead>
+                  <tr>
+                    <th colspan="7" class="text-uppercase">order details</th>
+                  </tr>
+                  <tr>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">QTY</th>
+                    <th scope="col">Unit Price</th>
+                    <th scope="col">Total(incl. taxes)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="vertical-align: middle">
+                    <td>Malhar Tshirt</td>
+                    <td>3</td>
+                    <td>499</td>
+                    <td>1600</td>
+                  </tr>
+                  <tr style="vertical-align: middle">
+                    <td>Malhar Tshirt</td>
+                    <td>3</td>
+                    <td>499</td>
+                    <td>1600</td>
+                  </tr>
+                  <tr style="vertical-align: middle">
+                    <td>Malhar Tshirt</td>
+                    <td>3</td>
+                    <td>499</td>
+                    <td>1600</td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
           </tr>
         </tbody>
       </table>
