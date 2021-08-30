@@ -61,7 +61,7 @@
             <% } %>  
             <td>₹<%=prod.pPrice %></td>
               <td>
-                <button type="button" data-bs-toggle="modal" data-bs-target="#updateProduct" class="w-100 mt-1.7 btn btn-success btn-sm">
+                <button type="button" data-bs-toggle="modal" onclick="showproduct('<%=prod._id%>','<%=prod.pName%>','<%=prod.pDescription%>','<%=prod.pPrice%>','<%=prod.pCategory%>');" data-bs-target="#updateProduct" class="w-100 mt-1.7 btn btn-success btn-sm">
                   <i class="fas fa-edit"></i>
                 </button>
               </td>
@@ -109,24 +109,23 @@
                               <div class="col-md-12 mb-2">
   
                                 <form action="" method="POST">
-                                <input type="hidden" id="productid" name="productid" value="">
-                                <input type="hidden" id="productsize" name="productsize" value="">   
+                                <input type="hidden" id="productid1" name="productid1" value="">   
                                 <div class="form-outline">
-                                  <input type="text" id="form3Example1mal" required name="productName" class="form-control form-control-md" />
-                                  <label class="form-label" for="form3Example1mal">Product Name<span>*</span></label>
+                                  <input type="text" id="productname1" required name="productName" class="form-control form-control-md" />
+                                  <label class="form-label" for="productname1">Product Name<span>*</span></label>
                                 </div>
                               </div>
                             </div>
               
                             <div class="form-outline mb-2">
-                              <textarea type="text" id="form3Example8" required name="productDesc" style="resize: none; box-shadow: none;" class="form-control form-control-md"> </textarea>
-                              <label class="form-label" for="form3Example8">Product Description <span>*</span></label>
+                              <textarea type="text" id="productDesc" required name="productDesc" style="resize: none; box-shadow: none;" class="form-control form-control-md"> </textarea>
+                              <label class="form-label" for="productDesc">Product Description <span>*</span></label>
                             </div>
                             <div class="row">
                               <div class="col-md-12 mb-2">
                                 <div class="form-outline mb-2">
-                                  <input type="text" id="form4pin4" required name="unitPrice" oninput="checkpin('form4pin4');" class="form-control form-control-md" />
-                                  <label class="form-label" for="form4pin4">Unit Price<span>*</span></label>
+                                  <input type="text" id="unitPrice" required name="unitPrice" oninput="checkpin('form4pin4');" class="form-control form-control-md" />
+                                  <label class="form-label" for="unitPrice">Unit Price<span>*</span></label>
                                 </div>
                               </div>
                             </div>
@@ -143,14 +142,14 @@
                                       height: 05vmin;
                                       padding-left: 20px;
                                     "
-                                    id=""
+                                    id="pcategory1"
                                   >
                                     <option value="category" selected disabled>Select Category</option>
-                                    <option value="T-Shirt">T-Shirt</option>
-                                    <option value="Hoodie">Hoodie</option>
-                                    <option value="Cap">Cap</option>
-                                    <option value="Mask">Mask</option>
-                                    <option value="Brooch">Brooch</option>
+                                    <option value="tshirt">T-Shirt</option>
+                                    <option value="hoodie">Hoodie</option>
+                                    <option value="cap">Cap</option>
+                                    <option value="mask">Mask</option>
+                                    <option value="brooch">Brooch</option>
                                   </select>
                                 </div>
                               </div>

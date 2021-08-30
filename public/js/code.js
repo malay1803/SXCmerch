@@ -30,6 +30,15 @@ function show(a1,a2){
 
 }
 
+function showproduct(pid,pname,pdes,pprice,pcategory){
+    console.log(pid);
+    document.getElementById("productid1").value=pid;
+    document.getElementById("productname1").value=pname;
+    document.getElementById("productDesc").value=pdes;
+    document.getElementById("unitPrice").value=pprice;
+    document.getElementById("pcategory1").value=pcategory;
+}
+
 function loginp(){
     var doc="Please Login first.";
       alert(doc);
