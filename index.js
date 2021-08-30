@@ -178,6 +178,19 @@ app.post("/admin", async (req, res) => {
   }
 });
 
+
+app.get("/message", async(req, res) => {
+  const contactData = await Contact.find();
+  
+  res.render("message",{contactData});
+});
+
+app.delete("/message/:id", async (req, res) => {
+  const {id} = req.params;
+  await Contact.findOneAndDelete({_id: id,});
+  res.redirect("/message");
+});
+
 app.get("/users", async(req, res) => {
   const user = await User.find();
   let arrayy=[]
