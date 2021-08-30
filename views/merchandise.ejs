@@ -114,7 +114,7 @@
                           <!-- <form class=" d-flex justify-content-between" action="/cart/<%=product._id %> " method="POST"> -->
                             <!-- <input type="hidden" id="<%=  %> " value="<%=product.pName%>"> -->
                             <% if(login){ %> 
-                              <button type="button" class="buyNow" href="#address1" onclick="show('<%=product.pName%>','<%=product._id%>');" data-bs-toggle="modal">Buy Now</button>
+                              <button type="button" class="buyNow" href="#address1" onclick="show('<%=product.pName%>','<%=product._id%>','<%= product.pCategory %>');" data-bs-toggle="modal">Buy Now</button>
                               <button type="submit" class="Cart w-50"><i class="fas fa-shopping-cart"></i> Cart</button>
                             <% }else{ %> 
                               <button type="button" class="buyNow" onclick="loginp();">Buy Now</button> 

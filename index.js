@@ -166,6 +166,22 @@ app.put('/update', async (req,res) => {
   res.redirect("/products");
 })
 
+app.post('/new', async (req,res) => {
+  const { newName, newDesc, newPrice, newImage, newCategory} = req.body;
+  console.log(newName, newDesc, newPrice, newImage, newCategory);
+  let imgurl = "/image/merch/"+newImage;
+
+  const newProduct = new Product({
+    pName: newName,
+    pPrice: newPrice,
+    pImage: imgurl,
+    pDescription: newDesc,
+    pCategory: newCategory
+  });
+  await newProduct.save();
+  res.redirect('/products');
+})
+
 app.post("/admin", async (req, res) => {
   const { LoginID, Password } = req.body;
 
@@ -570,6 +586,7 @@ app.post("/address", async (req, res) => {
   productSize = productsize;
   const Name = First + " " + Last;
   const UserID = req.session.user_id;
+  console.log(productSize);
 
   if (productId != "") {
     const prod = await Product.findOne({ _id: productId });
@@ -716,7 +733,7 @@ app.get("/success", async (req, res) => {
     const Price=prod[0].pPrice;
     const Total = charge.amount / 100;
     const Status="pending"
-    //   console.log(ProductID,Size,Quantity,Date1,TransactionID,PaymentMode,Total);
+      console.log(ProductID,Size,Quantity,Date1,TransactionID,PaymentMode,Total);
     const NewOrder = new Order({
       UserID,
       ProductID,

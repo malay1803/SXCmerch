@@ -1,7 +1,7 @@
-function show(a1,a2){
+function show(a1,a2,a3){
     document.getElementById("productid").value=a2;
     var rate_value;
-    if(a1.includes("Tshirt")||a1.includes("Hoodie"))
+    if(a3.includes("tshirt")||a3.includes("hoodie"))
 {
     
     if (document.getElementById(a1+"s").checked) {
