@@ -108,7 +108,7 @@
                             <div class="row">
                               <div class="col-md-12 mb-2">
   
-                                <form action="" method="POST">
+                                <form action="/update?_method=PUT" method="POST">
                                 <input type="hidden" id="productid1" name="productid1" value="">   
                                 <div class="form-outline">
                                   <input type="text" id="productname1" required name="productName" class="form-control form-control-md" />
@@ -133,7 +133,7 @@
                               <div class="col-md-12 mb-2">
                                 <div class="form-outline mb-2">
                                     <select
-                                    name="Show"
+                                    name="pcategory1"
                                     style="
                                       color: #343a40;
                                       border: 1px solid #ccc;
@@ -155,6 +155,7 @@
                               </div>
                             </div>
                             <div class="d-flex justify-content-end pt-3">
+                             
                               <button type="submit" class="btn btn-success btn-lg ms-2"
                                 style="background-color: #343a40">Save Product</button>
                             </div>
@@ -212,6 +213,14 @@
                                 <div class="form-outline mb-2">
                                   <input type="text" id="form4pin4" required name="unitPrice" oninput="checkpin('form4pin4');" class="form-control form-control-md" />
                                   <label class="form-label" for="form4pin4">Unit Price<span>*</span></label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12 mb-2">
+                                <div class="form-outline mb-2">
+                                  <input type="file" id="pimage" required name="pimage" oninput="checkpin('pimage');" class="form-control form-control-md" />
+                                  <label class="form-label" for="pimage">Image<span>*</span></label>
                                 </div>
                               </div>
                             </div>

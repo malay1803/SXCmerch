@@ -155,6 +155,16 @@ app.put("/orders/:id", async (req, res) => {
   res.redirect("/orders");
 });
 
+app.put('/update', async (req,res) => {
+  const {productid1, productName, productDesc, unitPrice, pcategory1} = req.body;
+  console.log(productid1, productName, productDesc, unitPrice, pcategory1);
+  const updateProduct = await Product.updateMany(
+    {_id: productid1},
+    { pName: productName, pDescription: productDesc, pPrice: unitPrice, pCategory: pcategory1 },
+    { runValidators: true, new: true, useFindAndModify: false }
+  );
+  res.redirect("/products");
+})
 
 app.post("/admin", async (req, res) => {
   const { LoginID, Password } = req.body;
