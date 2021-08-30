@@ -89,8 +89,8 @@
           <%=orders[0].pName  %> (<%= OrderList[i].Size %>)
         <% } %> </td>
         <td><%= OrderList[i].Quantity %></td>
-        <td><%= orders[0].pPrice %></td>
-        <td><%= orders[0].pPrice * OrderList[i].Quantity%></td>
+        <td><%= OrderList[i].Price %></td>
+        <td><%= OrderList[i].Price * OrderList[i].Quantity%></td>
       </tr>
                     
     <% i++;} %> 

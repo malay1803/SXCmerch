@@ -29,6 +29,10 @@ const OrderSchema = new mongoose.Schema({
         type: String,
         enum: ['card','upi','cod']
     },
+    Price:{
+        type: String,
+        required: true
+    },
     Total: {
         type: String,
         required: true

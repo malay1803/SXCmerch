@@ -668,6 +668,7 @@ app.get("/success", async (req, res) => {
   //   console.log(productId);
   if (productId == "") {
     const cartItem = await Cart.find({ UserID });
+
     //console.log(cartItem);
     let arrayy = [];
     for (let cart of cartItem) {
@@ -682,6 +683,8 @@ app.get("/success", async (req, res) => {
       const Date1 = new Date().toISOString().slice(0, 10);
       const TransactionID = transId;
       const PaymentMode = charge.payment_method_details.type;
+      const prod= await Product.find({_id:arr[0]._id});
+      const Price=prod[0].pPrice;
       const Total = charge.amount / 100;
       const Status ="pending"
       //   console.log(ProductID,Size,Quantity,Date1,TransactionID,PaymentMode,Total);
@@ -693,6 +696,7 @@ app.get("/success", async (req, res) => {
         OrderDate: Date1,
         TransactionID,
         PaymentMode,
+        Price,
         Total,
         Status
       });
@@ -708,6 +712,8 @@ app.get("/success", async (req, res) => {
     const Date1 = new Date().toISOString().slice(0, 10);
     const TransactionID = transId;
     const PaymentMode = charge.payment_method_details.type;
+    const prod= await Product.find({_id:productId});
+    const Price=prod[0].pPrice;
     const Total = charge.amount / 100;
     const Status="pending"
     //   console.log(ProductID,Size,Quantity,Date1,TransactionID,PaymentMode,Total);
@@ -719,6 +725,7 @@ app.get("/success", async (req, res) => {
       OrderDate: Date1,
       TransactionID,
       PaymentMode,
+      Price,
       Total,
       Status
     });
