@@ -36,35 +36,41 @@
             <th scope="col">Product Description</th>
             <th scope="col">Product Size</th>
             <th scope="col">Unit Price</th>
-            <th scope="col">Update/Delete</th>
+            <th scope="col">Update</th>
           </tr>
         </thead>
         <tbody>
+          <% let i=1; %> 
+          <% for(let prod of prodlist){ %> 
           <tr style="vertical-align: middle">
-            <th scope="row">1</th>
-            <td>T-Shirt</td>
+            <th scope="row"><%=i %> </th>
+            <td style="text-transform: capitalize;"><%=prod.pCategory %> </td>
             <td>
               <img
-                src="/image/merch/hangTshirtWhite.jpg"
+                src="<%=prod.pImage %>" 
                 alt="Product Image"
                 style="width: 8vmin; border-radius: 1vmin"
               />
             </td>
-            <td>Malhar Tshirt(White)</td>
-            <td>White Cotton Tshirt with Malhar 2021 logo on the front.</td>
-            <td>XS/S/M/L/XL</td>
-            <td>₹499</td>
+            <td><%=prod.pName %></td>
+            <td><%=prod.pDescription %></td>
+            <% if(["tshirt", "hoodie"].includes(prod.pCategory)) {%> 
+              <td>S/M/L/XL/XXL</td>
+            <% }else{ %>
+              <td>-</td>
+            <% } %>  
+            <td>₹<%=prod.pPrice %></td>
               <td>
-                <button type="button" data-bs-toggle="modal" data-bs-target="#updateProduct" class="mb-3 w-100 btn btn-success btn-sm">
+                <form action="" method="POST">
+                
+                <button type="button" data-bs-toggle="modal" data-bs-target="#updateProduct" class="w-100 mt-3 btn btn-success btn-sm">
                   <i class="fas fa-edit"></i>
                 </button>
-                <form action="" method="POST">
-                <button type="submit" class="btn btn-danger btn-sm w-100">
-                  <i class="fas fa-trash trash"></i>
-                </button>
+                
               </td>
             </form>
           </tr>
+          <% i++;} %> 
         </tbody>
       </table>
     </div>   
