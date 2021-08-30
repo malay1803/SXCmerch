@@ -93,15 +93,15 @@ button {
   width: 1.5vw !important;
 } */
 
-.carousel{
+.carousel {
   background-color: none !important;
 }
 
 .carousel-inner {
   border-radius: 25px;
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   overflow: hidden;
-  
+
   box-shadow: rgba(149, 157, 165, 0.3) 0px 8px 24px;
 }
 
@@ -112,7 +112,6 @@ button {
   background-color: #fff;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
-
 
 .grid {
   display: grid;
@@ -149,12 +148,9 @@ button {
   margin-top: 20px;
 }
 
-
-.imgRow{
+.imgRow {
   margin-top: 50px;
 }
-
-
 
 section:nth-child(3),
 section:nth-child(4) {
@@ -500,6 +496,31 @@ select {
   transition: 0.4s ease-out;
 } */
 
-.border_t{
-  border-top-left-radius: 20px;border-top-right-radius: 20px;
+.border_t {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+textarea::selection,
+textarea:active,
+textarea:focus {
+  box-shadow: none;
+  border: 1px solid #343a40 !important;
+  resize: none;
+}
+
+.checkbox label {
+  display: block;
+  padding-left: 15px;
+  text-indent: -15px;
+}
+
+.checkbox input {
+  width: 15px;
+  height: 15px;
+  padding: 0;
+  margin: 0;
+  vertical-align: bottom;
+  position: relative;
+  top: -1px;
 }
