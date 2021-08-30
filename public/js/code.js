@@ -97,10 +97,10 @@ function display_ct5() {
     var x = new Date()
     var ampm = x.getHours( ) >= 12 ? ' PM' : ' AM';
     
-    if(x.getSeconds()<10)
-    var x1 =  x.getHours( )+ ":" +  x.getMinutes() + ":0" +  x.getSeconds() + " " + ampm;
-    else
-    var x1 =  x.getHours( )+ ":" +  x.getMinutes() + ":" +  x.getSeconds() + " " + ampm;
+    // if(x.getSeconds()<10)
+    // var x1 =  x.getHours() + ":" +  x.getMinutes() + ":0" +  x.getSeconds() + " " + ampm;
+    // else
+    var x1 =  (x.getHours()<10?'0'+x.getHours():x.getHours()) + ":" + (x.getMinutes()<10?'0'+x.getMinutes():x.getMinutes()) + ":" +  (x.getSeconds()<10?'0'+x.getSeconds():x.getSeconds()) + " " + ampm;
     
     document.getElementById('timeimp').innerHTML = x1;
     display_c5();
