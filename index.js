@@ -88,7 +88,7 @@ app.get("/admin", async (req, res) => {
   let orderCount = 0;
   let orderdata = await Order.find({});
   for(let data of orderdata){
-    console.log(data.OrderDate.toISOString().slice(5,7));
+    //console.log(data.OrderDate.toISOString().slice(5,7));
     if(transid!=data.TransactionID){
         orderCount=orderCount+1;
         for(let i=1;i<=12;i++){
@@ -112,7 +112,7 @@ app.get("/admin", async (req, res) => {
 
   }
   let users = (await User.find({})).length;
-  console.log(users,checker,orderCount);
+  //console.log(users,checker,orderCount);
   const Date1 = new Date().toUTCString().slice(0, 16);
   const Time1 = new Date().toLocaleString().slice(11,22);
 
@@ -347,7 +347,7 @@ app.post("/category", async (req, res) => {
     }
   }
 
-  console.log(select + "  " + price);
+  //console.log(select + "  " + price);
   res.redirect("/merchandise");
 });
 
@@ -390,7 +390,6 @@ app.get("/contact", async (req, res) => {
 
 app.post("/contact", async (req, res) => {
   const { Name, Email1, Message } = req.body;
-  console.log(Name, Email1, Message);
   const addMessage = new Contact({
     Name,
     Email1,
@@ -483,7 +482,7 @@ app.post("/cart/:id", async (req, res) => {
     const { id } = req.params;
     let size = "";
     const item = await Product.findById({ _id: id });
-    console.log(item);
+    //console.log(item);
     if (["tshirt", "hoodie"].includes(item.pCategory)) {
       size = req.body.size;
     }
@@ -492,7 +491,7 @@ app.post("/cart/:id", async (req, res) => {
       Size: size,
       ProductID: id,
     });
-    console.log(cartfind);
+    //console.log(cartfind);
 
     if (cartfind.length == 0) {
       const cartobject = new Cart({
@@ -639,7 +638,7 @@ app.post("/paynow", async (req, res) => {
         });
       })
       .then((charge) => {
-        console.log(charge);
+        //console.log(charge);
         transId = charge.id;
         console.log(req.body.stripeToken);
         res.redirect("/success");
