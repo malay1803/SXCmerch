@@ -126,7 +126,7 @@
                             <div class="row">
                               <div class="col-md-12 mb-2">
                                 <div class="form-outline mb-2">
-                                  <input type="text" id="unitPrice" required name="unitPrice" oninput="checkpin('form4pin4');" class="form-control form-control-md" />
+                                  <input type="text" id="unitPrice" required name="unitPrice" oninput="checknum('unitPrice');" class="form-control form-control-md" />
                                   <label class="form-label" for="unitPrice">Unit Price<span>*</span></label>
                                 </div>
                               </div>
@@ -145,6 +145,7 @@
                                       padding-left: 20px;
                                     "
                                     id="pcategory1"
+                                    required
                                   >
                                     <option value="category" selected disabled>Select Category</option>
                                     <option value="tshirt">T-Shirt</option>
@@ -213,7 +214,7 @@
                             <div class="row">
                               <div class="col-md-12 mb-2">
                                 <div class="form-outline mb-2">
-                                  <input type="text" id="newPrice" required name="newPrice" class="form-control form-control-md" />
+                                  <input type="text" id="newPrice" oninput="checknum('newPrice');" required name="newPrice" class="form-control form-control-md" />
                                   <label class="form-label" for="newPrice">Unit Price<span>*</span></label>
                                 </div>
                               </div>
@@ -221,7 +222,7 @@
                             <div class="row">
                               <div class="col-md-12 mb-2">
                                 <div class="form-outline mb-2">
-                                  <input type="file" id="newImage" required name="newImage" class="form-control form-control-md" />
+                                  <input type="file" id="newImage" required name="newImage" oninput="checkimg('newImage');"  class="form-control form-control-md" />
                                   <label class="form-label" for="neImage">Image<span>*</span></label>
                                 </div>
                               </div>

@@ -1,4 +1,3 @@
-
 function showitem(){
     var val=document.getElementById("showfilter").value;
     
@@ -120,13 +119,37 @@ function checkphone(inp){
             textbox.setCustomValidity('');
         }
     }else
-        if(phone.length!=10 || phone != parseInt(phone,10) ){
+        if((phone.length!=10 && phone.length!=11) || phone != parseInt(phone,10) ){
             textbox.setCustomValidity("Enter valid PhoneNumber.");
         }
         else {
             textbox.setCustomValidity('');
         }
 }
+
+function checknum(inp){
+    var textbox=document.getElementById(inp);
+    var num=document.getElementById(inp).value;
+    
+        if(num != parseInt(num,10) ){
+            textbox.setCustomValidity("Enter integer value.");
+        }
+        else {
+            textbox.setCustomValidity('');
+        }
+}
+function checkimg(inp){
+    var textbox=document.getElementById(inp);
+    var num=document.getElementById(inp).value;
+    console.log(num);
+        // if(num != parseInt(num,10) ){
+        //     textbox.setCustomValidity("Enter integer value.");
+        // }
+        // else {
+        //     textbox.setCustomValidity('');
+        // }
+}
+
 
 function display_ct5() {
     var x = new Date()
@@ -144,4 +167,3 @@ function display_c5(){
     var refresh=1000; // Refresh rate in milli seconds
     mytime=setTimeout('display_ct5()',refresh)
 }
-display_c5()
