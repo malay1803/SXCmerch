@@ -1,3 +1,29 @@
+
+function showitem(){
+    var val=document.getElementById("showfilter").value;
+    
+    var id='no'+val;
+    var out=document.getElementsByClassName(id);
+
+    if(val!="all"){
+        var line = document.getElementsByClassName('hide');
+        for (var i = 0; i < line.length; i ++) {
+            line[i].style.display = 'none';
+        }
+        var lines = document.getElementsByClassName(val);
+        for (var i = 0; i < lines.length; i ++) {
+            lines[i].style.display = 'table-row';
+            out[i].innerHTML=i+1;
+        }
+    }
+    else{
+        var line = document.getElementsByClassName('hide');
+        for (var i = 0; i < line.length; i ++) {
+            line[i].style.display = 'table-row';
+        }
+    }
+}
+
 function show(a1,a2,a3){
     document.getElementById("productid").value=a2;
     var rate_value;

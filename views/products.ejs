@@ -15,16 +15,16 @@
                   background-color: #343a40;
                   color: white;
                   border: none;
-                  outline: none;
-                "
+                  outline: none;"
+                onchange="showitem();"
                 id="showfilter"
               >
-                <option value="All">All</option>
-                <option value="T-Shirt">T-Shirt</option>
-                <option value="Hoodie">Hoodie</option>
-                <option value="Cap">Cap</option>
-                <option value="Mask">Mask</option>
-                <option value="Brooch">Brooch</option>
+                <option value="all" selected>All</option>
+                <option value="tshirt">T-Shirt</option>
+                <option value="hoodie">Hoodie</option>
+                <option value="cap">Cap</option>
+                <option value="mask">Mask</option>
+                <option value="brooch">Brooch</option>
               </select>
             </th>
           </tr>
@@ -43,8 +43,9 @@
         <tbody>
           <% let i=1; %> 
           <% for(let prod of prodlist){ %> 
-          <tr style="vertical-align: middle">
-            <th scope="row"><%=i %> </th>
+          <tr style="vertical-align: middle;" class="<%=prod.pCategory %> hide" >
+            <th scope="row"><span class="<%='no'+prod.pCategory%> "><%=i %> </span></th>
+            <% i++; %> 
             <td style="text-transform: capitalize;"><%=prod.pCategory %> </td>
             <td>
               <img
@@ -67,7 +68,7 @@
                 </button>
               </td>
           </tr>
-          <% i++;} %> 
+          <% } %> 
         </tbody>
       </table>
     </div>   
