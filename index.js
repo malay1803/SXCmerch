@@ -1,3 +1,6 @@
+require("dotenv").config();
+const DBUrl = process.env.DB_url;
+
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -12,13 +15,14 @@ const Admin = require("./models/admin");
 const Address = require("./models/address");
 const { urlencoded } = require("express");
 
-require("dotenv").config();
-
 const methodOverride = require("method-override");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
+const MongoDBStore = require('connect-mongo');
 const flash = require("connect-flash");
 const { CLIENT_RENEG_LIMIT } = require("tls");
+
+// "mongodb://localhost:27017/sxcdatabase"
 
 mongoose
   .connect("mongodb://localhost:27017/sxcdatabase", {
@@ -33,7 +37,14 @@ mongoose
     console.log(err);
   });
 
+const store = new MongoDBStore({
+  mongoUrl: "mongodb://localhost:27017/sxcdatabase",
+  secret: "GoodNightAll",
+  touchAfter: 24*60*60
+});
+
 const sessionConfig = {
+  store,
   secret: "GoodMorningAll",
   resave: false,
   saveUninitialized: true,
