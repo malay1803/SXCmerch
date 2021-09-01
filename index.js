@@ -76,12 +76,22 @@ app.use(flash());
 
 app.get("/", async(req, res) => {
   count = (await Cart.find({UserID:req.session.user_id})).length;
-  res.render("home", {
-    uName :(await User.find({_id:req.session.user_id}))[0].Name,
-    count,
-    login: req.session.user_id,
-    messages: req.flash("error"),
-  });
+  if(req.session.user_id){
+    res.render("home", {
+      uName :(await User.find({_id:req.session.user_id}))[0].Name,
+      count,
+      login: req.session.user_id,
+      messages: req.flash("error"),
+    });
+  }
+  else{
+    res.render("home", {
+      uName :"",
+      count,
+      login: req.session.user_id,
+      messages: req.flash("error"),
+    });
+  }
 });
 
 app.get('/products', async (req,res) => {
@@ -359,17 +369,31 @@ app.post("/logout", (req, res) => {
 app.get("/merchandise", async (req, res) => {
   const products = await Product.find({});
   count = (await Cart.find({ UserID: req.session.user_id })).length;
-  res.render("merchandise", {
-    uName : (await User.find({_id:req.session.user_id}))[0].Name,
-    count,
-    products,
-    select,
-    categories,
-    price,
-    price_value,
-    login: req.session.user_id,
-    messages: req.flash("error"),
-  });
+  if(req.session.user_id){
+    res.render("merchandise", {
+      uName : (await User.find({_id:req.session.user_id}))[0].Name,
+      count,
+      products,
+      select,
+      categories,
+      price,
+      price_value,
+      login: req.session.user_id,
+      messages: req.flash("error"),
+    });
+  }else{
+    res.render("merchandise", {
+      uName : "",
+      count,
+      products,
+      select,
+      categories,
+      price,
+      price_value,
+      login: req.session.user_id,
+      messages: req.flash("error"),
+    });
+  }
 });
 
 app.post("/category", async (req, res) => {
@@ -413,12 +437,21 @@ app.post("/category", async (req, res) => {
 });
 
 app.get("/about", async (req, res) => {
-  res.render("about", {
-    uName : (await User.find({_id:req.session.user_id}))[0].Name,
-    count,
-    login: req.session.user_id,
-    messages: req.flash("error"),
-  });
+  if(req.session.user_id){
+    res.render("about", {
+      uName : (await User.find({_id:req.session.user_id}))[0].Name,
+      count,
+      login: req.session.user_id,
+      messages: req.flash("error"),
+    });
+  }else{
+    res.render("about", {
+      uName : "",
+      count,
+      login: req.session.user_id,
+      messages: req.flash("error"),
+    });
+  }
 });
 
 app.get("/contact", async (req, res) => {
@@ -434,7 +467,7 @@ app.get("/contact", async (req, res) => {
     });
   } else {
     res.render("contact", {
-      uName : (await User.find({_id:req.session.user_id}))[0].Name,
+      uName : "",
       count,
       login: req.session.user_id,
       messages: req.flash("error"),
