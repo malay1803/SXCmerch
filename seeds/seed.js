@@ -1,9 +1,11 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 const Product = require("../models/merchandise");
 const item = require("./data");
+const DBUrl = process.env.DB_url;
 
 mongoose
-  .connect("mongodb://localhost:27017/sxcdatabase", {
+  .connect(DBUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

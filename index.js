@@ -25,7 +25,7 @@ const { CLIENT_RENEG_LIMIT } = require("tls");
 // "mongodb://localhost:27017/sxcdatabase"
 
 mongoose
-  .connect("mongodb://localhost:27017/sxcdatabase", {
+  .connect(DBUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -38,7 +38,7 @@ mongoose
   });
 
 const store = new MongoDBStore({
-  mongoUrl: "mongodb://localhost:27017/sxcdatabase",
+  mongoUrl: DBUrl,
   secret: "GoodNightAll",
   touchAfter: 24*60*60
 });
@@ -85,14 +85,24 @@ app.get("/", async(req, res) => {
 });
 
 app.get('/products', async (req,res) => {
+  const adminid = req.session.user_id;
+  const admin = await Admin.find({_id: adminid});
+  if(admin.length==0)
+  {
+    res.redirect('/notfound');
+  }
   const prodlist = await Product.find();
   res.render('products', {prodlist});
 })
 
 app.get("/admin", async (req, res) => {
 
-  // const adminid = req.session.user_id;
-  // const admin = await Admin.find({_id: adminid});
+  const adminid = req.session.user_id;
+  const admin = await Admin.find({_id: adminid});
+  if(admin.length==0)
+  {
+    res.redirect('/notfound');
+  }
   let transid="";
   let checker = [0,0,0,0,0];
   let monthcheck = [0,0,0,0,0,0,0,0,0,0,0,0]
@@ -127,12 +137,16 @@ app.get("/admin", async (req, res) => {
   const Date1 = new Date().toUTCString().slice(0, 16);
   const Time1 = new Date().toLocaleString().slice(9,22);
 
-
-
-  res.render("admin",{Date1,monthcheck,Time1,checker,orderCount,users});
+  res.render("admin",{admin,Date1,monthcheck,Time1,checker,orderCount,users});
 });
 
 app.get("/orders", async (req, res) => {
+  const adminid = req.session.user_id;
+  const admin = await Admin.find({_id: adminid});
+  if(admin.length==0)
+  {
+    res.redirect('/notfound');
+  }
   const user = await User.find();
   
   let OrderList;
@@ -215,6 +229,12 @@ app.post("/admin", async (req, res) => {
 
 
 app.get("/message", async(req, res) => {
+  const adminid = req.session.user_id;
+  const admin = await Admin.find({_id: adminid});
+  if(admin.length==0)
+  {
+    res.redirect('/notfound');
+  }
   const contactData = await Contact.find();
   
   res.render("message",{contactData});
@@ -227,6 +247,12 @@ app.delete("/message/:id", async (req, res) => {
 });
 
 app.get("/users", async(req, res) => {
+  const adminid = req.session.user_id;
+  const admin = await Admin.find({_id: adminid});
+  if(admin.length==0)
+  {
+    res.redirect('/notfound');
+  }
   const user = await User.find();
   let arrayy=[]
   let transid=""

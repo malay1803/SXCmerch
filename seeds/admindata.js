@@ -1,6 +1,8 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 const Admin = require("../models/admin");
 const bcrypt = require('bcrypt');
+DBUrl= process.env.DB_url;
 
 let Admins = [
     {
@@ -22,7 +24,7 @@ let Admins = [
 
 
 mongoose
-  .connect("mongodb://localhost:27017/sxcdatabase", {
+  .connect(DBUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
