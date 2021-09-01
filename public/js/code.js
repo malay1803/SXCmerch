@@ -141,26 +141,31 @@ function checknum(inp){
 function checkimg(inp){
     var textbox=document.getElementById(inp);
     var num=document.getElementById(inp).value;
-    console.log(num);
-        // if(num != parseInt(num,10) ){
-        //     textbox.setCustomValidity("Enter integer value.");
-        // }
-        // else {
-        //     textbox.setCustomValidity('');
-        // }
+    
+    var allowedExtensions = ['.jpg','.jpeg','.png','.svg'];
+    if(!(num.includes(allowedExtensions[0]) || num.includes(allowedExtensions[1]) || num.includes(allowedExtensions[2]) || num.includes(allowedExtensions[3]))){
+        alert('Please upload file having extensions .jpeg/.jpg/.png/.svg only.');
+        textbox.value = '';
+    }else{
+        textbox.setCustomValidity('');
+    }
 }
 
-
 function display_ct5() {
-    var x = new Date()
-    var ampm = x.getHours( ) >= 12 ? ' PM' : ' AM';
+    // var x = new Date()
+    // var ampm = x.getHours( ) >= 12 ? ' PM' : ' AM';
+    var date = new Date();
     
-    // if(x.getSeconds()<10)
-    // var x1 =  x.getHours() + ":" +  x.getMinutes() + ":0" +  x.getSeconds() + " " + ampm;
-    // else
-    var x1 =  (x.getHours()<10?'0'+x.getHours():x.getHours()) + ":" + (x.getMinutes()<10?'0'+x.getMinutes():x.getMinutes()) + ":" +  (x.getSeconds()<10?'0'+x.getSeconds():x.getSeconds()) + " " + ampm;
+    var hours = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
+    var am_pm = date.getHours() >= 12 ? "PM" : "AM";
     
-    document.getElementById('timeimp').innerHTML = x1;
+    var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+    var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+    
+    var time = hours + ":" + minutes + ":" + seconds + " " + am_pm;
+    //var x1 =  (x.getHours()<10?'0'+x.getHours():x.getHours()) + ":" + (x.getMinutes()<10?'0'+x.getMinutes():x.getMinutes()) + ":" +  (x.getSeconds()<10?'0'+x.getSeconds():x.getSeconds()) + " " + ampm;
+    
+    document.getElementById('timeimp').innerHTML = time;
     display_c5();
 }
 function display_c5(){

@@ -125,7 +125,7 @@ app.get("/admin", async (req, res) => {
   let users = (await User.find({})).length;
   //console.log(users,checker,orderCount);
   const Date1 = new Date().toUTCString().slice(0, 16);
-  const Time1 = new Date().toLocaleString().slice(11,22);
+  const Time1 = new Date().toLocaleString().slice(9,22);
 
 
 
@@ -206,9 +206,7 @@ app.post("/admin", async (req, res) => {
     req.session.user_id = admin._id;
     uName = admin.Name;
     
-    var location = "/".concat(req.body.add);
-    // console.log('logged in!! ',location);
-    res.redirect(location);
+    res.redirect('/admin');
   } else {
     req.flash("error", "Incorrect Credentials, Try Again!");
     res.redirect("/");
