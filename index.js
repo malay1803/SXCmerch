@@ -483,6 +483,7 @@ app.get("/order", async (req, res) => {
     count = (await Cart.find({ UserID: req.session.user_id })).length;
     res.render("order", {
       uName,
+      Ocount:(await Order.find({ UserID: req.session.user_id })).length,
       count,
       OrderList,
       OrderProduct,
