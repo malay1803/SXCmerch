@@ -77,7 +77,7 @@ app.use(flash());
 app.get("/", async(req, res) => {
   count = (await Cart.find({UserID:req.session.user_id})).length;
   res.render("home", {
-    uName,
+    uName :(await User.find({_id:req.session.user_id}))[0].Name,
     count,
     login: req.session.user_id,
     messages: req.flash("error"),
@@ -292,7 +292,7 @@ app.post("/signup", async (req, res) => {
     });
     await user.save();
     req.session.user_id = user._id;
-    uName = Name;
+    uName = (await User.find({_id:req.session.user_id}))[0].Name;
   } else {
     req.flash("error", "Please match confirm password");
   }
@@ -335,7 +335,7 @@ app.post("/login", async (req, res) => {
   const validPwd = await bcrypt.compare(Password1, user.Password);
   if (validPwd) {
     req.session.user_id = user._id;
-    uName = user.Name;
+    uName = (await User.find({_id:req.session.user_id}))[0].Name;
     count = (await Cart.find({ UserID: req.session.user_id })).length;
     var location = "/".concat(req.body.add);
     // console.log('logged in!! ',location);
@@ -360,7 +360,7 @@ app.get("/merchandise", async (req, res) => {
   const products = await Product.find({});
   count = (await Cart.find({ UserID: req.session.user_id })).length;
   res.render("merchandise", {
-    uName,
+    uName : (await User.find({_id:req.session.user_id}))[0].Name,
     count,
     products,
     select,
@@ -414,7 +414,7 @@ app.post("/category", async (req, res) => {
 
 app.get("/about", (req, res) => {
   res.render("about", {
-    uName,
+    uName : (await User.find({_id:req.session.user_id}))[0].Name,
     count,
     login: req.session.user_id,
     messages: req.flash("error"),
@@ -426,7 +426,7 @@ app.get("/contact", async (req, res) => {
     const id = req.session.user_id;
     const user = await User.findById({ _id: id });
     res.render("contact", {
-      uName,
+      uName : (await User.find({_id:req.session.user_id}))[0].Name,
       count,
       user: user,
       login: req.session.user_id,
@@ -434,7 +434,7 @@ app.get("/contact", async (req, res) => {
     });
   } else {
     res.render("contact", {
-      uName,
+      uName = (await User.find({_id:req.session.user_id}))[0].Name,
       count,
       login: req.session.user_id,
       messages: req.flash("error"),
@@ -482,7 +482,7 @@ app.get("/order", async (req, res) => {
     // console.log(OrderProduct);
     count = (await Cart.find({ UserID: req.session.user_id })).length;
     res.render("order", {
-      uName,
+      uName = (await User.find({_id:req.session.user_id}))[0].Name,
       Ocount:(await Order.find({ UserID: req.session.user_id })).length,
       count,
       OrderList,
@@ -522,7 +522,7 @@ app.get("/cart", async (req, res) => {
     //console.log(finaltotal);
     count = (await Cart.find({ UserID: req.session.user_id })).length;
     res.render("cart", {
-      uName,
+      uName = (await User.find({_id:req.session.user_id}))[0].Name,
       count,
       cartItem: cartItem,
       arrayy: arrayy,
@@ -675,7 +675,7 @@ app.get("/paynow", (req, res) => {
     res.render("payInput", {
       key: PUBLISHABLE_KEY,
       amount: finalcost,
-      Name: uName,
+      Name: (await User.find({_id:req.session.user_id}))[0].Name,
     });
   } else {
     res.redirect("/notfound");
@@ -786,7 +786,7 @@ app.get("/success", async (req, res) => {
   }
 
   res.render("success", {
-    Name: uName,
+    Name: (await User.find({_id:req.session.user_id}))[0].Name,
     amount: charge.amount,
     paymentMethod: charge.payment_method_details.type,
     last4: charge.payment_method_details.card.last4,
@@ -804,8 +804,6 @@ app.use((req, res) => {
   res.status(404).redirect("notFound");
 });
 
-const port = process.env.PORT || 3000;
-
-app.listen(port, () => {
+app.listen(3000, () => {
   console.log("Listening on port 3000");
 });
