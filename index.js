@@ -412,7 +412,7 @@ app.post("/category", async (req, res) => {
   res.redirect("/merchandise");
 });
 
-app.get("/about", (req, res) => {
+app.get("/about", async (req, res) => {
   res.render("about", {
     uName : (await User.find({_id:req.session.user_id}))[0].Name,
     count,
@@ -434,7 +434,7 @@ app.get("/contact", async (req, res) => {
     });
   } else {
     res.render("contact", {
-      uName = (await User.find({_id:req.session.user_id}))[0].Name,
+      uName : (await User.find({_id:req.session.user_id}))[0].Name,
       count,
       login: req.session.user_id,
       messages: req.flash("error"),
@@ -482,7 +482,7 @@ app.get("/order", async (req, res) => {
     // console.log(OrderProduct);
     count = (await Cart.find({ UserID: req.session.user_id })).length;
     res.render("order", {
-      uName = (await User.find({_id:req.session.user_id}))[0].Name,
+      uName : (await User.find({_id:req.session.user_id}))[0].Name,
       Ocount:(await Order.find({ UserID: req.session.user_id })).length,
       count,
       OrderList,
@@ -522,7 +522,7 @@ app.get("/cart", async (req, res) => {
     //console.log(finaltotal);
     count = (await Cart.find({ UserID: req.session.user_id })).length;
     res.render("cart", {
-      uName = (await User.find({_id:req.session.user_id}))[0].Name,
+      uName : (await User.find({_id:req.session.user_id}))[0].Name,
       count,
       cartItem: cartItem,
       arrayy: arrayy,
@@ -670,7 +670,7 @@ const SECRET_KEY = process.env.SECRET_KEY;
 
 const stripe = require("stripe")(SECRET_KEY);
 
-app.get("/paynow", (req, res) => {
+app.get("/paynow", async (req, res) => {
   if (req.session.user_id) {
     res.render("payInput", {
       key: PUBLISHABLE_KEY,
